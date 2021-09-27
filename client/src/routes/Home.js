@@ -9,7 +9,7 @@ function Home() {
   const logout = async (e) => {
     await axios({
       method: 'get',
-      url: 'http://localhost:5000/user/logout',
+      url: 'http://localhost:5000/auth/logout',
       withCredentials: true,
     })
       .then((res) => {
@@ -25,7 +25,7 @@ function Home() {
       <button onClick={logout} type="button">
         Log out
       </button>
-      <Link to="user/login">Log in</Link>
+      <Link to="auth/login">Log in</Link>
     </>
   );
 }

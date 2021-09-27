@@ -1,5 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const db = require('../models/index');
+const User = db.User;
 
 const loginConfig = {
   usernameField: 'id',
@@ -8,20 +10,16 @@ const loginConfig = {
   passReqToCallback: false,
 };
 
-const loginVerify = (id, pwd, done) => {
-  const sql = 'SELECT * FROM user WHERE id=?';
-  con.query(sql, [id], (err, rows) => {
-    if (err) throw err;
-    if (rows.length === 0) {
-      return done(null, false, { message: '존재하지 않는 아이디입니다' });
-    }
-    if (pwd !== rows[0].password) {
-      return done(null, false, { message: '비밀번호가 잘못 되었습니다' });
-    }
-    const user = JSON.parse(JSON.stringify(rows[0]));
-    console.log(`User Found! : ${user.id}, ${user.password}`);
-    return done(null, user);
-  });
+const loginVerify = async (id, pwd, done) => {
+  const user = await User.findOne({ where: { id: id } });
+
+  if (!user) {
+    return done(null, false, { message: '존재하지 않는 아이디입니다' });
+  }
+  if (pwd !== user.password) {
+    return done(null, false, { message: '비밀번호가 잘못 되었습니다' });
+  }
+  return done(null, user);
 };
 
 passport.serializeUser((user, done) => {

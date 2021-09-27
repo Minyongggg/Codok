@@ -13,13 +13,13 @@ function Router() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/user/signup">
+        <Route exact path="/auth/signup">
           <Signup />
         </Route>
-        <Route exact path="/user/login">
+        <Route exact path="/auth/login">
           <Login />
         </Route>
-        <Route exact path="/user/mypage">
+        <Route exact path="/auth/mypage">
           <Mypage />
         </Route>
         <Route>

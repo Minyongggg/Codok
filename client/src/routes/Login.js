@@ -8,7 +8,7 @@ function Login() {
   const login = async (loginInfo) => {
     axios({
       method: 'post',
-      url: 'http://localhost:5000/user/login',
+      url: 'http://localhost:5000/auth/login',
       data: loginInfo,
       withCredentials: true,
     })
@@ -16,7 +16,6 @@ function Login() {
         console.log(res);
         history.push({
           pathname: '/',
-          state: { user: res.data },
         });
       })
       .catch((err) => console.log(err));

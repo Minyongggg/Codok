@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'user',
+    'take',
     {
       pk: {
         type: DataTypes.INTEGER,
@@ -8,19 +8,18 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      id: {
-        type: DataTypes.STRING,
+      profilePk: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true,
       },
-      password: {
-        type: DataTypes.STRING,
+      lecturePk: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     //option
     {
-      tableName: 'user',
+      tableName: 'take',
       timestamps: false,
       underscored: false,
     }
