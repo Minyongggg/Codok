@@ -33,3 +33,5 @@ yarn-error.log*
 
 # AWS EC2 for database
 /db_ec2
+
+/ignore

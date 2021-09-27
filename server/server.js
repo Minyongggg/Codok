@@ -96,20 +96,30 @@ app.listen(port, () => {
 /// ///Main API
 /// /////////////////////////
 
-app.post('/user/login', passport.authenticate('local', {}), (req, res) => {
+app.get('/test', (req, res) => {
+  console.log('test');
+  res.json({});
+});
+
+app.post('/auth/signup', (req, res) => {
+  console.log(req.body);
+  res.json({});
+});
+
+app.post('/auth/login', passport.authenticate('local', {}), (req, res) => {
   console.log(req.session);
   console.log(req.user.id);
   res.status(200).send(req.user.id);
 });
 
-app.get('/user/logout', (req, res) => {
+app.get('/auth/logout', (req, res) => {
   req.session.destroy(() => {
     res.clearCookie('connect.sid');
     res.send('logout');
   });
 });
 
-app.get('/user/mypage', isLoggedIn, (req, res) => {
+app.get('/auth/mypage', isLoggedIn, (req, res) => {
   console.log(req.user);
   res.send(`mypage info User: ${req.user.id}`);
 });
