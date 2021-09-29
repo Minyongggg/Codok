@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
     },
-    //option
+    // option
     {
       tableName: 'profile',
       timestamps: false,

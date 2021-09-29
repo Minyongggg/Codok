@@ -1,7 +1,7 @@
 {
   "env": {
     "browser": true,
-    "node" : true
+    "node": true
   },
   "plugins": ["prettier", "react"],
   "extends": [
@@ -17,12 +17,17 @@
   //   "ecmaVersion": 12
   // },
   "rules": {
-    "prettier/prettier": "error",
     "no-unused-vars": "warn",
     "no-console": "off",
     "react/jsx-filename-extension": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "jsx-a11y/label-has-for":"off"
+    "jsx-a11y/label-has-for": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
     // "node/no-unsupported-features/es-syntax": "off",
     // "no-undef": "off",
     // "no-alert": "off",

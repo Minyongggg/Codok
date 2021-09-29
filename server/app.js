@@ -18,16 +18,17 @@ app.use(
   session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
 app.use(passport.initialize());
-app.use(passport.session());
 passportConfig();
+
+app.use(passport.session());
+// app.use('/api', router);
+app.use('/', router);
 
 /// /////////////////////////////////////////////////////////////
 app.listen(5000, () => {
   console.log(`Listening on 5000`);
 });
-
-app.use('/', router);
