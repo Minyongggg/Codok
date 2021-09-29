@@ -1,20 +1,20 @@
 const db = require('../models/index');
-const User = db.User;
+
+const { User } = db;
 
 exports.signup = async ({ id, pwd }) => {
-  const userFound = await User.findOne({ where: { id: id } });
+  const userFound = await User.findOne({ where: { id } });
 
   if (userFound) {
     console.log('User exist!');
     return false;
-  } else {
-    const user = User.create({
-      id: id,
-      password: pwd,
-    });
-    console.log('User created!');
-    return user;
   }
+  const user = User.create({
+    id,
+    password: pwd,
+  });
+  console.log('User created!');
+  return user;
 };
 exports.login = async () => {};
 exports.logout = async () => {};

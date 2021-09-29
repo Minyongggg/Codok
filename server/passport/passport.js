@@ -1,7 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models/index');
-const User = db.User;
+
+const { User } = db;
 
 const loginConfig = {
   usernameField: 'id',
@@ -11,7 +12,7 @@ const loginConfig = {
 };
 
 const loginVerify = async (id, pwd, done) => {
-  const user = await User.findOne({ where: { id: id } });
+  const user = await User.findOne({ where: { id } });
 
   if (!user) {
     return done(null, false, { message: '존재하지 않는 아이디입니다' });
@@ -24,6 +25,7 @@ const loginVerify = async (id, pwd, done) => {
 
 passport.serializeUser((user, done) => {
   // user 정보로 서버에 세션을 만들고 쿠키를 클라이언트로 넘겨줌
+  console.log('<<', user);
   done(null, user);
 });
 

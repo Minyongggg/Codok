@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     },
-    //option
+    // option
     {
       tableName: 'user',
       timestamps: false,
