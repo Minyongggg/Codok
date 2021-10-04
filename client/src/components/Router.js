@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import Home from '../routes/Home';
+import Home from '../routes/main/Home';
+import Timetable from '../routes/main/Timetable';
 import Login from '../routes/auth/Login';
 import Signup from '../routes/auth/Signup';
 import Profile from '../routes/auth/Profile';
@@ -12,8 +13,12 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
+        {/* home */}
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/home">
+          <Timetable />
         </Route>
         {/* auth */}
         <Route exact path="/auth/signup">
