@@ -9,7 +9,7 @@ const { sequelize } = require('./models/index');
 
 const app = express();
 
-// sequelize.sync();
+sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: true, credentials: true }));
