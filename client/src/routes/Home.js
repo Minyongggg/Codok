@@ -9,7 +9,7 @@ function Home() {
   const logout = async (e) => {
     await axios({
       method: 'get',
-      url: 'http://localhost:5000/auth/logout',
+      url: 'http://localhost:8000/auth/logout',
       withCredentials: true,
     })
       .then((res) => {

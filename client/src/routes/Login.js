@@ -8,7 +8,7 @@ function Login() {
   const login = async (loginInfo) => {
     axios({
       method: 'post',
-      url: 'http://localhost:5000/auth/login',
+      url: 'http://localhost:8000/auth/login',
       data: loginInfo,
       withCredentials: true,
     })

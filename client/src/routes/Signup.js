@@ -8,7 +8,7 @@ function Signup() {
   const signup = async (signupInfo) => {
     axios({
       method: 'post',
-      url: 'http://localhost:5000/auth/signup',
+      url: 'http://localhost:8000/auth/signup',
       data: signupInfo,
       withCredentials: true,
     })
