@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'take',
+    'Lecture',
     {
       pk: {
         type: DataTypes.INTEGER,
@@ -8,18 +8,32 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      profilePk: {
+      courseId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique: false,
       },
-      lecturePk: {
+      section: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: false,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      professor: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      dayTime: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },
     // option
     {
-      tableName: 'take',
+      tableName: 'Lecture',
       timestamps: false,
       underscored: false,
     }

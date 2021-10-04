@@ -9,7 +9,7 @@ const { sequelize } = require('./models/index');
 
 const app = express();
 
-// sequelize.sync();
+sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: true, credentials: true }));
@@ -29,6 +29,6 @@ app.use(passport.session());
 app.use('/', router);
 
 /// /////////////////////////////////////////////////////////////
-app.listen(5000, () => {
-  console.log(`Listening on 5000`);
+app.listen(8000, () => {
+  console.log(`Listening on 8000`);
 });
