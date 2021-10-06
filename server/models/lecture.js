@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'Lecture',
+    "lecture",
     {
       pk: {
         type: DataTypes.INTEGER,
@@ -9,12 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       courseId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        unique: false,
-      },
-      section: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: false,
       },
@@ -33,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     // option
     {
-      tableName: 'Lecture',
+      tableName: "lecture",
       timestamps: false,
       underscored: false,
     }

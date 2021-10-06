@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    "comment",
+    "take",
     {
       pk: {
         type: DataTypes.INTEGER,
@@ -8,26 +8,18 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      // postPk: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      // },
-      // authorPk: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      // },
-      content: {
-        type: DataTypes.TEXT,
+      profilePk: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      createdAt: {
-        type: DataTypes.DATE,
+      lecturePk: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     // option
     {
-      tableName: "comment",
+      tableName: "take",
       timestamps: false,
       underscored: false,
     }

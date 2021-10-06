@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'Profile',
+    "profile",
     {
       pk: {
         type: DataTypes.INTEGER,
@@ -15,19 +15,19 @@ module.exports = (sequelize, DataTypes) => {
       // },
       nickname: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       gender: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       major: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       studentId: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       introduce: {
         type: DataTypes.TEXT,
@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       mateWant: {
         type: DataTypes.BOOLEAN,
+        allowNull: true,
       },
       profileImg: {
         type: DataTypes.STRING,
@@ -43,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     // option
     {
-      tableName: 'Profile',
+      tableName: "profile",
       timestamps: false,
       underscored: false,
     }

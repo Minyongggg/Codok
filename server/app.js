@@ -1,15 +1,15 @@
-require('dotenv').config();
-const express = require('express');
-const passport = require('passport');
-const session = require('express-session');
-const cors = require('cors');
-const router = require('./routes/index');
-const passportConfig = require('./passport/passport');
-const { sequelize } = require('./models/index');
+require("dotenv").config();
+const express = require("express");
+const passport = require("passport");
+const session = require("express-session");
+const cors = require("cors");
+const router = require("./routes/index");
+const passportConfig = require("./passport/passport");
+const { sequelize } = require("./models/index");
 
 const app = express();
 
-sequelize.sync();
+// sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: true, credentials: true }));
@@ -26,7 +26,7 @@ passportConfig();
 
 app.use(passport.session());
 // app.use('/api', router);
-app.use('/', router);
+app.use("/api", router);
 
 /// /////////////////////////////////////////////////////////////
 app.listen(8000, () => {
