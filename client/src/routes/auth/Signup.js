@@ -1,26 +1,21 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 function Signup() {
   const history = useHistory();
 
   const signup = async (signupInfo) => {
     axios({
-<<<<<<< HEAD:client/src/routes/auth/Signup.js
       method: 'post',
       url: 'http://localhost:8000/auth/signup',
-=======
-      method: "post",
-      url: "http://localhost:8000/auth/signup",
->>>>>>> minyong2:client/src/routes/Signup.js
       data: signupInfo,
       withCredentials: true,
     })
       .then((res) => {
         console.log(res);
         history.push({
-          pathname: "/",
+          pathname: '/',
         });
       })
       .catch((err) => console.log(err));
