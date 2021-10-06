@@ -4,12 +4,19 @@ import { useLocation, useHistory, Link } from 'react-router-dom';
 import '../../css/main/Timetable.css'
 
 function Timetable() {
+    const [nonTime, setNonTime] = useState([])
     return(
         <>
         <div className="timetable-container">
             <div className="title">코독한 시간표</div>
             <Table />
-            <div className="nontable"></div>
+            {/* 시간이 배정되어있지 않은 수업 ex)정보적 사고 */}
+            {
+                nonTime.length
+                ? <div className="nontable">있음?</div>
+                : null
+            }
+            
         </div>
         </>
     )
