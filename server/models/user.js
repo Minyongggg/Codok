@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    'User',
+    "user",
     {
       pk: {
         type: DataTypes.INTEGER,
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     // option
     {
-      tableName: 'User',
+      tableName: "user",
       timestamps: false,
       underscored: false,
     }

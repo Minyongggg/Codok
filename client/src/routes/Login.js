@@ -1,21 +1,21 @@
-import { React, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { React, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const history = useHistory();
 
   const login = async (loginInfo) => {
     axios({
-      method: 'post',
-      url: 'http://localhost:5000/auth/login',
+      method: "post",
+      url: "http://localhost:8000/auth/login",
       data: loginInfo,
       withCredentials: true,
     })
       .then((res) => {
         console.log(res);
         history.push({
-          pathname: '/',
+          pathname: "/",
         });
       })
       .catch((err) => console.log(err));
