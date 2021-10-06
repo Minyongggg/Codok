@@ -1,0 +1,12 @@
+.table-container {
+    display: flex;
+    flex-direction: row;
+}
+.row {
+    width: 50px;
+    text-align: center;
+}
+
+.col {
+    height: 50px;
+}
