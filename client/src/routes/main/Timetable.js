@@ -16,7 +16,7 @@ function Timetable() {
                 ? <div className="nontable">있음?</div>
                 : null
             }
-            <div>리덕스</div>
+            <div></div>
             
         </div>
         </>
