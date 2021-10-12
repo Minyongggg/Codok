@@ -34,6 +34,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # AWS EC2 for database
-/db_ec2
+/codok-db
 
 /ignore
