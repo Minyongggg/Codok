@@ -45,26 +45,24 @@ db.Profile.belongsTo(db.User, {
 // Post는 userPk를 가짐
 // Post는 getUser 메소드 사용 가능
 // User는 getPosts 메소드 사용 가능 (리스트), 반드시 plural
-db.Profile.hasMany(db.Post, {
-  foreignKey: { allowNull: false },
+db.Post.belongsTo(db.Profile, {
+  foreignKey: { name: "authorPk", allowNull: false },
   onDelete: "CASCADE",
 });
 
-db.Post.belongsTo(db.Profile, {
-  as: "author",
-  foreignKey: { allowNull: false },
+db.Profile.hasMany(db.Post, {
+  foreignKey: { name: "authorPk", allowNull: false },
   onDelete: "CASCADE",
 });
 
 // user : comment = 1 : N
-db.Profile.hasMany(db.Comment, {
-  foreignKey: { allowNull: false },
+db.Comment.belongsTo(db.Profile, {
+  foreignKey: { name: "authorPk", allowNull: false },
   onDelete: "CASCADE",
 });
 
-db.Comment.belongsTo(db.Profile, {
-  as: "author",
-  foreignKey: { allowNull: false },
+db.Profile.hasMany(db.Comment, {
+  foreignKey: { name: "authorPk", allowNull: false },
   onDelete: "CASCADE",
 });
 
