@@ -51,3 +51,16 @@ exports.getProfsByLec = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.updateProf = async (req, res, next) => {
+  try {
+    const profile = await profileServices.updateProf(req.params.pk, req.body);
+
+    res.json({
+      message: "프로필 업데이트 완료",
+      data: profile,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

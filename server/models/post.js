@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define(
+  const post = sequelize.define(
     "post",
     {
       pk: {
@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      // lecturePk: {
-      //   type: DataTypes.INTEGER,
+      // courseId: {
+      //   type: DataTypes.STRING,
       //   allowNull: false,
       // },
       title: {
@@ -36,4 +36,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: false,
     }
   );
+  return post;
 };

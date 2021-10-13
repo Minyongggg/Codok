@@ -34,3 +34,24 @@ exports.getProfsByLec = async (courseId) => {
 
   return result;
 };
+
+exports.updateProf = async (
+  pk,
+  { nickname, gender, major, studentId, introduce, mateWant, profileImg }
+) => {
+  const profile = await Profile.findOne({
+    where: {
+      pk,
+    },
+  });
+  profile.nickname = nickname;
+  profile.gender = gender;
+  profile.major = major;
+  profile.studentId = studentId;
+  profile.introduce = introduce;
+  profile.mateWant = mateWant;
+  profile.profileImg = profileImg;
+
+  await profile.save();
+  return profile;
+};
