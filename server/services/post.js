@@ -53,7 +53,7 @@ exports.updatePost = async (pk, { title, content }) => {
 };
 
 exports.delPost = async (pk) => {
-  const post = await Lecture.findOne({
+  const post = await Post.findOne({
     where: {
       pk,
     },
