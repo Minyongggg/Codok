@@ -16,7 +16,7 @@ function Timetable() {
                 ? <div className="nontable">있음?</div>
                 : null
             }
-            <div>변경변경</div>
+            <div>타입스크립트</div>
             
         </div>
         </>
