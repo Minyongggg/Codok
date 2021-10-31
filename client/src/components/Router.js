@@ -13,7 +13,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        {/* home */}
+        {/* home1 */}
         <Route exact path="/">
           <Home />
         </Route>
