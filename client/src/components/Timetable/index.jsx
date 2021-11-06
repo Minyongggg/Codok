@@ -6,6 +6,20 @@ import * as S from "./style";
 
 function Timetable() {
   const [nonTime, setNonTime] = useState([]);
+  const getLectureData = async (e) => {
+    await axios({
+      method: "get",
+      url: "http://localhost:8000/lectures/courseId",
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getLectureData();
+  }, []);
   return (
     <>
       <S.Container>
