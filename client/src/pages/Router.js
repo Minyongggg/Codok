@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import Home from '../routes/main/Home';
-import Timetable from '../routes/main/Timetable';
-import Login from '../routes/auth/Login';
-import Signup from '../routes/auth/Signup';
-import Profile from '../routes/auth/Profile';
-import Mypage from '../routes/Mypage';
-import PageNotFound from '../routes/PageNotFound';
-import '../css/base.css';
+import React from "react";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import Home from "../components/Home/Home";
+import Timetable from "../components/Timetable";
+import Login from "../components/auth/Login";
+import Signup from "../components/auth/Signup/index.jsx";
+import Profile from "../components/auth/Profile";
+import Mypage from "../components/Mypage";
+import PageNotFound from "../components/PageNotFound";
+import Footer from "../components/common/Footer";
 
 function Router() {
   return (
@@ -42,26 +42,10 @@ function Router() {
       </Switch>
 
       {/* <Footer /> */}
+      {/* 일단 넣어놓긴 했지만 푸터가 없어야 되는 페이지도 있으니까 각 페이지에서 불러오면 좋을 듯 */}
       <Footer />
     </BrowserRouter>
   );
 }
-
-function Footer(){
-  return(
-    <>
-    <div className="footer-container">
-      <div className="footer-home">
-        <div className="footer-icon"></div>
-        <div>홈</div>
-      </div>
-      <div className="footer-chat">
-        <div className="footer-icon"></div>
-        <div>채팅</div>
-      </div>
-    </div>
-    </>
-  )
-};
 
 export default Router;
