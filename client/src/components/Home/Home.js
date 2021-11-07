@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useLocation, useHistory, Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useLocation, useHistory, Link } from "react-router-dom";
 
 function Home() {
   const location = useLocation();
@@ -8,8 +8,8 @@ function Home() {
 
   const logout = async (e) => {
     await axios({
-      method: 'get',
-      url: 'http://localhost:8000/auth/logout',
+      method: "get",
+      url: "http://localhost:8000/auth/logout",
       withCredentials: true,
     })
       .then((res) => {
@@ -21,7 +21,7 @@ function Home() {
   return (
     <>
       <div>Its Home</div>
-      <Link to="user/mypage">My Page</Link>
+      <Link to="auth/mypage">My Page</Link>
       <button onClick={logout} type="button">
         Log out
       </button>

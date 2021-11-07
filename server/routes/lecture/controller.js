@@ -25,3 +25,18 @@ exports.getLecsByProf = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getLecsByCrsIdList = async (req, res, next) => {
+  try {
+    const lectures = await lectureServices.getLecsByCrsIdList(
+      req.body.courseIdList
+    );
+
+    res.json({
+      message: "강의정보 리스트 조회 성공!",
+      data: lectures,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
