@@ -1,4 +1,5 @@
 const { Lecture, Profile } = require("../models");
+const { Op } = require("sequelize");
 
 exports.getLecByCrsId = async (courseId) => {
   const result = await Lecture.findOne({
@@ -16,5 +17,16 @@ exports.getLecsByProf = async (pk) => {
     },
   });
   const result = profile.getLectures();
+  return result;
+};
+
+exports.getLecsByCrsIdList = async (courseIdList) => {
+  const result = await Lecture.findAll({
+    where: {
+      courseId: {
+        [Op.or]: courseIdList,
+      },
+    },
+  });
   return result;
 };
