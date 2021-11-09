@@ -1,6 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import styled, { css } from "styled-components";
+import '../../css/auth/signup.scss'
 
 function Signup() {
   const history = useHistory();
@@ -29,6 +31,10 @@ function Signup() {
 
   return (
     <>
+    <div className="container">
+      <Circle><i class="fas fa-arrow-left"></i></Circle>
+      <div>회원가입 시작</div>
+
       <form onSubmit={onSubmit}>
         <label htmlFor="id">ID</label>
         <input type="text" id="id" name="id" />
@@ -36,8 +42,17 @@ function Signup() {
         <input type="password" id="pwd" name="pwd" />
         <button type="submit">Sign up</button>
       </form>
+    </div>
     </>
   );
 }
-
+const Circle = styled.div`
+  width: 44px;
+  height: 44px;
+  background-color: #eee;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+`
 export default Signup;
