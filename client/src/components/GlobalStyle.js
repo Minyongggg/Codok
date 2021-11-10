@@ -6,11 +6,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     line-height: 1.5;
     max-width: 420px;
     min-height: 100vh;
     margin: auto;
+
   }
 `;
 

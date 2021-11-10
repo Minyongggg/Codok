@@ -12,6 +12,8 @@ import Footer from "../components/common/Footer";
 function Router() {
   return (
     <BrowserRouter>
+          <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'/>
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
       <Switch>
         {/* home1 */}
         <Route exact path="/">
