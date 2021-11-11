@@ -33,7 +33,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# AWS EC2 for database
-/codok-db
 
 /ignore
