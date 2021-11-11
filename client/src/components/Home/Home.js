@@ -20,19 +20,12 @@ function Home() {
 
   return (
     <>
-<<<<<<< Updated upstream:client/src/components/Home/Home.js
-      <div>Its Home</div>
-      <Link to="auth/mypage">My Page</Link>
-      <button onClick={logout} type="button">
-=======
       <div>CODOK(home)</div>
       <Link to="user/mypage">My Page</Link>
-      {/* <button onClick={logout} type="button">
->>>>>>> Stashed changes:client/src/routes/main/Home.js
-        Log out
-      </button> */}
-
       <Link to="auth/login">Log in</Link>
+      <button onClick={logout} type="button">
+        Log out
+      </button>
     </>
   );
 }
