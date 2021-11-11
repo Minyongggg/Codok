@@ -16,7 +16,7 @@ function Footer() {
       </S.Section>
       <S.Divider />
       <S.Section isHome={!isHome}>
-        <Link to="/auth/mypage" onClick={() => setIsHome(false)}>
+        <Link to="/chatlist" onClick={() => setIsHome(false)}>
           <ChatSVG />
           <div>채팅</div>
         </Link>
