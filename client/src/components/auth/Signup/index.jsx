@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled, { css } from "styled-components";
 // import '../../css/auth/signup.scss'
+import * as S from "../style.js";
 function Signup() {
   const history = useHistory();
 
@@ -32,89 +33,89 @@ function Signup() {
   };
   return (
     <>
-      <Container>
-      <Circle onClick={goBack}><i className="fas fa-arrow-left"></i></Circle>
+      <S.Container>
+      <S.Circle onClick={goBack}><i className="fas fa-arrow-left"></i></S.Circle>
 
-      <Title>회원가입 시작</Title>
+      <S.Title>회원가입 시작</S.Title>
       <form onSubmit={onSubmit}>
-        <InputWrapper><InputIcon className="far fa-user"/><InputID type="text" id="id" name="id"/></InputWrapper>  
-        <InputWrapper><InputIcon className="fas fa-lock"/><InputPW type="password" id="pwd" name="pwd"/></InputWrapper>
-        <YB/>
-        <ButtonWrapper><Button type="submit">Sign up</Button></ButtonWrapper>
+        <S.InputWrapper><S.InputIcon className="far fa-user"/><S.InputID type="text" id="id" name="id" placeholder="아이디"/></S.InputWrapper>  
+        <S.InputWrapper><S.InputIcon className="fas fa-lock"/><S.InputPW type="password" id="pwd" name="pwd" placeholder="비밀번호"/></S.InputWrapper>
+        <S.YB/>
+        <S.ButtonWrapper><S.Button type="submit">회원가입</S.Button></S.ButtonWrapper>
       </form>
-      </Container>
+      </S.Container>
     </>
   );
 }
 
-const InputIcon = styled.i`
-  font-size:1.5rem;
-  margin-right: 4px;
+// const S.InputIcon = styled.i`
+//   font-size:1.5rem;
+//   margin-right: 4px;
 
-`
-const YB = styled.div`
-  height: 300px
-`
-const Title = styled.h1`
-  margin-bottom: 50px;
-`
-const Container = styled.div`
-  width: 100%;
-  max-width: 375px;
-  padding: 0 30px 0 30px;
-  margin: 0 auto;
-  display:flex;
-  justify-content: center;
-  margin-top: 10px;
-  flex-direction: column;
-  background-color: #fff;
-`
-const Circle = styled.div`
-  width: 44px;
-  height: 44px;
-  background-color: #eee;
-  display:flex;
-  cursor:pointer;
-  align-items: center;
-  justify-content: center;
-  border-radius: 40px;
-`
-const InputWrapper = styled.div`
-  width: 100%;
-  height: 56px;
-  border-bottom: 1px solid #eee;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-`
-const Button = styled.button`
-  width: 160px;
-  height: 56px;
-  color: white;
-  background-color:#18A0FB;
-  border-style: none;
-  border-radius: 56px;
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`
+// `
+// const YB = styled.div`
+//   height: 300px
+// `
+// const Title = styled.h1`
+//   margin-bottom: 50px;
+// `
+// const Container = styled.div`
+//   width: 100%;
+//   max-width: 375px;
+//   padding: 0 30px 0 30px;
+//   margin: 0 auto;
+//   display:flex;
+//   justify-content: center;
+//   margin-top: 10px;
+//   flex-direction: column;
+//   background-color: #fff;
+// `
+// const Circle = styled.div`
+//   width: 44px;
+//   height: 44px;
+//   background-color: #eee;
+//   display:flex;
+//   cursor:pointer;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 40px;
+// `
+// const S.InputWrapper = styled.div`
+//   width: 100%;
+//   height: 56px;
+//   border-bottom: 1px solid #eee;
+//   display:flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-bottom: 1rem;
+// `
+// const Button = styled.button`
+//   width: 160px;
+//   height: 56px;
+//   color: white;
+//   background-color:#18A0FB;
+//   border-style: none;
+//   border-radius: 56px;
+//   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+//   font-size: 1rem;
+//   cursor: pointer;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+// `
 
-const ButtonWrapper = styled.div`
-  width: 100%;
-  display:flex;
-  justify-content: center;
-`
-const InputID = styled.input`
-  width: 100%;
-  font-size: 1rem;
-  height: 100%;
-  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-  border-style: none;
-`
-const InputPW = styled(InputID)`
-`
+// const ButtonWrapper = styled.div`
+//   width: 100%;
+//   display:flex;
+//   justify-content: center;
+// `
+// const S.InputID = styled.input`
+//   width: 100%;
+//   font-size: 1rem;
+//   height: 100%;
+//   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+//   border-style: none;
+// `
+// const InputPW = styled(S.InputID)`
+// `
 // const inputStyle = {
 //   width: "100%",
 //   font-size: "1rem",

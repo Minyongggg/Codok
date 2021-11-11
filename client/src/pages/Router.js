@@ -5,6 +5,7 @@ import Timetable from "../components/Timetable";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
 import Profile from "../components/auth/Profile";
+import Splash from "../components/auth/Splash";
 import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
@@ -18,6 +19,9 @@ function Router() {
         {/* home1 */}
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/splash">
+          <Splash/>
         </Route>
         <Route exact path="/home">
           <Timetable />
