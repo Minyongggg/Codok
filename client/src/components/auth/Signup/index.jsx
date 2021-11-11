@@ -2,8 +2,8 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled, { css } from "styled-components";
-// import "../../../css/auth/signup.scss";
-
+// import '../../css/auth/signup.scss'
+import * as S from "../style.js";
 function Signup() {
   const history = useHistory();
 
@@ -28,33 +28,23 @@ function Signup() {
     const signupInfo = { id: e.target.id.value, pwd: e.target.pwd.value };
     return signup(signupInfo);
   };
-
+  const goBack = () => {
+    history.goBack();
+  };
   return (
     <>
-      <div className="container">
-        <Circle>
-          <i class="fas fa-arrow-left"></i>
-        </Circle>
-        <div>회원가입 시작</div>
+      <S.Container>
+      <S.Circle onClick={goBack}><i className="fas fa-arrow-left"></i></S.Circle>
 
-        <form onSubmit={onSubmit}>
-          <label htmlFor="id">ID</label>
-          <input type="text" id="id" name="id" />
-          <label htmlFor="pwd">PW</label>
-          <input type="password" id="pwd" name="pwd" />
-          <button type="submit">Sign up</button>
-        </form>
-      </div>
+      <S.Title>회원가입 시작</S.Title>
+      <form onSubmit={onSubmit}>
+        <S.InputWrapper><S.InputIcon className="far fa-user"/><S.InputID type="text" id="id" name="id" placeholder="아이디"/></S.InputWrapper>  
+        <S.InputWrapper><S.InputIcon className="fas fa-lock"/><S.InputPW type="password" id="pwd" name="pwd" placeholder="비밀번호"/></S.InputWrapper>
+        <S.YB/>
+        <S.ButtonWrapper><S.Button type="submit">회원가입</S.Button></S.ButtonWrapper>
+      </form>
+      </S.Container>
     </>
   );
 }
-const Circle = styled.div`
-  width: 44px;
-  height: 44px;
-  background-color: #eee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 40px;
-`;
 export default Signup;

@@ -5,6 +5,7 @@ import Timetable from "../components/Timetable";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
 import Profile from "../components/auth/Profile";
+import Splash from "../components/auth/Splash";
 import Chatlist from "../components/chat/Chatlist/index.jsx";
 import Chatroom from "../components/chat/Chatroom/index.jsx";
 import Mypage from "../components/Mypage";
@@ -14,10 +15,15 @@ import Footer from "../components/common/Footer";
 function Router() {
   return (
     <BrowserRouter>
+          <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'/>
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
       <Switch>
         {/* home1 */}
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/splash">
+          <Splash/>
         </Route>
         <Route exact path="/home">
           <Timetable />
