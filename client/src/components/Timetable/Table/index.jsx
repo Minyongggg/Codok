@@ -10,9 +10,9 @@ function Table() {
       <S.Container>
         {/* 몇 교시까지 수업이 있는지 */}
         <S.Row>
-          <div>.</div>
+          <S.Time></S.Time>
           {times.map((time) => {
-            return <div className="col">{time}</div>;
+            return <S.Time>{time}</S.Time>;
           })}
         </S.Row>
 
@@ -21,7 +21,7 @@ function Table() {
           return (
             <>
               <S.Row>
-                <div>{day}</div>
+                <S.DayOfWeek>{day}</S.DayOfWeek>
                 <S.Col>
                   {times.map((time) => {
                     return <div></div>;

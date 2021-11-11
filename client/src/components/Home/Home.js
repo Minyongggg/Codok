@@ -20,12 +20,12 @@ function Home() {
 
   return (
     <>
-      <div>Its Home</div>
-      <Link to="auth/mypage">My Page</Link>
+      <div>CODOK(home)</div>
+      <Link to="user/mypage">My Page</Link>
+      <Link to="auth/login">Log in</Link>
       <button onClick={logout} type="button">
         Log out
       </button>
-      <Link to="auth/login">Log in</Link>
     </>
   );
 }

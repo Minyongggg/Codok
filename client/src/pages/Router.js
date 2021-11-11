@@ -6,6 +6,8 @@ import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
 import Profile from "../components/auth/Profile";
 import Splash from "../components/auth/Splash";
+import Chatlist from "../components/chat/Chatlist/index.jsx";
+import Chatroom from "../components/chat/Chatroom/index.jsx";
 import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
@@ -37,9 +39,14 @@ function Router() {
           <Profile />
         </Route>
         {/* chat */}
-
+        <Route exact path="/chatlist">
+          <Chatlist />
+        </Route>
+        <Route exact path="/chatroom">
+          <Chatroom />
+        </Route>
         {/* board */}
-        <Route exact path="/auth/mypage">
+        <Route exact path="/user/mypage">
           <Mypage />
         </Route>
         <Route>
