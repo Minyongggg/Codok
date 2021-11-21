@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   padding: 24px;
+  padding-bottom: 96px;
 `;
 
 export const Header = styled.div`
@@ -24,6 +25,7 @@ export const PlusButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   > svg {
     width: 24px;
