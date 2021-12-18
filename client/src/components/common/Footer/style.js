@@ -11,6 +11,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: white;
 
   box-shadow: 0 -3px 6px -6px gray;
 `;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -13,6 +13,7 @@ export const Row = styled.div`
     border-bottom: 1px solid #a7b0c0;
     width: 10vw;
     max-width: 42px;
+    color: #a7b0c0;
   }
 `;
 
@@ -28,8 +29,32 @@ export const Time = styled.div`
 `;
 
 export const Col = styled.div`
-  height: 14vw;
-  max-height: 52px;
+  > div {
+    height: 14vw;
+    max-height: 52px;
+  }
+`;
+
+export const colorList = [
+  "#73DBE8",
+  "#7BA7FE",
+  "#BCA4FF",
+  "#FF94BE",
+  "#70C1F9",
+  "#DF91FF",
+];
+
+export const FilledCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  background-color: ${(props) => colorList[props.id]};
+    margin: 0;
+    font-size: 8px;
+  }
 `;
 
 export const DayOfWeek = styled.div`
@@ -39,4 +64,5 @@ export const DayOfWeek = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #a7b0c0;
 `;
