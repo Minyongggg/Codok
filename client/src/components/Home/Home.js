@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useHistory, Link } from "react-router-dom";
+import { UserId } from "../auth/Login"
 
 function Home() {
   const location = useLocation();
@@ -9,7 +10,7 @@ function Home() {
   const logout = async (e) => {
     await axios({
       method: "get",
-      url: "http://localhost:8000/auth/logout",
+      url: "http://localhost:8000/api/auth/logout",
       withCredentials: true,
     })
       .then((res) => {
@@ -21,7 +22,7 @@ function Home() {
   return (
     <>
       <div>CODOK(home)</div>
-      <Link to="user/mypage">My Page</Link>
+      <Link to="auth/signup">Sign up</Link>
       <Link to="auth/login">Log in</Link>
       <button onClick={logout} type="button">
         Log out

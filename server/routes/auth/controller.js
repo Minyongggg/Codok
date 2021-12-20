@@ -1,7 +1,6 @@
 const authServices = require("../../services/auth");
 
 exports.signup = async (req, res, next) => {
-  console.log(req.body);
   const newUser = await authServices.signup(req.body);
   if (newUser) {
     next();
@@ -15,7 +14,9 @@ exports.signup = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   res.json({
     message: "유저 로그인 성공!",
-    data: `user: ${req.user.id}`,
+    data: {
+      user: req.user.id,
+    }
   });
 };
 
@@ -25,6 +26,5 @@ exports.logout = async (req, res, next) => {
     res.json({
       message: `유저 로그아웃 성공!`,
     });
-    console.log(req.user);
   });
 };
