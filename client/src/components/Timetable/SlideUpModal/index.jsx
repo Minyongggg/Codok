@@ -11,7 +11,7 @@ function SlideUpModal({ isOpen, setIsOpen, clickedLecture }) {
   const stopPropagation = useCallback((e) => {
     e.stopPropagation();
   }, []);
-
+  console.log(clickedLecture)
   const closeModal = useModalHandler(isOpen, setIsOpen)[1];
   useBodyScrollLock(isOpen);
 
@@ -33,7 +33,14 @@ function SlideUpModal({ isOpen, setIsOpen, clickedLecture }) {
           <S.Button onClick={() => history.push(``)}>
             강의 코독친구 탐색
           </S.Button>
+<<<<<<< Updated upstream
           <S.Button onClick={() => history.push("")}>
+=======
+          <S.Button onClick={() => history.push({
+            pathname: "/board",
+            state: {clickedLecture: clickedLecture}
+          })}>
+>>>>>>> Stashed changes
             수업 익명 커뮤니티
           </S.Button>
         </S.Wrapper>
