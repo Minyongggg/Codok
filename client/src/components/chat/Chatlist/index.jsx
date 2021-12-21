@@ -5,8 +5,7 @@ import Chatbar from "./Chatbar/index";
 
 function Chatroom() {
   useEffect(() => {
-    //1. api 요청으로 유저와 연관된 chatroom 데이터 가져옴
-    //
+    
   });
 
   return (

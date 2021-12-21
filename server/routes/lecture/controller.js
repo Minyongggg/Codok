@@ -40,3 +40,20 @@ exports.getLecsByCrsIdList = async (req, res, next) => {
     next(error);
   }
 };
+exports.getLecIdsBB = async (req, res, next) => {
+  try {
+    const courseList = await lectureServices.getLecIdsBB(
+      req.body.id,
+      req.body.password
+    );
+
+    res.json({
+      message: "강의정보 리스트 조회 성공!",
+      data: courseList,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+

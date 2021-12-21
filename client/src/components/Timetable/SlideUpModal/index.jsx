@@ -30,7 +30,7 @@ function SlideUpModal({ isOpen, setIsOpen, clickedLecture }) {
             <p>{clickedLecture.courseId}</p>
           </S.Info>
 
-          <S.Button onClick={() => history.push("")}>
+          <S.Button onClick={() => history.push(``)}>
             강의 코독친구 탐색
           </S.Button>
           <S.Button onClick={() => history.push("")}>

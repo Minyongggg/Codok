@@ -6,32 +6,29 @@ import * as S from "./style";
 import BBLoginModal from "./BBLoginModal";
 import SlideUpModal from "./SlideUpModal";
 import BeforeRegistration from "./BeforeRegistration";
+import { useRecoilValue } from "recoil";
+import { profileState } from "../../atoms/atoms";
+
 
 function Timetable() {
+  const profile = useRecoilValue(profileState);
+
   const [isModalOn, setIsModalOn] = useState(false);
   const [timeLecture, setTimeLecture] = useState([]);
   const [nonTimeLecture, setNonTimeLecture] = useState([]);
-  const [courseIdList, setCourseIdList] = useState([
-    "COSE222-02",
-    "COSE352-00",
-    "COSE342-01",
-    "COSE389-00",
-    "COSE341-02",
-    "COSE371-02",
-    "GEKS006-02",
-  ]);
   const [lectureDataList, setLectureDataList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSlideUpModalOn, setIsSlideUpModalOn] = useState(false);
   const [clickedLecture, setClickedLecture] = useState({});
-  const getLectureDataByCourseIdList = async (courseIdList) => {
+
+  const getLectureDataByProfilePk = async (profilePk) => {
     axios({
-      method: "post",
-      url: "http://localhost:8000/api/lectures/courseIdList",
-      data: { courseIdList: courseIdList },
+      method: "get",
+      url: `http://localhost:8000/api/lectures/profiles/${profilePk}`,
       withCredentials: true,
     })
       .then((res) => {
+        console.log(res.data)
         console.log(res.data.data);
         setLectureDataList(() => res.data.data);
       })
@@ -39,7 +36,7 @@ function Timetable() {
   };
 
   useEffect(() => {
-    getLectureDataByCourseIdList(courseIdList);
+    getLectureDataByProfilePk(profile.pk);
   }, []);
 
   useEffect(() => {
@@ -83,15 +80,15 @@ function Timetable() {
         </S.Header>
 
         {/* 시간표 등록 전 */}
-        {!courseIdList && <BeforeRegistration />}
+        {!lectureDataList && <BeforeRegistration />}
 
         {/* 시간표 등록 후 */}
-        {courseIdList && nonTimeLecture.length === 0 && (
+        {lectureDataList && nonTimeLecture.length === 0 && (
           <Table timeLecture={timeLecture} handleModalData={handleModalData} />
         )}
 
         {/* 시간이 배정되어있지 않은 수업 ex)정보적 사고 */}
-        {courseIdList && nonTimeLecture.length > 0 && (
+        {lectureDataList && nonTimeLecture.length > 0 && (
           <>
             <Table
               timeLecture={timeLecture}
