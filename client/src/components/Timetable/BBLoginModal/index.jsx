@@ -39,10 +39,12 @@ function BBLoginModal({ isOpen, setIsOpen }) {
     crawlBB(profilePk, { id: bbId, password: bbPassword });
   };
 
+
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false}>
       <S.Container>
         <S.Title>블랙보드로 시간표 가져오기</S.Title>
+
         {isLoading && <div>크롤링 중...</div>}
 
         {!isLoading && (

@@ -30,10 +30,18 @@ function SlideUpModal({ isOpen, setIsOpen, clickedLecture }) {
             <p>{clickedLecture.courseId}</p>
           </S.Info>
 
-          <S.Button onClick={() => history.push(``)}>
+          <S.Button onClick={() => history.push({
+            pathname: '/friend',
+            state: {
+              courseId: clickedLecture.courseId,
+              name: clickedLecture.name
+            }
+          })}>
             강의 코독친구 탐색
           </S.Button>
-          <S.Button onClick={() => history.push("")}>
+          <S.Button onClick={() => history.push({
+            pathname: '/'
+          })}>
             수업 익명 커뮤니티
           </S.Button>
         </S.Wrapper>
