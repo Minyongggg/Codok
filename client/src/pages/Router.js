@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import Home from "../components/Home/Home";
 import Timetable from "../components/Timetable";
@@ -11,13 +11,37 @@ import Chatroom from "../components/chat/Chatroom/index.jsx";
 import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../atoms/atoms";
+import axios from "axios";
 
 function Router() {
-  const profile = useRecoilValue(profileState);
+  const profilePk = localStorage.getItem("CodokId");
+  const [profile, setProfile] = useRecoilState(profileState);
+  useEffect(() => {
+    console.log(profilePk);
+    if (profilePk) {
+      getProfile();
+      return;
+    }
+    setProfile(() => "none");
+  }, []);
 
-  if (!profile) {
+  const getProfile = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8000/api/profiles/${profilePk}`,
+      withCredentials: true,
+    })
+      .then((res) => {
+        setProfile(() => res.data.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  if (profile === null) return <div>로딩중</div>;
+
+  if (profile === "none")
     return (
       <BrowserRouter>
         <Switch>
@@ -39,7 +63,6 @@ function Router() {
         </Switch>
       </BrowserRouter>
     );
-  }
 
   return (
     <BrowserRouter>

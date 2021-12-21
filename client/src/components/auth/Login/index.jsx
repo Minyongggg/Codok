@@ -2,12 +2,9 @@ import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import * as S from "../style.js";
-import { useRecoilState } from "recoil";
-import { profileState } from "../../../atoms/atoms.js";
 
 function Login() {
   const history = useHistory();
-  const [profile, setProfile] = useRecoilState(profileState);
 
   const login = async (loginInfo) => {
     axios({
@@ -17,16 +14,11 @@ function Login() {
       withCredentials: true,
     })
       .then((res) => {
-        // console.log(res.data.profile);
-        setProfile(() => res.data.profile);
+        localStorage.setItem("CodokId", res.data.profile.pk);
         history.push("/home");
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    console.log(profile);
-  }, [profile]);
 
   const onSubmit = (e) => {
     e.preventDefault();
