@@ -21,7 +21,8 @@ db.Lecture = require("./lecture")(sequelize, Sequelize);
 db.Post = require("./post")(sequelize, Sequelize);
 db.Comment = require("./comment")(sequelize, Sequelize);
 db.Take = require("./take")(sequelize, Sequelize);
-// db.Chat = require('./chat')(sequelize, Sequelize);
+db.Chatroom = require("./chatroom")(sequelize, Sequelize);
+db.Chat = require('./chat')(sequelize, Sequelize);
 
 // belongsTo는 source 모델이 foreign key를 가짐
 // hasOne, hasMany는 target 모델이 foreign key를 가짐
@@ -93,5 +94,17 @@ db.Post.belongsTo(db.Lecture, {
 // lecture : take = 1 : N
 db.Profile.belongsToMany(db.Lecture, { through: "take" });
 db.Lecture.belongsToMany(db.Profile, { through: "take" });
+
+// chatroom : chat = 1 : N
+db.Chatroom.hasMany(db.Chat, {
+  foreignKey: {allowNull: false},
+  onDelete: "CASCADE",
+});
+
+db.Chat.belongsTo(db.Chatroom, {
+  foreignKey: { allowNull: false },
+  onDelete: "CASCADE"
+});
+
 
 module.exports = db;
