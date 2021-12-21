@@ -4,8 +4,8 @@ import axios from "axios";
 import Chatbar from "./Chatbar/index";
 
 function Chatroom() {
-  const profile = useRecoilValue(profileState);
-  
+  const profilePk = localStorage.getItem("CodokId")
+
   useEffect(() => {
     
   }, []);

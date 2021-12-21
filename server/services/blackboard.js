@@ -12,7 +12,6 @@ exports.blackboard = async (id, password) => {
         await page.click("button.close");
         await page.waitForTimeout(2000);
         await page.click("div.lang.card-body > h3 > strong > a");
-        // await page.click("div.lang.ko.card-body > h3 > strong > a"); //headless: false 일 때
         await page.waitForSelector("input#one_id.form-control");
         await page.type("input#one_id.form-control", id);
         await page.type("input#password.form-control", password);
