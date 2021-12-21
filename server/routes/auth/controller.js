@@ -12,10 +12,11 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
+  const profile = await authServices.login(req.user.id);
   res.json({
     message: "유저 로그인 성공!",
     data: {
-      user: req.user.id,
+      user: profile,
     }
   });
 };

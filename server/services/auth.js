@@ -28,5 +28,17 @@ exports.signup = async ({ id, pwd }) => {
   console.log("Profile created!");
   return user;
 };
-exports.login = async () => {};
+
+exports.login = async (id) => {
+  const user = await User.findOne({ where: { id } });
+  const profile = user.getProfile();
+
+  if(profile){
+    return profile;
+  }
+  console.log("Profile not Found!");
+  return false
+
+};
+
 exports.logout = async () => {};
