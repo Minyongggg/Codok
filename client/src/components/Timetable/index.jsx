@@ -9,9 +9,8 @@ import BeforeRegistration from "./BeforeRegistration";
 import { useRecoilValue } from "recoil";
 import { profileState } from "../../atoms/atoms";
 
-
 function Timetable() {
-  const profile = useRecoilValue(profileState);
+  const profilePk = localStorage.getItem("CodokId");
 
   const [isModalOn, setIsModalOn] = useState(false);
   const [timeLecture, setTimeLecture] = useState([]);
@@ -22,13 +21,12 @@ function Timetable() {
   const [clickedLecture, setClickedLecture] = useState({});
 
   const getLectureDataByProfilePk = async (profilePk) => {
-    axios({
+    await axios({
       method: "get",
       url: `http://localhost:8000/api/lectures/profiles/${profilePk}`,
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res.data)
         console.log(res.data.data);
         setLectureDataList(() => res.data.data);
       })
@@ -36,11 +34,11 @@ function Timetable() {
   };
 
   useEffect(() => {
-    getLectureDataByProfilePk(profile.pk);
-  }, []);
+    getLectureDataByProfilePk(profilePk);
+  }, [isModalOn]);
 
   useEffect(() => {
-    if (lectureDataList) {
+    if (lectureDataList !== null) {
       setIsLoading(false);
 
       // 1학년 세미나와 같은 시간이 없는 수업 리스트 추가

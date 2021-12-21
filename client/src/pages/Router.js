@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import Home from "../components/Home/Home";
 import Timetable from "../components/Timetable";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
-import Profile from "../components/auth/Profile";
+import Profile from "../components/auth/Profile/index.jsx";
 import Splash from "../components/auth/Splash";
 import Friend from "../components/Friend/index"
 import Chatlist from "../components/Chat/Chatlist/index.jsx";
@@ -12,29 +12,58 @@ import Chatroom from "../components/Chat/Chatroom/index.jsx";
 import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../atoms/atoms";
+import axios from "axios";
 
 function Router() {
-  const profile = useRecoilValue(profileState);
+  const profilePk = localStorage.getItem("CodokId");
+  const [profile, setProfile] = useRecoilState(profileState);
+  useEffect(() => {
+    console.log(profilePk);
+    if (profilePk) {
+      getProfile();
+      return;
+    }
+    setProfile(() => "none");
+  }, []);
 
-  if (!profile) {
+  const getProfile = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8000/api/profiles/${profilePk}`,
+      withCredentials: true,
+    })
+      .then((res) => {
+        setProfile(() => res.data.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  if (profile === null) return <div>로딩중</div>;
+
+  if (profile === "none")
     return (
       <BrowserRouter>
         <Switch>
+          {/* <Route path="/splash">
+            <Splash />
+          </Route> */}
           <Route path="/auth/signup">
             <Signup />
           </Route>
           <Route path="/auth/login">
             <Login />
           </Route>
+          <Route path="/auth/profile">
+            <Profile />
+          </Route>
           <Route>
-            <Home />
+            <Splash />
           </Route>
         </Switch>
       </BrowserRouter>
     );
-  }
 
   return (
     <BrowserRouter>
@@ -43,9 +72,9 @@ function Router() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/splash">
+        {/* <Route exact path="/splash">
           <Splash />
-        </Route>
+        </Route> */}
         <Route exact path="/home">
           <Timetable />
         </Route>
@@ -56,7 +85,7 @@ function Router() {
         <Route exact path="/auth/login">
           <Login />
         </Route>
-        <Route exact path="/profile">
+        <Route exact path="/auth/profile">
           <Profile />
         </Route>
         {/* friend */}
@@ -75,7 +104,8 @@ function Router() {
           <Mypage />
         </Route>
         <Route>
-          <PageNotFound />
+          <Timetable />
+          {/* <PageNotFound /> */}
         </Route>
       </Switch>
 

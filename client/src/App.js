@@ -1,13 +1,15 @@
 import React from "react";
 import GlobalStyle from "./components/GlobalStyle";
 import Router from "./pages/Router";
-import {
+import 
+{
   RecoilRoot,
   atom,
   selector,
   useRecoilState,
   useRecoilValue,
-} from "recoil";
+} 
+from "recoil";
 
 function App() {
   return (

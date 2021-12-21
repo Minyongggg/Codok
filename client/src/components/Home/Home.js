@@ -22,7 +22,8 @@ function Home() {
     })
       .then((res) => {
         console.log(res);
-        setProfile(() => {});
+        localStorage.removeItem("CodokId");
+        setProfile(() => "none");
       })
       .catch((err) => console.log(err));
   };

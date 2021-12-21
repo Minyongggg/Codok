@@ -5,6 +5,7 @@ import axios from 'axios';
 function Profile(){
     return(
         <>
+        <div>test</div>
         </>
     )
 }

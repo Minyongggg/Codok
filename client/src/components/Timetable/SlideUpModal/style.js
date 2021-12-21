@@ -66,11 +66,10 @@ export const CloseModalButton = styled.button`
   border: none;
   color: gray;
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
+  font-size: 40px;
   > svg {
     width: 22px;
   }
