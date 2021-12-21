@@ -16,7 +16,7 @@ function Login() {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res.data.data.user);
+        console.log(res);
         history.push({
           pathname: "/",
         });
