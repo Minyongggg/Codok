@@ -4,7 +4,7 @@ import Home from "../components/Home/Home";
 import Timetable from "../components/Timetable";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
-import Profile from "../components/auth/Profile";
+import Profile from "../components/auth/Profile/index.jsx";
 import Splash from "../components/auth/Splash";
 import Chatlist from "../components/chat/Chatlist/index.jsx";
 import Chatroom from "../components/chat/Chatroom/index.jsx";
@@ -21,11 +21,17 @@ function Router() {
     return (
       <BrowserRouter>
         <Switch>
+          <Route path="/splash">
+            <Splash />
+          </Route>
           <Route path="/auth/signup">
             <Signup />
           </Route>
           <Route path="/auth/login">
             <Login />
+          </Route>
+          <Route path="/auth/profile">
+            <Profile />
           </Route>
           <Route>
             <Home />
@@ -55,7 +61,7 @@ function Router() {
         <Route exact path="/auth/login">
           <Login />
         </Route>
-        <Route exact path="/profile">
+        <Route exact path="/auth/profile">
           <Profile />
         </Route>
         {/* chat */}
