@@ -10,7 +10,8 @@ function Friendbar({friendPk, nickname, gender}) {
       <div onClick={() => history.push({
         pathname: '/chatroom',
         state: {
-          friendPk: friendPk
+          friendPk: friendPk,
+          friendName: nickname
         }
       })}>
         <div>{nickname}</div>

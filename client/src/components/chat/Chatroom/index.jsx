@@ -1,16 +1,20 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router";
 import { useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
+import { useInput } from "../../../hooks/useInput";
 
 function Chatroom() {
   const location = useLocation();
-  const profile = useRecoilValue(profileState);
+  const profilePk = localStorage.getItem("CodokId")
   const friendPk = location.state.friendPk;
+  const friendName = location.state.friendName;
   const [chatroomPk, setChatroomPk] = useState();
   const [chats, setChats] = useState([]);
+  const [msgInput, setMsgInput] = useState("");
+  const ref = useRef();
 
   const getChats = async (chatroomPk) => {
     await axios({
@@ -35,10 +39,40 @@ function Chatroom() {
     })
   }
 
+  const onChange = (e) => {
+    const {
+      target: { value },
+    } = e;
+    setMsgInput(value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if((msgInput.replace(/\s|　/gi, '') !== '')){
+      sendMsg(profilePk, friendPk, msgInput, chatroomPk);
+    }
+    setMsgInput('');
+    ref.current.focus();
+  }
+
+  const sendMsg = async (profilePk, friendPk, msgInput, chatroomPk) => {
+    await axios({
+      method: "post",
+      url: "http://localhost:8000/api/chats/",
+      data: { senderPk: profilePk, receiverPk: friendPk, content: msgInput, chatroomPk},
+      withCredentials: true,
+    })
+    .then((res) => {
+      const newChats = chats.concat(res.data.chat)
+      setChats(newChats); //socket으로 구현하면 빼도 될려나
+    });
+  }
+
   useEffect(() => {
     if(!chatroomPk){
-      console.log(`${profile.pk}와 ${friendPk}의 채팅방`);
-      getChatroom(profile.pk, friendPk);
+      console.log(`${profilePk}와 ${friendPk}의 채팅방`);
+      getChatroom(profilePk, friendPk);
     }
     if(chatroomPk){
       console.log(chatroomPk)
@@ -52,13 +86,24 @@ function Chatroom() {
     }
   }, [chats]);
 
-
   return (
     <>
-      <h3>채팅방입니다.</h3>
-      <div>top bar</div>
-      <div>chat container</div>
-      <div>chat input</div>
+      <h3>상대 : {friendName}</h3>
+      <div>{chats.map((item)=>{
+        if(chats.senderPk === profilePk){
+          return <div class="send">{item.content}</div>
+        }
+        else{
+          return <div class="receive">{item.content}</div>
+        }
+      })}</div>
+
+      <div>
+        <form onSubmit={onSubmit}>
+          <input type="text" id="msgInput" onChange={onChange} value={msgInput} ref={ref} required />
+          <button type="submit">^</button>
+        </form>
+      </div>
     </>
   );
 }

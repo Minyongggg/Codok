@@ -61,6 +61,7 @@ function BBLoginModal({ isOpen, setIsOpen }) {
             />
             <S.Input
               placeholder="블랙보드 비밀번호"
+              type="password"
               onChange={handleBbPassword}
               value={bbPassword}
             />

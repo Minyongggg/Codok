@@ -64,7 +64,7 @@ function Splash()
                 textAlign:"center",
                 color:"white"}}>Codok</div>
                 <br/>
-                <S.Button1><Link  style={{color: 'inherit', textDecoration: 'none' }}to="auth/login">로그인</Link></S.Button1>
+                <S.Button1><Link  style={{color: 'inherit', textDecoration: 'none' }} to="auth/login">로그인</Link></S.Button1>
                 <br/>
                 <S.Button2><Link  style={{color: 'inherit', textDecoration: 'none' }} to="auth/signup">회원가입</Link></S.Button2>
                 {/* <button onClick={logout} type="button">Log out</button> */}

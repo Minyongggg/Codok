@@ -9,7 +9,6 @@ exports.createTakes = async (profilePk, {id, password}) => {
     await Take.destroy({where : {profilePk : profilePk}});
 
     for(let i=0; i < courseList.length; i++){
-
       let lecture = await Lecture.findOne({where : {courseId : courseList[i]}})
 
       await Take.create({
