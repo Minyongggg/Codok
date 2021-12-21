@@ -22,7 +22,7 @@ db.Post = require("./post")(sequelize, Sequelize);
 db.Comment = require("./comment")(sequelize, Sequelize);
 db.Take = require("./take")(sequelize, Sequelize);
 db.Chatroom = require("./chatroom")(sequelize, Sequelize);
-db.Chat = require('./chat')(sequelize, Sequelize);
+db.Chat = require("./chat")(sequelize, Sequelize);
 
 // belongsTo는 source 모델이 foreign key를 가짐
 // hasOne, hasMany는 target 모델이 foreign key를 가짐

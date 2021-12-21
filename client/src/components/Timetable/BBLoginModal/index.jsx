@@ -8,20 +8,20 @@ import { profileState } from "../../../atoms/atoms";
 function BBLoginModal({ isOpen, setIsOpen }) {
   const profile = useRecoilValue(profileState);
 
-  const crawlBB = async (profilePk, bbInfo) => {
-    console.log("블랙보드 연동 request")
-    axios({
-      method: "post",
-      url: `http://localhost:8000/api/takes/${profilePk}`,
-      data: bbInfo,
-      withCredentials: true,
-    })
-    .then((res) => {
-      console.log(res.data.data);
-      setIsOpen(false)
-    })
-    .catch((err) => console.log(err));
-  };
+  // const crawlBB = async (profilePk, bbInfo) => {
+  //   console.log("블랙보드 연동 request")
+  //   axios({
+  //     method: "post",
+  //     url: `http://localhost:8000/api/takes/${profilePk}`,
+  //     data: bbInfo,
+  //     withCredentials: true,
+  //   })
+  //   .then((res) => {
+  //     console.log(res.data.data);
+  //     setIsOpen(false)
+  //   })
+  //   .catch((err) => console.log(err));
+  // };
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false}>
@@ -33,7 +33,8 @@ function BBLoginModal({ isOpen, setIsOpen }) {
         </S.Text>
         <S.Input placeholder="블랙보드 아이디" />
         <S.Input placeholder="블랙보드 비밀번호" />
-        <S.Button onClick={crawlBB(profile.pk, {id:"jiseong0173", password:"jisung73@"})}>확인</S.Button>
+        {/* <S.Button onClick={crawlBB(profile.pk, {id:"jiseong0173", password:"jisung73@"})}>확인</S.Button> */}
+        <S.Button onClick={() => setIsOpen(false)}>확인</S.Button>
         <S.Button onClick={() => setIsOpen(false)}>취소하기</S.Button>
       </S.Container>
     </Modal>
