@@ -45,9 +45,9 @@ function Router() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/splash">
+          {/* <Route path="/splash">
             <Splash />
-          </Route>
+          </Route> */}
           <Route path="/auth/signup">
             <Signup />
           </Route>
@@ -58,7 +58,7 @@ function Router() {
             <Profile />
           </Route>
           <Route>
-            <Home />
+            <Splash />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -71,9 +71,9 @@ function Router() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/splash">
+        {/* <Route exact path="/splash">
           <Splash />
-        </Route>
+        </Route> */}
         <Route exact path="/home">
           <Timetable />
         </Route>
@@ -99,7 +99,8 @@ function Router() {
           <Mypage />
         </Route>
         <Route>
-          <PageNotFound />
+          <Timetable />
+          {/* <PageNotFound /> */}
         </Route>
       </Switch>
 

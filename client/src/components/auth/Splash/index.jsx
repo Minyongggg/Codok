@@ -3,7 +3,7 @@ import bgimg from "../../../assets/img/SplashBG.png"
 import { useLocation, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { UserId } from "../Login";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled, { css } from "styled-components";
 import * as S from "../style.js";
 import { profileState } from "../../../atoms/atoms";
@@ -12,8 +12,15 @@ function Splash()
 {
     const location = useLocation();
     const history = useHistory();
-    const [profile, setProfile] = useRecoilState(profileState);
-  
+    // const [profile, setProfile] = useRecoilState(profileState);
+    const profile = useRecoilValue(profileState);
+    // window.onload = function(){
+    //   console.log("로그인체크", profile);
+    //   if (profile !== 0 || profile !== null) {
+        
+    //     history.push('/home')
+    //   }      
+    // }
     const logout = async (e) => {
         await axios({
           method: "get",
@@ -60,7 +67,7 @@ function Splash()
                 <S.Button1><Link  style={{color: 'inherit', textDecoration: 'none' }}to="auth/login">로그인</Link></S.Button1>
                 <br/>
                 <S.Button2><Link  style={{color: 'inherit', textDecoration: 'none' }} to="auth/signup">회원가입</Link></S.Button2>
-                <button onClick={logout} type="button">Log out</button>
+                {/* <button onClick={logout} type="button">Log out</button> */}
             </div>
         {/* </div> */}
      </>   
