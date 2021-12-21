@@ -11,12 +11,11 @@ function Friend() {
     const location = useLocation();
     const courseId = location.state.courseId;
     const courseName = location.state.name;
-    const profile = useRecoilValue(profileState);
+    const profilePk = localStorage.getItem("CodokId")
     const [isLoading, setIsLoading] = useState(true);
     const [profileList, setProfileList] = useState([]);
 
   useEffect(() => {
-    console.log("여기는 아닐 것 같은데~~~~~~~~~~")
     axios({
         method: "get",
         url: `http://localhost:8000/api/profiles/lectures/${courseId}`,
@@ -37,10 +36,8 @@ function Friend() {
       <div>수업을 독강하는 친구에게 톡을 걸어보세요!</div>      
       <ul>
           {profileList.map((item, i) => {
-            if(item.pk === profile.pk)
-              return false
-
-            return (<Friendbar key={i} friendPk={item.pk} nickname={item.nickname} gender={item.gender}/>)}
+            if(item.pk != profilePk)
+              return (<Friendbar key={i} friendPk={item.pk} nickname={item.nickname} gender={item.gender}/>)}
           )}
       </ul>
     </>
