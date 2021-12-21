@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import * as S from "../style.js";
 
+
+
 function Login() {
   const history = useHistory();
 
@@ -14,22 +16,24 @@ function Login() {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.data.user);
         history.push({
           pathname: "/",
         });
       })
       .catch((err) => console.log(err));
   };
-
+  
   const onSubmit = (e) => {
     e.preventDefault();
     const loginInfo = { id: e.target.id.value, pwd: e.target.pwd.value };
     return login(loginInfo);
   };
+  
   const goBack = () => {
     history.goBack();
   };
+
   return (
     <>
     <S.Container>

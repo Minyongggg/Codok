@@ -25,7 +25,6 @@ const loginVerify = async (id, pwd, done) => {
 
 passport.serializeUser((user, done) => {
   // user 정보로 서버에 세션을 만들고 쿠키를 클라이언트로 넘겨줌
-  console.log('<<', user);
   done(null, user);
 });
 
