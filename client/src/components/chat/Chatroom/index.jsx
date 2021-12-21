@@ -90,7 +90,7 @@ function Chatroom() {
     <>
       <h3>상대 : {friendName}</h3>
       <div>{chats.map((item)=>{
-        if(chats.senderPk === profilePk){
+        if(item.senderPk == profilePk){
           return <div class="send">{item.content}</div>
         }
         else{
