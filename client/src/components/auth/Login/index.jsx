@@ -2,11 +2,12 @@ import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import * as S from "../style.js";
-
-
+import { useRecoilState } from "recoil";
+import { profileState } from "../../../atoms/atoms.js";
 
 function Login() {
   const history = useHistory();
+  const [profile, setProfile] = useRecoilState(profileState);
 
   const login = async (loginInfo) => {
     axios({
@@ -16,38 +17,56 @@ function Login() {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res);
-        history.push({
-          pathname: "/",
-        });
+        // console.log(res.data.profile);
+        setProfile(() => res.data.profile);
+        history.push("/home");
       })
       .catch((err) => console.log(err));
   };
-  
+
+  useEffect(() => {
+    console.log(profile);
+  }, [profile]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const loginInfo = { id: e.target.id.value, pwd: e.target.pwd.value };
     return login(loginInfo);
   };
-  
+
   const goBack = () => {
     history.goBack();
   };
 
   return (
     <>
-    <S.Container>
-    <S.Circle onClick={goBack}><i className="fas fa-arrow-left"></i></S.Circle>
+      <S.Container>
+        <S.Circle onClick={goBack}>
+          <i className="fas fa-arrow-left"></i>
+        </S.Circle>
 
-    <S.Title>로그인</S.Title>
-    <form onSubmit={onSubmit}>
-      <S.InputWrapper><S.InputIcon className="far fa-user"/><S.InputID type="text" id="id" name="id" placeholder="아이디"/></S.InputWrapper>  
-      <S.InputWrapper><S.InputIcon className="fas fa-lock"/><S.InputPW type="password" id="pwd" name="pwd" placeholder="비밀번호"/></S.InputWrapper>
-      <S.YB/>
-      <S.ButtonWrapper><S.Button type="submit">로그인</S.Button></S.ButtonWrapper>
-    </form>
-    </S.Container>
-  </>
+        <S.Title>로그인</S.Title>
+        <form onSubmit={onSubmit}>
+          <S.InputWrapper>
+            <S.InputIcon className="far fa-user" />
+            <S.InputID type="text" id="id" name="id" placeholder="아이디" />
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputIcon className="fas fa-lock" />
+            <S.InputPW
+              type="password"
+              id="pwd"
+              name="pwd"
+              placeholder="비밀번호"
+            />
+          </S.InputWrapper>
+          <S.YB />
+          <S.ButtonWrapper>
+            <S.Button type="submit">로그인</S.Button>
+          </S.ButtonWrapper>
+        </form>
+      </S.Container>
+    </>
     // <>
     //   <form onSubmit={onSubmit}>
     //     <label htmlFor="id">ID</label>

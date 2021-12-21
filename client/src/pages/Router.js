@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
 import Home from "../components/Home/Home";
 import Timetable from "../components/Timetable";
 import Login from "../components/auth/Login";
@@ -11,19 +11,39 @@ import Chatroom from "../components/chat/Chatroom/index.jsx";
 import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
+import { useRecoilValue } from "recoil";
+import { profileState } from "../atoms/atoms";
 
 function Router() {
+  const profile = useRecoilValue(profileState);
+
+  if (!profile) {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path="/auth/signup">
+            <Signup />
+          </Route>
+          <Route path="/auth/login">
+            <Login />
+          </Route>
+          <Route>
+            <Home />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+
   return (
     <BrowserRouter>
-          <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'/>
-          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
       <Switch>
         {/* home1 */}
         <Route exact path="/">
           <Home />
         </Route>
         <Route exact path="/splash">
-          <Splash/>
+          <Splash />
         </Route>
         <Route exact path="/home">
           <Timetable />

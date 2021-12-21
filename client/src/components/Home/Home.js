@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useHistory, Link } from "react-router-dom";
-import { UserId } from "../auth/Login"
+import { UserId } from "../auth/Login";
+import { useRecoilState } from "recoil";
+import { profileState } from "../../atoms/atoms";
 
 function Home() {
   const location = useLocation();
   const history = useHistory();
+  const [profile, setProfile] = useRecoilState(profileState);
+
+  useEffect(() => {
+    console.log(profile);
+  }, [profile]);
 
   const logout = async (e) => {
     await axios({
@@ -15,6 +22,7 @@ function Home() {
     })
       .then((res) => {
         console.log(res);
+        setProfile(() => {});
       })
       .catch((err) => console.log(err));
   };

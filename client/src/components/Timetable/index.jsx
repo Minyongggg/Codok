@@ -12,9 +12,12 @@ function Timetable() {
   const [timeLecture, setTimeLecture] = useState([]);
   const [nonTimeLecture, setNonTimeLecture] = useState([]);
   const [courseIdList, setCourseIdList] = useState([
-    "COSE371-02",
+    "COSE222-02",
+    "COSE352-00",
     "COSE342-01",
-    "COSE341-01",
+    "COSE389-00",
+    "COSE341-02",
+    "COSE371-02",
     "GEKS006-02",
   ]);
   const [lectureDataList, setLectureDataList] = useState(null);
