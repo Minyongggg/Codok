@@ -12,6 +12,7 @@ import Chatroom from "../components/Chat/Chatroom/index.jsx";
 import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
+import Board from "../components/board/index.jsx";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../atoms/atoms";
 import axios from "axios";
@@ -81,6 +82,10 @@ function Router() {
         {/* auth */}
         <Route exact path="/auth/signup">
           <Signup />
+        </Route>
+        
+        <Route exact path="/board">
+          <Board />
         </Route>
         <Route exact path="/auth/login">
           <Login />
