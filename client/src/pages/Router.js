@@ -14,7 +14,7 @@ import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
 import Board from "../components/board/index.jsx";
 import Write from "../components/board/write/index";
-// import Detail from "../components/board/detail/index";
+import Detail from "../components/board/detail/index";
 // import Edit from "../components/board/edit/index";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../atoms/atoms";
@@ -93,12 +93,12 @@ function Router() {
         <Route exact path="/board/write">
           <Write/>
         </Route>
-        {/* <Route exact path="/board/detail">
+         <Route exact path="/board/detail">
           <Detail/>
         </Route>
-        <Route exact path="/board/edit">
+        {/* <Route exact path="/board/edit">
           <Edit/>
-        </Route> */}
+        </Route>  */}
         <Route exact path="/auth/login">
           <Login />
         </Route>
@@ -117,6 +117,9 @@ function Router() {
           <Chatroom />
         </Route>
         {/* board */}
+        <Route exact path="/user/mypage">
+          <Mypage />
+        </Route>
         <Route exact path="/user/mypage">
           <Mypage />
         </Route>

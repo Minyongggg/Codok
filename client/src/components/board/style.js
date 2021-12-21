@@ -147,3 +147,33 @@ export const Button2= styled(Button1)`
   background: rgba(34, 34, 34, 0.5);
   color:white;
 `
+
+export const PostWrapper= styled.div`
+  display:flex;
+  flex-direction: column;
+  margin-bottom:10px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom: 1px solid #D9D9D9
+`
+export const PostTitle= styled.div`
+ font-family: Spoqa Hans Sans Neo;
+ font-size: 1rem;
+ font-weight: 700;
+`
+export const PostContent= styled.div`
+ font-family: Spoqa Hans Sans Neo;
+ font-size: 0.75rem;
+ font-weight: 400;
+ margin-top:6px;
+
+ `
+export const PostTime= styled.div`
+ font-family: Spoqa Hans Sans Neo;
+ font-size: 0.75rem;
+ font-weight: 400;
+ margin-top:6px;
+ color:#ACB3BF;
+ margin-bottom:12px;
+`
