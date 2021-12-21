@@ -47,13 +47,12 @@ function Table({ timeLecture, handleModalData }) {
   useEffect(() => {
     if (tableLectureList.length > 0) {
       setIsLoading(false);
-      console.log(pkList);
     }
   }, [tableLectureList]);
 
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
+  // if (isLoading) {
+  //   return <div>로딩중</div>;
+  // }
 
   return (
     <>

@@ -5,6 +5,12 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h1`
@@ -34,7 +40,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Button = styled.div`
+export const Button = styled.button`
   background-color: black;
   padding: 14px;
   border-radius: 50px;
@@ -42,7 +48,7 @@ export const Button = styled.div`
   width: 50%;
   margin-top: 20px;
 
-  &:last-child {
+  &#cancel {
     background-color: white;
     color: #a7b0c0;
     margin-top: 5px;
