@@ -5,13 +5,13 @@ exports.blackboard = async (id, password) => {
 
     const arr = [];
 
-        const browser = await puppeteer.launch({headless: true});
+        const browser = await puppeteer.launch({headless: false});
         const page = await browser.newPage();
         await page.setViewport({width: 1200, height: 2000});
         await page.goto("https://kulms.korea.ac.kr", {waitUntil:"networkidle2"});
         await page.click("button.close");
-        await page.waitForTimeout(2000);
-        await page.click("div.lang.card-body > h3 > strong > a");
+        await page.waitForTimeout(4000);
+        await page.click("div.card.mdb-color.text-center.elegant-color-dark.z-depth-2 > div:nth-child(2) > h3 > strong > a");
         // await page.click("div.lang.ko.card-body > h3 > strong > a"); //headless: false 일 때
         await page.waitForSelector("input#one_id.form-control");
         await page.type("input#one_id.form-control", id);

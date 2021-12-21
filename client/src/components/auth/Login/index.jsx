@@ -41,7 +41,7 @@ function Login() {
         <form onSubmit={onSubmit}>
           <S.InputWrapper>
             <S.InputIcon className="far fa-user" />
-            <S.InputID type="text" id="id" name="id" placeholder="아이디" />
+            <S.InputID  requiredtype="text" id="id" name="id" placeholder="아이디" />
           </S.InputWrapper>
           <S.InputWrapper>
             <S.InputIcon className="fas fa-lock" />
@@ -49,7 +49,7 @@ function Login() {
               type="password"
               id="pwd"
               name="pwd"
-              placeholder="비밀번호"
+              placeholder="비밀번호" required
             />
           </S.InputWrapper>
           <S.YB />

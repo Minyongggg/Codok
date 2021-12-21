@@ -26,7 +26,11 @@ export const PlusButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
+  font-size: 24px;
+  &:hover {
+    color:white;
+    background: #18A0FB;
+  }
   > svg {
     width: 24px;
     height: 24px;

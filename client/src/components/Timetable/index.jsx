@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Table from "./Table";
-import { ReactComponent as PlusSVG } from "../../assets/icon/plus.svg";
+// import { ReactComponent as PlusSVG } from "../../assets/icon/plus.svg";
 import * as S from "./style";
 import BBLoginModal from "./BBLoginModal";
 import SlideUpModal from "./SlideUpModal";
@@ -73,7 +73,7 @@ function Timetable() {
         <S.Header>
           <S.Title>코독한 시간표</S.Title>
           <S.PlusButton onClick={() => setIsModalOn(true)}>
-            <PlusSVG />
+          <i class="fas fa-plus"></i>
           </S.PlusButton>
         </S.Header>
 

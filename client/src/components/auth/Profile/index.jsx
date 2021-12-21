@@ -42,7 +42,7 @@ function Profile(){
             introduce: e.target.introduce.value,
             mateWant: result,
         };
-        console.log("나 여기~~~~~~~~~~~" + profile)
+        // console.log("나 여기~~~~~~~~~~~" + profile)
         return updateProfile(profile.pk, profileInfo);
       };
 

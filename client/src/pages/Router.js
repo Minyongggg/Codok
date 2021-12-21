@@ -13,6 +13,9 @@ import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
 import Board from "../components/board/index.jsx";
+import Write from "../components/board/write/index";
+// import Detail from "../components/board/detail/index";
+// import Edit from "../components/board/edit/index";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../atoms/atoms";
 import axios from "axios";
@@ -87,6 +90,15 @@ function Router() {
         <Route exact path="/board">
           <Board />
         </Route>
+        <Route exact path="/board/write">
+          <Write/>
+        </Route>
+        {/* <Route exact path="/board/detail">
+          <Detail/>
+        </Route>
+        <Route exact path="/board/edit">
+          <Edit/>
+        </Route> */}
         <Route exact path="/auth/login">
           <Login />
         </Route>
@@ -116,7 +128,7 @@ function Router() {
 
       {/* <Footer /> */}
       {/* 일단 넣어놓긴 했지만 푸터가 없어야 되는 페이지도 있으니까 각 페이지에서 불러오면 좋을 듯 */}
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }

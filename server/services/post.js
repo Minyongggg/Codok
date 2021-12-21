@@ -36,6 +36,7 @@ exports.newPost = async ({ lecturePk, courseId, title, authorPk, content }) => {
     title,
     authorPk,
     content,
+    createdAt: Date.now()
   });
   return result;
 };

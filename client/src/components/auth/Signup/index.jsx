@@ -52,8 +52,8 @@ function Signup() {
 
       <S.Title>회원가입 시작</S.Title>
       <form onSubmit={onSubmit}>
-        <S.InputWrapper><S.InputIcon className="far fa-user"/><S.InputID type="text" id="id" name="id" placeholder="아이디"/></S.InputWrapper>  
-        <S.InputWrapper><S.InputIcon className="fas fa-lock"/><S.InputPW type="password" id="pwd" name="pwd" placeholder="비밀번호"/></S.InputWrapper>
+        <S.InputWrapper><S.InputIcon className="far fa-user"/><S.InputID required type="text" id="id" name="id" placeholder="아이디"/></S.InputWrapper>  
+        <S.InputWrapper><S.InputIcon className="fas fa-lock"/><S.InputPW required type="password" id="pwd" name="pwd" placeholder="비밀번호"/></S.InputWrapper>
         <S.YB/>
         <S.ButtonWrapper><S.Button type="submit">회원가입</S.Button></S.ButtonWrapper>
       </form>
