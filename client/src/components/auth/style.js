@@ -6,10 +6,20 @@ export const InputIcon = styled.i`
 
 `
 export const YB = styled.div`
-  height: 300px
+  height: 200px
 `
 export const Title = styled.h1`
   margin-bottom: 50px;
+`
+export const SubTitle = styled.div`
+  width: 88%;
+  font-family: 'Spoqa Hans Sans Neo',sans-serif;
+  font-weight: 700;
+  font-size 1.125rem;
+  text-align: left;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color:#404D61
 `
 export const Container = styled.div`
   width: 100%;
@@ -18,13 +28,14 @@ export const Container = styled.div`
   margin: 0 auto;
   display:flex;
   justify-content: center;
-  margin-top: 10px;
+
   flex-direction: column;
   background-color: #fff;
 `
 export const Circle = styled.div`
   width: 44px;
   height: 44px;
+  margin-top: 10px;
   background-color: #eee;
   display:flex;
   cursor:pointer;
@@ -75,4 +86,21 @@ export const BGIMG= styled.div`
   height: 100%;
   background-color: black;
 
+`
+export const Input = styled.input`
+  width: 88%;
+  line-height: 40px;
+  border: 1px solid #E1E3E6;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-family: "Spoqa Hans Sans Neo";
+  margin-bottom: 12px;
+`
+export const Select = styled.select`
+  width: 88%;
+  height: 40px;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  border: 1px solid #E1E3E6;
+  border-radius: 8px;
+  color: grey;
 `
