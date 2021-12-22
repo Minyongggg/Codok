@@ -1,10 +1,9 @@
 import { React, useState, useEffect, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useLocation } from "react-router";
-import { useRecoilValue } from "recoil";
-import { profileState } from "../../../atoms/atoms";
-import { useInput } from "../../../hooks/useInput";
+import io from "socket.io-client"
+
+const socket = io.connect('http://localhost:8000');
 
 function Chatroom() {
   const location = useLocation();
@@ -13,6 +12,7 @@ function Chatroom() {
   const friendName = location.state.friendName;
   const [chatroomPk, setChatroomPk] = useState();
   const [chats, setChats] = useState([]);
+  const [newChat, setNewChat] = useState(null);
   const [msgInput, setMsgInput] = useState("");
   const ref = useRef();
 
@@ -30,7 +30,7 @@ function Chatroom() {
   const getChatroom = async (profilePk, friendPk) => {
     await axios({
       method: "post",
-      url: 'http://localhost:8000/api/chatroom',
+      url: 'http://localhost:8000/api/chatrooms',
       data: { profilePk: profilePk, friendPk },
       withCredentials: true,
     })
@@ -57,17 +57,34 @@ function Chatroom() {
   }
 
   const sendMsg = async (profilePk, friendPk, msgInput, chatroomPk) => {
+    const newChat = { senderPk: profilePk, receiverPk: friendPk, content: msgInput, createdAt: Date.now(), chatroomPk};
+
     await axios({
       method: "post",
       url: "http://localhost:8000/api/chats/",
-      data: { senderPk: profilePk, receiverPk: friendPk, content: msgInput, chatroomPk},
+      data: newChat,
       withCredentials: true,
     })
     .then((res) => {
-      const newChats = chats.concat(res.data.chat)
-      setChats(newChats); //socket으로 구현하면 빼도 될려나
+      if(res.data.chat){
+        socket.emit('sendMsg', { chatroomPk, newChat });
+      }
     });
   }
+
+  useEffect(()=>{
+    socket.off('newMsg');
+    socket.on('newMsg', (newChat) => {
+      setNewChat(newChat);
+      console.log(newChat);
+    })
+  }, []);
+
+  useEffect(()=>{
+    if(newChat){
+      setChats([...chats, newChat]);
+    }
+  }, [newChat]);
 
   useEffect(() => {
     if(!chatroomPk){
@@ -75,26 +92,21 @@ function Chatroom() {
       getChatroom(profilePk, friendPk);
     }
     if(chatroomPk){
-      console.log(chatroomPk)
+      socket.emit('joinroom', chatroomPk)
       getChats(chatroomPk);
     }
   }, [chatroomPk]);
 
-  useEffect(() => {
-    if(chats.length){
-      console.log(chats)
-    }
-  }, [chats]);
 
   return (
     <>
       <h3>상대 : {friendName}</h3>
-      <div>{chats.map((item)=>{
-        if(chats.senderPk === profilePk){
-          return <div class="send">{item.content}</div>
+      <div>{chats.map((item, i)=>{
+        if(item.senderPk == profilePk){
+          return <div className="send" key={i}>{item.content}</div>
         }
         else{
-          return <div class="receive">{item.content}</div>
+          return <div className="receive" key={i}>{item.content}</div>
         }
       })}</div>
 

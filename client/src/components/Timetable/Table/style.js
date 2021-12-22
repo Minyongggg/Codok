@@ -33,6 +33,9 @@ export const Col = styled.div`
     height: 14vw;
     max-height: 52px;
   }
+  &:last-child {
+    border-bottom: 1px solid #a7b0c0;
+  }
 `;
 
 export const colorList = [

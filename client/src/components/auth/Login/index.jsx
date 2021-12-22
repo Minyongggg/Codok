@@ -2,9 +2,12 @@ import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import * as S from "../style.js";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { userState } from "../../../atoms/atoms.js";
 
 function Login() {
   const history = useHistory();
+  const setUser = useSetRecoilState(userState);
 
   const login = async (loginInfo) => {
     axios({
@@ -15,6 +18,7 @@ function Login() {
     })
       .then((res) => {
         localStorage.setItem("CodokId", res.data.profile.pk);
+        setUser("isLogin");
         history.push("/home");
       })
       .catch((err) => console.log(err));
@@ -41,7 +45,12 @@ function Login() {
         <form onSubmit={onSubmit}>
           <S.InputWrapper>
             <S.InputIcon className="far fa-user" />
-            <S.InputID  requiredtype="text" id="id" name="id" placeholder="아이디" />
+            <S.InputID
+              requiredtype="text"
+              id="id"
+              name="id"
+              placeholder="아이디"
+            />
           </S.InputWrapper>
           <S.InputWrapper>
             <S.InputIcon className="fas fa-lock" />
@@ -49,7 +58,8 @@ function Login() {
               type="password"
               id="pwd"
               name="pwd"
-              placeholder="비밀번호" required
+              placeholder="비밀번호"
+              required
             />
           </S.InputWrapper>
           <S.YB />

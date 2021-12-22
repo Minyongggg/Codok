@@ -6,14 +6,12 @@ import * as S from "./style";
 import BBLoginModal from "./BBLoginModal";
 import SlideUpModal from "./SlideUpModal";
 import BeforeRegistration from "./BeforeRegistration";
-import { useRecoilValue } from "recoil";
-import { profileState } from "../../atoms/atoms";
 
 function Timetable() {
   const profilePk = localStorage.getItem("CodokId");
 
   const [isModalOn, setIsModalOn] = useState(false);
-  const [timeLecture, setTimeLecture] = useState([]);
+  const [timeLecture, setTimeLecture] = useState(null);
   const [nonTimeLecture, setNonTimeLecture] = useState([]);
   const [lectureDataList, setLectureDataList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,12 +32,14 @@ function Timetable() {
   };
 
   useEffect(() => {
-    getLectureDataByProfilePk(profilePk);
+    if (profilePk && !isModalOn) getLectureDataByProfilePk(profilePk);
   }, [isModalOn]);
 
   useEffect(() => {
     if (lectureDataList !== null) {
       setIsLoading(false);
+      setNonTimeLecture(() => []);
+      setTimeLecture(() => []);
 
       // 1학년 세미나와 같은 시간이 없는 수업 리스트 추가
       lectureDataList.map((id) => {
@@ -73,20 +73,20 @@ function Timetable() {
         <S.Header>
           <S.Title>코독한 시간표</S.Title>
           <S.PlusButton onClick={() => setIsModalOn(true)}>
-          <i class="fas fa-plus"></i>
+            <i className="fas fa-plus"></i>
           </S.PlusButton>
         </S.Header>
 
         {/* 시간표 등록 전 */}
-        {!lectureDataList && <BeforeRegistration />}
+        {lectureDataList.length === 0 && <BeforeRegistration />}
 
         {/* 시간표 등록 후 */}
-        {lectureDataList && nonTimeLecture.length === 0 && (
+        {lectureDataList.length > 0 && nonTimeLecture.length === 0 && (
           <Table timeLecture={timeLecture} handleModalData={handleModalData} />
         )}
 
         {/* 시간이 배정되어있지 않은 수업 ex)정보적 사고 */}
-        {lectureDataList && nonTimeLecture.length > 0 && (
+        {lectureDataList.length > 0 && nonTimeLecture.length > 0 && (
           <>
             <Table
               timeLecture={timeLecture}
