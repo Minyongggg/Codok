@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
 
 function Chatbar({chatroomPk, friendPk, nickname, lastChat}) {
   const history = useHistory();

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Table from "./Table";
-// import { ReactComponent as PlusSVG } from "../../assets/icon/plus.svg";
 import * as S from "./style";
 import BBLoginModal from "./BBLoginModal";
 import SlideUpModal from "./SlideUpModal";
@@ -10,6 +9,7 @@ import { useRecoilState } from "recoil";
 import { profileState } from "../../atoms/atoms";
 import { useHistory } from "react-router-dom";
 import { useUser } from "../../hooks/useUser";
+import config from "../../config/config";
 
 function Timetable() {
   const profilePk = localStorage.getItem("CodokId");
@@ -24,11 +24,18 @@ function Timetable() {
   const [clickedLecture, setClickedLecture] = useState({});
   const { user, setUser } = useUser();
 
+  useEffect(() => {
+    if(location.pathname !== "/home"){
+      history.push({
+        pathname: "/home"
+      })
+    }
+  }, [])
 
   const getLectureDataByProfilePk = async (profilePk) => {
     await axios({
       method: "get",
-      url: `http://localhost:8000/api/lectures/profiles/${profilePk}`,
+      url: config.BASE_URL + "/api/lectures/profiles/" + profilePk,
       withCredentials: true,
     })
       .then((res) => {
@@ -41,7 +48,7 @@ function Timetable() {
   const logout = async () => {
     await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/logout",
+      url: config.BASE_URL + "/api/auth/logout/",
       withCredentials: true,
     })
       .then((res) => {

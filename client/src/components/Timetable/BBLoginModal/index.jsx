@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import Modal from "../../common/Modal";
 import * as S from "./style";
-
 import { useInput } from "../../../hooks/useInput";
+import config from "../../../config/config";
 
 function BBLoginModal({ isOpen, setIsOpen }) {
   const profilePk = localStorage.getItem("CodokId");
@@ -34,7 +34,7 @@ function BBLoginModal({ isOpen, setIsOpen }) {
   const saveCourseData = async (profilePk, courseId) => {
     await axios({
       method: "post",
-      url: `http://localhost:8000/api/takes/${profilePk}/${courseId.toUpperCase()}`,
+      url: config.BASE_URL + `/api/takes/${profilePk}/${courseId.toUpperCase()}`,
       withCredentials: true,
     })
       .then((res) => {
@@ -69,7 +69,7 @@ function BBLoginModal({ isOpen, setIsOpen }) {
 
       await axios({
         method: "delete",
-        url: `http://localhost:8000/api/takes/${profilePk}`,
+        url: config.BASE_URL + "/api/takes/" + profilePk,
         withCredentials: true,
       }).then((res) => {
         setIsOpen(false);

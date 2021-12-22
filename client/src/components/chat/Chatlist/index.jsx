@@ -4,6 +4,7 @@ import axios from "axios";
 import Chatbar from "./Chatbar/index";
 import { useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
+import config from "../../../config/config";
 
 function Chatlist() {
   const history = useHistory();
@@ -12,11 +13,10 @@ function Chatlist() {
   const [chatroomList, setChatroomList] = useState([]);
   const profile = useRecoilValue(profileState)
 
-
   useEffect(async () => {
     await axios({
       method: "get",
-      url: `http://localhost:8000/api/chatrooms/${profilePk}`,
+      url: config.BASE_URL + "/api/chatrooms/" + profilePk,
       withCredentials: true,
     })
     .then((res) => {
