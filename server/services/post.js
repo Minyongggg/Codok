@@ -54,11 +54,13 @@ exports.updatePost = async (pk, { title, content }) => {
 };
 
 exports.delPost = async (pk) => {
+  console.log(pk)
   const post = await Post.findOne({
     where: {
       pk,
     },
   });
+  console.log(post);
   await post.destroy();
   return true;
 };

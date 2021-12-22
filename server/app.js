@@ -16,7 +16,7 @@ const io = socketio(server, {
     methods: ["GET", "POST"]
   }
 });
-sequelize.sync();
+// sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: true, credentials: true }));
