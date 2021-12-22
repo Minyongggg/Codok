@@ -4,6 +4,7 @@ import axios from "axios";
 import * as S from "../style.js";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
+import config from "../../../config/config.js"
 
 function Profile() {
   const history = useHistory();
@@ -24,7 +25,7 @@ function Profile() {
   const updateProfile = async (profilePk, profileInfo) => {
     axios({
       method: "put",
-      url: `http://localhost:8000/api/profiles/${profilePk}`,
+      url: config.BASE_URL + "/api/profiles/" + profilePk,
       data: profileInfo,
       withCredentials: true,
     }).then((res) => {

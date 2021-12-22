@@ -1,11 +1,8 @@
 import { React, useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import axios from "axios";
 import Friendbar from "./Friendbar/index";
-import { useRecoilValue } from "recoil";
-import { profileState } from "../../atoms/atoms";
-
+import config from "../../config/config";
 
 function Friend() {
     const location = useLocation();
@@ -18,7 +15,7 @@ function Friend() {
   useEffect(() => {
     axios({
         method: "get",
-        url: `http://localhost:8000/api/profiles/lectures/${courseId}`,
+        url: config.BASE_URL + "/api/profiles/lectures/" + courseId,
         withCredentials: true,
       })
       .then((res) => {

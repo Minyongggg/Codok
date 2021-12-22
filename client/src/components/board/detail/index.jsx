@@ -5,15 +5,14 @@ import { useRecoilState , useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
 import * as S from "../style";
 import MenuModal from "./modal/index";
+import config from "../../../config/config";
 
 function Write() {
     const history = useHistory();
-    const location = useLocation();
     const {courseId, postPk} = useParams();
     const [post, setPost] = useState();
     const [isMenuModalOn, setIsMenuModalOn] = useState(false);
     const profile = useRecoilValue(profileState);
-    const [isLoading, setIsLoading] = useState("true");
     console.log(postPk);
 
     const handleModalData = () => {
@@ -50,7 +49,7 @@ function Write() {
     useEffect(async () => {
         await axios({
             method: "get",
-            url: `http://localhost:8000/api/posts/${postPk}`,
+            url: config.BASE_URL + "/api/posts/" + postPk,
             withCredentials: true
         })
         .then((res) => {

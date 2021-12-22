@@ -4,13 +4,13 @@ import * as S from "./style";
 import { useModalHandler } from "../../../hooks/useModalHandler";
 
 const Modal = ({
-  isOpen,
-  setIsOpen,
-  children,
-  closeButton = true,
-  style = { padding: "40px" },
-  styleInWhiteBox = { padding: "24px" },
-}) => {
+    isOpen,
+    setIsOpen,
+    children,
+    closeButton = true,
+    style = { padding: "40px" },
+    styleInWhiteBox = { padding: "24px" },
+  }) => {
   const stopPropagation = useCallback((e) => {
     e.stopPropagation();
   }, []);

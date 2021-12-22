@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router";
 import { useBodyScrollLock } from "../../../hooks/useBodyScrollLock";
 import { useModalHandler } from "../../../hooks/useModalHandler";
-import Modal from "../../common/Modal";
 import * as S from "./style";
 
 function SlideUpModal({ isOpen, setIsOpen, clickedLecture }) {

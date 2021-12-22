@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { useHistory ,useLocation, useParams } from "react-router-dom";
 import axios from "axios";
-import styled, { css } from "styled-components";
-// import '../../css/auth/signup.scss'
-import { useRecoilState } from "recoil";
-import { profileState } from "../../atoms/atoms.js";
 import * as S from "./style";
-
+import config from "../../config/config";
 
 
 function Board() {
@@ -16,8 +12,8 @@ function Board() {
     const { courseId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
 
-    const getPosts = async () =>  { await axios.get(`http://localhost:8000/api/posts/lectures/${courseId}`)
-      .then( (res)=> {
+    const getPosts = async () =>  { await axios.get(config.BASE_URL + "/api/posts/lectures/" + {courseId})
+      .then((res)=> {
            console.log(res);
            console.log(res.data);
            setPosts(res.data.data);
@@ -27,7 +23,8 @@ function Board() {
     const getLecture = async () => {
         await axios({
             method: "get",
-            url: `http://localhost:8000/api/lectures/${courseId}`
+            url: config.BASE_URL + "/api/lectures/" + courseId,
+            withCredentials: true
         })
         .then((res) => {
             console.log(res.data);
@@ -80,7 +77,6 @@ function Board() {
             <S.Title>{lecture.name}</S.Title>
             <div style={{fontSize: "0.875rem",color: '#A7B0C0', }}>{lecture.professor}</div>
         </div>
-            {/* {posts && <textarea row={7} value={JSON.stringify(posts,null,2)}/>} */}
             {posts && posts.map(data => {
                 return (
                 <div style={{width:"88%" ,margin: "0 auto",display:"flex",justifyContent:"center",flexDirection: "column"}}>
@@ -96,14 +92,6 @@ function Board() {
                 </div>
                 );
             })}
-            {/* {posts && posts.data.map(data => {
-                return (
-                <div>
-                    <p>{data.title}</p>
-                    <p>{data.content}</p>
-                </div>
-                );
-            })} */}
         <S.YB/>
         <S.FixedAlign>
         <S.PlusButton onClick={() => history.push({

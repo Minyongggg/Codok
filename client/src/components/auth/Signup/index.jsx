@@ -6,6 +6,7 @@ import styled, { css } from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { profileState, userState } from "../../../atoms/atoms.js";
 import * as S from "../style.js";
+import config from "../../../config/config"
 
 function Signup() {
   const history = useHistory();
@@ -16,7 +17,7 @@ function Signup() {
   const signup = async (signupInfo) => {
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/signup",
+      url: config.BASE_URL + "/api/auth/signup",
       data: signupInfo,
       withCredentials: true,
     }).then((res) => {

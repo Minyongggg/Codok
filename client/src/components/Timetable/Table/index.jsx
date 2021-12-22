@@ -69,22 +69,22 @@ function Table({ timeLecture, handleModalData }) {
         {/* 몇 교시까지 수업이 있는지 */}
         <S.Row>
           <S.Time></S.Time>
-          {times.map((time) => {
-            return <S.Time>{time}</S.Time>;
+          {times.map((time, i) => {
+            return <S.Time key={i}>{time}</S.Time>;
           })}
         </S.Row>
 
         {/* 요일 별로 돌면서 시간표 채우기 */}
-        {days.map((day) => {
+        {days.map((day, i) => {
           return (
             <>
-              <S.Row>
-                <S.DayOfWeek>{day}</S.DayOfWeek>
-                {times.map((time) => {
+              <S.Row key={i}>
+                <S.DayOfWeek key={i}>{day}</S.DayOfWeek>
+                {times.map((time, i) => {
                   return (
-                    <S.Col id={day}>
+                    <S.Col id={day} key={i}>
                       {tableLectureList.find((v) => v.dayTime[day] == time) ? (
-                        <S.FilledCol
+                        <S.FilledCol key={i}
                           id={pkList.indexOf(
                             tableLectureList.find((v) => v.dayTime[day] == time)
                               .pk

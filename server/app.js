@@ -12,10 +12,11 @@ const socketio = require('socket.io');
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"]
   }
 });
+// DB 동기화
 // sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

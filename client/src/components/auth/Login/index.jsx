@@ -4,6 +4,7 @@ import axios from "axios";
 import * as S from "../style.js";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userState } from "../../../atoms/atoms.js";
+import config from "../../../config/config"
 
 function Login() {
   const history = useHistory();
@@ -11,9 +12,10 @@ function Login() {
   const [ error, setError ] = useState();
 
   const login = async (loginInfo) => {
+    console.log(config.BASE_URL)
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/login",
+      url: config.BASE_URL + "/api/auth/login",
       data: loginInfo,
       withCredentials: true,
     })

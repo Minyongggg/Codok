@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { profileState } from "../atoms/atoms";
 import axios from "axios";
+import config from "../config/config";
 
 export const useProfile = () => {
   const profilePk = localStorage.getItem("CodokId");
@@ -17,7 +18,7 @@ export const useProfile = () => {
   const getProfile = async () => {
     await axios({
       method: "GET",
-      url: `http://localhost:8000/api/profiles/${profilePk}`,
+      url: config.BASE_URL + "/api/profiles/" + profilePk,
       withCredentials: true,
     })
       .then((res) => {
