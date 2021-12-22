@@ -21,7 +21,7 @@ function MenuModal({isOpen, setIsOpen, postPk, courseId}) {
     e.preventDefault();
     await axios({
       method: "delete",
-      url: `http://localhost:8000/api/posts/${postPk}`,
+      url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/posts/${postPk}`,
       withCredentials: true,
     })
       .then((res) => {
