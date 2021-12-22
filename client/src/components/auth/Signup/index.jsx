@@ -10,12 +10,19 @@ import * as S from "../style.js";
 function Signup() {
   const history = useHistory();
   const [profile, setProfile] = useRecoilState(profileState);
+<<<<<<< Updated upstream
 
 
+=======
+  const setUser = useSetRecoilState(userState);
+  const URL =  process.env.NODE_ENV === 'production'
+  ? 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/signup'
+  : 'http://localhost:8000/api/auth/signup';
+>>>>>>> Stashed changes
   const signup = async (signupInfo) => {
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/signup",
+      url: URL,
       data: signupInfo,
       withCredentials: true,
     })

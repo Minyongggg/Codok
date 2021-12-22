@@ -9,7 +9,9 @@ function Home() {
   const location = useLocation();
   const history = useHistory();
   const [profile, setProfile] = useRecoilState(profileState);
-
+  const URL =  process.env.NODE_ENV === 'production'
+  ? 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/logout'
+  : 'http://localhost:8000/api/auth/logout';
   useEffect(() => {
     console.log(profile);
   }, [profile]);
@@ -17,7 +19,7 @@ function Home() {
   const logout = async (e) => {
     await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/logout",
+      url: URL,
       withCredentials: true,
     })
       .then((res) => {
