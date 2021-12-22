@@ -16,6 +16,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      nickname1: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      nickname2: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastChat: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      lastAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      }
     },
     // option
     {

@@ -18,7 +18,7 @@ router.use("/profiles", profile);
 router.use("/lectures", lecture);
 router.use("/posts", post);
 router.use("/takes", take);
-router.use("/chatroom", chatroom);
+router.use("/chatrooms", chatroom);
 router.use("/chats", chat);
 
 // 로그인 여부 확인하는 미들웨어

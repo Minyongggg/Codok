@@ -2,15 +2,22 @@ import { React, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
-function Chatbar() {
+function Chatbar({chatroomPk, friendPk, nickname, lastChat}) {
+  const history = useHistory();
+  
   return (
     <>
-      <img
-        src="https://image5jvqbd.fmkorea.com/files/attach/new/20210108/5665468/48754678/3313916212/99b983892094b5c6d2fc3736e15da7d1.png"
-        alt=""
-      />
-      <div>개발자</div>
-      <div>have a nice day!</div>
+    <div onClick={() => history.push({
+        pathname: '/chatroom',
+        state: {
+          friendPk: friendPk,
+          friendName: nickname
+        }
+      })}>
+      <div>닉네임: {nickname}</div>
+      <div>마지막 채팅: {lastChat}</div>
+    </div>
+    <br></br>
     </>
   );
 }

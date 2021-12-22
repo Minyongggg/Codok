@@ -16,7 +16,7 @@ const io = socketio(server, {
     methods: ["GET", "POST"]
   }
 });
-// sequelize.sync();
+sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: true, credentials: true }));
@@ -48,7 +48,6 @@ io.on('connection', (socket) => {
   socket.on('sendMsg', ({ chatroomPk, newChat }) => {
     console.log(chatroomPk)
     console.log(newChat)
-    // io.emit('newMsg', newChat);
     io.to(`chatroom${chatroomPk}`).emit('newMsg', newChat);
   })
 })

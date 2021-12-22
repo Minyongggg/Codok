@@ -30,7 +30,7 @@ function Chatroom() {
   const getChatroom = async (profilePk, friendPk) => {
     await axios({
       method: "post",
-      url: 'http://localhost:8000/api/chatroom',
+      url: 'http://localhost:8000/api/chatrooms',
       data: { profilePk: profilePk, friendPk },
       withCredentials: true,
     })
@@ -73,6 +73,7 @@ function Chatroom() {
   }
 
   useEffect(()=>{
+    socket.off('newMsg');
     socket.on('newMsg', (newChat) => {
       setNewChat(newChat);
       console.log(newChat);

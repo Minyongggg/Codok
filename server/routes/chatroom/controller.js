@@ -2,7 +2,6 @@ const chatroomServices = require("../../services/chatroom");
 
 exports.getChatroom = async (req, res, next) => {
   try {
-    console.log("req.body: " + req)
     const chatroom = await chatroomServices.getChatroom(req.body);
 
     res.json({
@@ -13,3 +12,16 @@ exports.getChatroom = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.findChatrooms = async (req, res, next) => {
+  try {
+    const chatrooms = await chatroomServices.findChatrooms(req.params.profilePk);
+
+    res.json({
+      chatrooms: chatrooms
+    })
+
+  } catch (error) {
+    next(error);
+  }
+}
