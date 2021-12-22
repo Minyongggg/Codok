@@ -23,7 +23,9 @@ function Login() {
         setUser("isLogin");
         history.push("/home");
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.dir(error);
+      })
   };
 
   const onSubmit = (e) => {
