@@ -17,8 +17,6 @@ function Profile(){
     const [introduce, setIntroduce] = useState(profile.introduce)
     const [mateWant, setMateWant] = useState(profile.mateWant)
 
-    console.log(profile);
-
     useEffect(() => {
         if(profile.studentId != "default")
             return setIsDefault(false);
@@ -55,13 +53,11 @@ function Profile(){
                 setIntroduce(e.target.value)
                 break;
             case 'mateWant':
-                console.log(e.target)
-                setMateWant(!(e.target.value))
+                setMateWant(e.target.checked)
                 break;
             default:
                 break;
         }
-        console.log(e.target.id);
     };
 
     const onSubmit = (e) => {
@@ -123,7 +119,7 @@ function Profile(){
                 </S.SubTitle>
                 <textarea placeholder="ex. 스터디 메이트 구해요~~~ 혼자 수업들으려고 하니까 너무 힘든거 같아요" required style={introduceStyle} type="text" id="introduce"name="introduce" value={introduce}></textarea>
                 <div style={{ display: 'flex',alignItems: 'center', margin: '30px 0px 85px 0px'}}>      
-                    <input style={{width:'24px',height:'24px',}} id='mateWant' name="mateWant" type="checkbox" />
+                    <input style={{width:'24px',height:'24px',}} checked={mateWant} id='mateWant' name="mateWant" type="checkbox" />
                     <span style={{fontFamily:"Spoqa Hans Sans Neo",
                     fontSize: '1.125rem',
                     color:'#5A6474',
