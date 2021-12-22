@@ -72,8 +72,8 @@ function BBLoginModal({ isOpen, setIsOpen }) {
         url: `http://localhost:8000/api/takes/${profilePk}`,
         withCredentials: true,
       }).then((res) => {
-        setIsLoading(false);
         setIsOpen(false);
+        setIsLoading(false);
       });
     }
     return;
