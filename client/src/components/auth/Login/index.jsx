@@ -14,7 +14,7 @@ function Login() {
   const login = async (loginInfo) => {
     axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/login",
+      url: URL,
       data: loginInfo,
       withCredentials: true,
     })
