@@ -35,16 +35,18 @@ function BBLoginModal({ isOpen, setIsOpen }) {
     await axios({
       method: "post",
       url: `http://localhost:8000/api/takes/${profilePk}/${courseId.toUpperCase()}`,
-      withCredentials: true
+      withCredentials: true,
     })
       .then((res) => {
         setIsLoading(false);
         setIsOpen(false);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
-      })
-    };
+        setIsLoading(false);
+      });
+  };
 
   const onSubmitHandler = () => {
     // if (!bbId || !bbPassword) {
@@ -52,31 +54,30 @@ function BBLoginModal({ isOpen, setIsOpen }) {
     //   return;
     // }
     if (!courseId) {
-      alert("학수번호를 입력해주세요.")
-      return
+      alert("학수번호를 입력해주세요.");
+      return;
     }
     setIsLoading(true);
     // crawlBB(profilePk, { id: bbId, password: bbPassword });
-    saveCourseData(profilePk, courseId)
+    saveCourseData(profilePk, courseId);
   };
 
   const onResetHandler = async () => {
     let check = confirm("정말 등록된 강의를 초기화 하시겠습니까?");
-    if(check) {
+    if (check) {
       setIsLoading(true);
 
       await axios({
         method: "delete",
         url: `http://localhost:8000/api/takes/${profilePk}`,
-        withCredentials: true
-      })
-      .then((res) => {
+        withCredentials: true,
+      }).then((res) => {
         setIsLoading(false);
-        setIsOpen(false)
-      })
+        setIsOpen(false);
+      });
     }
-    return
-  }
+    return;
+  };
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeButton={false}>
@@ -92,9 +93,7 @@ function BBLoginModal({ isOpen, setIsOpen }) {
               블랙보드 로그인을 하시면 자동으로 시간표 등록 가능! 로그인 개인
               정보는 시간표를 불러온 즉시 파기됩니다.
             </S.Text> */}
-            <S.Text>
-              수강 중인 강의의 정확한 학수번호를 입력해주세요.
-            </S.Text>
+            <S.Text>수강 중인 강의의 정확한 학수번호를 입력해주세요.</S.Text>
 
             <S.Input
               // placeholder="블랙보드 아이디"

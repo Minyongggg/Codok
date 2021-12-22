@@ -6,8 +6,6 @@ import * as S from "./style";
 import BBLoginModal from "./BBLoginModal";
 import SlideUpModal from "./SlideUpModal";
 import BeforeRegistration from "./BeforeRegistration";
-import { useRecoilValue } from "recoil";
-import { profileState } from "../../atoms/atoms";
 
 function Timetable() {
   const profilePk = localStorage.getItem("CodokId");
@@ -34,12 +32,14 @@ function Timetable() {
   };
 
   useEffect(() => {
-    getLectureDataByProfilePk(profilePk);
+    if (profilePk && !isModalOn) getLectureDataByProfilePk(profilePk);
   }, [isModalOn]);
 
   useEffect(() => {
     if (lectureDataList !== null) {
       setIsLoading(false);
+      setNonTimeLecture(() => []);
+      setTimeLecture(() => []);
 
       // 1학년 세미나와 같은 시간이 없는 수업 리스트 추가
       lectureDataList.map((id) => {
@@ -73,7 +73,7 @@ function Timetable() {
         <S.Header>
           <S.Title>코독한 시간표</S.Title>
           <S.PlusButton onClick={() => setIsModalOn(true)}>
-          <i className="fas fa-plus"></i>
+            <i className="fas fa-plus"></i>
           </S.PlusButton>
         </S.Header>
 

@@ -12,7 +12,7 @@ function Table({ timeLecture, handleModalData }) {
 
   useEffect(() => {
     console.log(timeLecture);
-    if (timeLecture) dayTimeFormatter(timeLecture);
+    if (timeLecture.length > 0) dayTimeFormatter(timeLecture);
   }, [timeLecture]);
 
   const dayTimeFormatter = (timeLecture) => {
