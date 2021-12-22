@@ -13,11 +13,13 @@ function Home() {
   useEffect(() => {
     console.log(profile);
   }, [profile]);
-
+  const URL =  process.env.NODE_ENV === 'production'
+  ? 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/logout'
+  : 'http://localhost:8000/api/auth/logout';
   const logout = async (e) => {
     await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/logout",
+      url: URL,
       withCredentials: true,
     })
       .then((res) => {

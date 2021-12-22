@@ -21,18 +21,18 @@ function Splash()
     //     history.push('/home')
     //   }      
     // }
-    const logout = async (e) => {
-        await axios({
-          method: "get",
-          url: "http://localhost:8000/api/auth/logout",
-          withCredentials: true,
-        })
-          .then((res) => {
-            console.log(res);
-            setProfile(() => {});
-          })
-          .catch((err) => console.log(err));
-      };
+    // const logout = async (e) => {
+    //     await axios({
+    //       method: "get",
+    //       url: "http://localhost:8000/api/auth/logout",
+    //       withCredentials: true,
+    //     })
+    //       .then((res) => {
+    //         console.log(res);
+    //         setProfile(() => {});
+    //       })
+    //       .catch((err) => console.log(err));
+    //   };
     const imgset = { 
         width :"100%",
         backgroundRepeat : "no-repeat",
