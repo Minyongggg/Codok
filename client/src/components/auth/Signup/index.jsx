@@ -11,13 +11,10 @@ function Signup() {
   const history = useHistory();
   const [profile, setProfile] = useRecoilState(profileState);
   const setUser = useSetRecoilState(userState);
-  const URL =  process.env.NODE_ENV === 'production'
-  ? 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/signup'
-  : 'http://localhost:8000/api/auth/signup';
   const signup = async (signupInfo) => {
     axios({
       method: "post",
-      url: URL,
+      url: 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/signup',
       data: signupInfo,
       withCredentials: true,
     }).then((res) => {
