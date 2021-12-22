@@ -11,7 +11,7 @@ function Timetable() {
   const profilePk = localStorage.getItem("CodokId");
 
   const [isModalOn, setIsModalOn] = useState(false);
-  const [timeLecture, setTimeLecture] = useState([]);
+  const [timeLecture, setTimeLecture] = useState(null);
   const [nonTimeLecture, setNonTimeLecture] = useState([]);
   const [lectureDataList, setLectureDataList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -78,15 +78,15 @@ function Timetable() {
         </S.Header>
 
         {/* 시간표 등록 전 */}
-        {!lectureDataList && <BeforeRegistration />}
+        {lectureDataList.length === 0 && <BeforeRegistration />}
 
         {/* 시간표 등록 후 */}
-        {lectureDataList && nonTimeLecture.length === 0 && (
+        {lectureDataList.length > 0 && nonTimeLecture.length === 0 && (
           <Table timeLecture={timeLecture} handleModalData={handleModalData} />
         )}
 
         {/* 시간이 배정되어있지 않은 수업 ex)정보적 사고 */}
-        {lectureDataList && nonTimeLecture.length > 0 && (
+        {lectureDataList.length > 0 && nonTimeLecture.length > 0 && (
           <>
             <Table
               timeLecture={timeLecture}

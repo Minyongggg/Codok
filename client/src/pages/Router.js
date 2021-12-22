@@ -16,44 +16,18 @@ import Board from "../components/board/index.jsx";
 import Write from "../components/board/write/index";
 import Detail from "../components/board/detail/index";
 import Edit from "../components/board/edit/index"
+import { useProfile } from "../hooks/useProfile";
+import { useUser } from "../hooks/useUser";
 // import Edit from "../components/board/edit/index";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { profileState } from "../atoms/atoms";
-import axios from "axios";
 
 function Router() {
-  const profilePk = localStorage.getItem("CodokId");
-  const [profile, setProfile] = useRecoilState(profileState);
-  useEffect(() => {
-    console.log(profilePk);
-    if (profilePk) {
-      getProfile();
-      return;
-    }
-    setProfile(() => "none");
-  }, []);
+  const { profile } = useProfile();
+  const { user } = useUser();
 
-  const getProfile = async () => {
-    await axios({
-      method: "GET",
-      url: `http://localhost:8000/api/profiles/${profilePk}`,
-      withCredentials: true,
-    })
-      .then((res) => {
-        setProfile(() => res.data.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  if (profile === null) return <div>로딩중</div>;
-
-  if (profile === "none")
+  if (user !== "isLogin")
     return (
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/splash">
-            <Splash />
-          </Route> */}
           <Route path="/auth/signup">
             <Signup />
           </Route>
