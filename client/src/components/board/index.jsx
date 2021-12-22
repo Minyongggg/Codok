@@ -16,7 +16,7 @@ function Board() {
     const { courseId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
 
-    const getPosts = async () =>  { await axios.get(`http://localhost:8000/api/posts/lectures/${courseId}`)
+    const getPosts = async () =>  { await axios.get(`http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/posts/lectures/${courseId}`)
       .then( (res)=> {
            console.log(res);
            console.log(res.data);
@@ -27,7 +27,7 @@ function Board() {
     const getLecture = async () => {
         await axios({
             method: "get",
-            url: `http://localhost:8000/api/lectures/${courseId}`
+            url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/lectures/${courseId}`
         })
         .then((res) => {
             console.log(res.data);

@@ -17,7 +17,7 @@ function Write() {
     useEffect(async ()=> {
         axios({
             method: "get",
-            url: `http://localhost:8000/api/lectures/${courseId}`,
+            url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/lectures/${courseId}`,
             withCredentials: true
         })
         .then((res) => {
@@ -32,7 +32,7 @@ function Write() {
     const write = async (writeInfo) => {
         axios({
           method: "post",
-          url: `http://localhost:8000/api/posts`,
+          url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/posts`,
         //   ${profilePk},
           data: writeInfo,
           withCredentials: true,

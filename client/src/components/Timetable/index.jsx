@@ -21,7 +21,7 @@ function Timetable() {
   const getLectureDataByProfilePk = async (profilePk) => {
     await axios({
       method: "get",
-      url: `http://localhost:8000/api/lectures/profiles/${profilePk}`,
+      url: `http://codok.site:8000/api/lectures/profiles/${profilePk}`,
       withCredentials: true,
     })
       .then((res) => {
