@@ -22,3 +22,27 @@ exports.createTakes = async (profilePk, {id, password}) => {
 
   return false;
 };
+
+exports.createByCourseId = async (profilePk, courseId) => {
+  const lecture = await Lecture.findOne({where : {courseId}});
+  
+  await Take.create({
+    profilePk,
+    lecturePk: lecture.pk
+  })
+
+  return true
+} 
+
+exports.resetTakes = async (profilePk) => {
+  const takes = await Take.findAll({
+    where : {
+      profilePk
+    }
+  });
+
+  takes.forEach(async (take) => {
+    await take.destroy();
+  });
+  return
+}

@@ -13,4 +13,30 @@ exports.createTakes = async (req, res, next) => {
   }
 };
 
+exports.createByCourseId = async (req, res, next) => {
+  try {
+    const result = await takeServices.createByCourseId(req.params.profilePk, req.params.courseId);
 
+    if(result){
+      res.json({
+        message: "강의 등록 성공",
+      })
+    }
+
+  } catch (error) {
+    next(error);
+  }
+}
+
+exports.resetTakes = async (req, res, next) => {
+  try {
+    await takeServices.resetTakes(req.params.profilePk);
+
+    res.json({
+      message: "강의 등록 초기화"
+    })
+
+  } catch (error) {
+    next(error);
+  }
+}
