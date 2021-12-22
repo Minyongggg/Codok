@@ -2,15 +2,19 @@ import { React, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Chatbar from "./Chatbar/index";
+import { useRecoilValue } from "recoil";
+import { profileState } from "../../../atoms/atoms";
 
 function Chatlist() {
+  const history = useHistory();
   const profilePk = localStorage.getItem("CodokId")
   const [isLoading, setIsLoading] = useState(true);
   const [chatroomList, setChatroomList] = useState([]);
+  const profile = useRecoilValue(profileState)
 
 
-  useEffect(() => {
-    axios({
+  useEffect(async () => {
+    await axios({
       method: "get",
       url: `http://localhost:8000/api/chatrooms/${profilePk}`,
       withCredentials: true,
@@ -29,7 +33,12 @@ function Chatlist() {
     <>
       <div>코Talk</div>
       <div>알림표시</div>
-      <div>Profile box</div>
+      <div onClick={() => history.push({pathname: "/auth/profile"})}>
+        <div>{profile.nickname}</div>
+        <div>{profile.major}</div>
+        <div>{profile.studentId}</div>
+        <div>{profile.gender}</div>
+      </div>
       <br></br>
       <br></br>
       <ul>
