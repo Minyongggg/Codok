@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useHistory ,useLocation } from "react-router-dom";
+import { useHistory ,useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import styled, { css } from "styled-components";
 // import '../../css/auth/signup.scss'
@@ -11,20 +11,36 @@ import * as S from "./style";
 
 function Board() {
     const [posts, setPosts] = useState([]);
-    const location = useLocation();
-    const clickedLecture = location.state.clickedLecture;
+    const [lecture, setLecture] = useState();
     const history = useHistory();
-    console.log(clickedLecture)
-    const Posts = async () =>  {axios.get(`http://localhost:8000/api/posts/lectures/${clickedLecture.courseId}`)
+    const { courseId } = useParams();
+    const [isLoading, setIsLoading] = useState(true);
+
+    const getPosts = async () =>  { await axios.get(`http://localhost:8000/api/posts/lectures/${courseId}`)
       .then( (res)=> {
-        
            console.log(res);
-           console.log(res.data.data);
+           console.log(res.data);
            setPosts(res.data.data);
-      })}
-      useEffect(() => {
-        Posts();
-      }, []);
+        })
+    }
+
+    const getLecture = async () => {
+        await axios({
+            method: "get",
+            url: `http://localhost:8000/api/lectures/${courseId}`
+        })
+        .then((res) => {
+            console.log(res.data);
+            setLecture(res.data.data);
+        })
+    }
+
+    useEffect(async() => {
+        await getLecture();
+        await getPosts();
+        setIsLoading(false);
+    }, []);
+
     const titleWrapper = {
         display: 'flex',
         justifyContent: 'space-between',
@@ -52,21 +68,24 @@ function Board() {
         }
 
         return `${Math.floor(betweenTimeDay / 365)}년전`;
- }
-      
+    }
+    
+    if(isLoading){
+        return <div>로딩중...</div>
+    }
+
     return (
     <>
         <div style={titleWrapper}>
-            <S.Title>{clickedLecture.name}</S.Title>
-            <div style={{fontSize: "0.875rem",color: '#A7B0C0', }}>{clickedLecture.professor}</div>
+            <S.Title>{lecture.name}</S.Title>
+            <div style={{fontSize: "0.875rem",color: '#A7B0C0', }}>{lecture.professor}</div>
         </div>
             {/* {posts && <textarea row={7} value={JSON.stringify(posts,null,2)}/>} */}
             {posts && posts.map(data => {
                 return (
                 <div style={{width:"88%" ,margin: "0 auto",display:"flex",justifyContent:"center",flexDirection: "column"}}>
                 <S.PostWrapper onClick={() => history.push({
-                    pathname: "/board/detail",
-                    state: {data: data},
+                    pathname: `/board/${courseId}/${data.pk}`,
                 })}>
                     <S.PostTitle>{data.title}</S.PostTitle>
                     <S.PostContent>{data.content}</S.PostContent>
@@ -88,8 +107,10 @@ function Board() {
         <S.YB/>
         <S.FixedAlign>
         <S.PlusButton onClick={() => history.push({
-            pathname: "/board/write",
-            state: {clickedLecture: clickedLecture}
+            pathname: `/board/${courseId}/write`,
+            state: {
+                lecturePk:lecture.pk
+            }
         })}>
             <i className="fas fa-plus"></i>
           </S.PlusButton>
