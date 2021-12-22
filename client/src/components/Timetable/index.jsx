@@ -73,7 +73,7 @@ function Timetable() {
         <S.Header>
           <S.Title>코독한 시간표</S.Title>
           <S.PlusButton onClick={() => setIsModalOn(true)}>
-          <i class="fas fa-plus"></i>
+          <i className="fas fa-plus"></i>
           </S.PlusButton>
         </S.Header>
 
