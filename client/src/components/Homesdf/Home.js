@@ -4,17 +4,19 @@ import { useLocation, useHistory, Link } from "react-router-dom";
 import { UserId } from "../auth/Login";
 import { useRecoilState } from "recoil";
 import { profileState } from "../../atoms/atoms";
+import { useUser } from "../../hooks/useUser";
 
 function Home() {
   const location = useLocation();
   const history = useHistory();
   const [profile, setProfile] = useRecoilState(profileState);
+  const { user, setUser } = useUser();
 
   useEffect(() => {
     console.log(profile);
   }, [profile]);
 
-  const logout = async (e) => {
+  const logout = async () => {
     await axios({
       method: "get",
       url: "http://localhost:8000/api/auth/logout",
@@ -24,6 +26,10 @@ function Home() {
         console.log(res);
         localStorage.removeItem("CodokId");
         setProfile(() => "none");
+        setUser(() => "none");
+        console.log("profile: " + profile)
+        console.log("user: "  + user);
+        history.push({pathname: "/"})
       })
       .catch((err) => console.log(err));
   };

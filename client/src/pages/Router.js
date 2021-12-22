@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
-import Home from "../components/Home/Home";
+import Home from "../components/Homesdf/Home";
 import Timetable from "../components/Timetable";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
@@ -49,7 +49,7 @@ function Router() {
       <Switch>
         {/* home1 */}
         <Route exact path="/">
-          <Home />
+          <Timetable />
         </Route>
         {/* <Route exact path="/splash">
           <Splash />

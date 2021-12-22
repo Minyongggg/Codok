@@ -3,5 +3,5 @@ const passport = require("passport");
 const controller = require("./controller");
 
 router.post("/", controller.sendChat);
-router.get("/:chatroomPk", controller.getChats);
+router.get("/chatroom/:chatroomPk", controller.getChats);
 module.exports = router;

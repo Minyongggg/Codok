@@ -6,10 +6,15 @@ import * as S from "./style";
 import BBLoginModal from "./BBLoginModal";
 import SlideUpModal from "./SlideUpModal";
 import BeforeRegistration from "./BeforeRegistration";
+import { useRecoilState } from "recoil";
+import { profileState } from "../../atoms/atoms";
+import { useHistory } from "react-router-dom";
+import { useUser } from "../../hooks/useUser";
 
 function Timetable() {
   const profilePk = localStorage.getItem("CodokId");
-
+  const [profile, setProfile] = useRecoilState(profileState);
+  const history = useHistory();
   const [isModalOn, setIsModalOn] = useState(false);
   const [timeLecture, setTimeLecture] = useState(null);
   const [nonTimeLecture, setNonTimeLecture] = useState([]);
@@ -17,6 +22,8 @@ function Timetable() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSlideUpModalOn, setIsSlideUpModalOn] = useState(false);
   const [clickedLecture, setClickedLecture] = useState({});
+  const { user, setUser } = useUser();
+
 
   const getLectureDataByProfilePk = async (profilePk) => {
     await axios({
@@ -27,6 +34,22 @@ function Timetable() {
       .then((res) => {
         console.log(res.data.data);
         setLectureDataList(() => res.data.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const logout = async () => {
+    await axios({
+      method: "get",
+      url: "http://localhost:8000/api/auth/logout",
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem("CodokId");
+        setProfile(() => "none");
+        setUser(() => "none");
+        history.push({pathname: "/"});
       })
       .catch((err) => console.log(err));
   };
@@ -72,6 +95,9 @@ function Timetable() {
       <S.Container>
         <S.Header>
           <S.Title>코독한 시간표</S.Title>
+          <button onClick={logout} type="button">
+            Log out
+          </button>
           <S.PlusButton onClick={() => setIsModalOn(true)}>
             <i className="fas fa-plus"></i>
           </S.PlusButton>

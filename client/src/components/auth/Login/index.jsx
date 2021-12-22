@@ -7,7 +7,8 @@ import { userState } from "../../../atoms/atoms.js";
 
 function Login() {
   const history = useHistory();
-  const setUser = useSetRecoilState(userState);
+  const [ user, setUser ] = useRecoilState(userState);
+  const [ error, setError ] = useState();
 
   const login = async (loginInfo) => {
     axios({
@@ -21,7 +22,13 @@ function Login() {
         setUser("isLogin");
         history.push("/home");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.dir(err);
+        if(err.response.status==401 && err.response.data=="Unauthorized"){
+          alert("아이디 혹은 패스워드가 잘못되었습니다.");
+          setError("아이디 혹은 패스워드가 잘못되었습니다.");
+        }
+      });
   };
 
   const onSubmit = (e) => {
@@ -33,6 +40,14 @@ function Login() {
   const goBack = () => {
     history.goBack();
   };
+
+  useEffect(() => {
+    if(user != "none"){
+      history.push({
+        pathname: "/home"
+      })
+    }
+  }, [user])
 
   return (
     <>
@@ -62,6 +77,7 @@ function Login() {
               required
             />
           </S.InputWrapper>
+          <div style={{color: 'red', textAlign: 'center'}}>{error}</div>
           <S.YB />
           <S.ButtonWrapper>
             <S.Button type="submit">로그인</S.Button>

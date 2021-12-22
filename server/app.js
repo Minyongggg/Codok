@@ -35,13 +35,9 @@ app.use(passport.session());
 app.use("/api", router);
 
 io.on('connection', (socket) => {
-  console.log("------------------------------------")
-  console.log(socket.id);
-  console.log("------------------------------------")
   console.log('User connected');
 
   socket.on('joinroom', (chatroomPk) => {
-    console.log(socket.id + "가 방 열어달래~~~~")
     socket.join(`chatroom${chatroomPk}`);
   })
 

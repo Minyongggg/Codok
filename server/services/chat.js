@@ -22,7 +22,7 @@ exports.sendChat = async ({ senderPk, receiverPk, content, createdAt, chatroomPk
 exports.getChats = async (chatroomPk) => {
   const chats = await Chat.findAll({
     where: {
-      pk: chatroomPk,
+      chatroomPk: chatroomPk,
     }
   })
 

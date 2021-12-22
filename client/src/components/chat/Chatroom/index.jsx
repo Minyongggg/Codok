@@ -19,10 +19,11 @@ function Chatroom() {
   const getChats = async (chatroomPk) => {
     await axios({
       method: "get",
-      url: `http://localhost:8000/api/chats/${chatroomPk}`,
+      url: `http://localhost:8000/api/chats/chatroom/${chatroomPk}`,
       withCredentials: true
     })
     .then((res) => {
+      console.log(res.data)
       return setChats(() => res.data.chats);
     })
   }
@@ -35,6 +36,7 @@ function Chatroom() {
       withCredentials: true,
     })
     .then((res) => {
+      console.log(res.data);
       return setChatroomPk(()=>res.data.chatroom.pk);
     })
   }

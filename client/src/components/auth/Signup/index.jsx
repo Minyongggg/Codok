@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled, { css } from "styled-components";
@@ -11,6 +11,7 @@ function Signup() {
   const history = useHistory();
   const [profile, setProfile] = useRecoilState(profileState);
   const setUser = useSetRecoilState(userState);
+  const [error, setError] = useState();
 
   const signup = async (signupInfo) => {
     axios({
@@ -19,15 +20,22 @@ function Signup() {
       data: signupInfo,
       withCredentials: true,
     }).then((res) => {
-      console.log(res);
-      setProfile(() => res.data.profile);
-      setUser(() => "isLogin");
-      localStorage.setItem("CodokId", res.data.profile.pk);
-
-      history.push({
-        pathname: "/auth/profile",
-      });
-    });
+        console.log(res);
+        setProfile(() => res.data.profile);
+        setUser(() => "isLogin");
+        localStorage.setItem("CodokId", res.data.profile.pk);
+        history.push({
+          pathname: "/auth/profile",
+        })
+      })
+      .catch((err) => {
+          console.dir(err)
+          if(err.response.status==409 && err.response.data.message=="id duplicate"){
+            alert("이미 사용 중인 아이디입니다.");
+            setError("이미 사용 중인 아이디입니다.")
+          }
+        });
+    };
     //   .catch((err) => {
     //     console.log(err);
     //     alert("이미 존재하는 아이디입니다.")
@@ -36,7 +44,6 @@ function Signup() {
     //   })
     // });
     //에러캐치 못하지만 일단 넘김
-  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -76,6 +83,7 @@ function Signup() {
               placeholder="비밀번호"
             />
           </S.InputWrapper>
+          <div style={{color: 'red', textAlign: 'center'}}>{error}</div>
           <S.YB />
           <S.ButtonWrapper>
             <S.Button type="submit">회원가입</S.Button>
