@@ -7,6 +7,7 @@ const router = require("./routes/index");
 const passportConfig = require("./passport/passport");
 const { sequelize } = require("./models/index");
 const app = express();
+app.use(cors())
 const http = require('http');
 const socketio = require('socket.io');
 const server = http.createServer(app);
