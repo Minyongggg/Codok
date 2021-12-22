@@ -4,10 +4,10 @@ import { useBodyScrollLock } from "../../../../hooks/useBodyScrollLock";
 import { useModalHandler } from "../../../../hooks/useModalHandler";
 import * as S from "../../../Timetable/SlideUpModal/style";
 import axios from "axios";
+import config from "../../../../config/config";
 
 function MenuModal({isOpen, setIsOpen, postPk, courseId}) {
   const history = useHistory();
-  const location = useLocation();
 
   const stopPropagation = useCallback((e) => {
     e.stopPropagation();
@@ -21,7 +21,7 @@ function MenuModal({isOpen, setIsOpen, postPk, courseId}) {
     e.preventDefault();
     await axios({
       method: "delete",
-      url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/posts/${postPk}`,
+      url: config.BASE_URL + "/api/posts/" + postPk,
       withCredentials: true,
     })
       .then((res) => {

@@ -9,6 +9,7 @@ exports.signup = async ({ id, pwd }) => {
     console.log("User exist!");
     return false;
   }
+
   const user = await User.create({
     id,
     password: pwd,
@@ -31,6 +32,8 @@ exports.signup = async ({ id, pwd }) => {
 
 exports.login = async (id) => {
   const user = await User.findOne({ where: { id } });
+
+
   const profile = user.getProfile();
 
   if(profile){

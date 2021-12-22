@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
-import Home from "../components/Home/Home";
 import Timetable from "../components/Timetable";
 import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
@@ -9,19 +8,14 @@ import Splash from "../components/auth/Splash";
 import Friend from "../components/Friend/index";
 import Chatlist from "../components/Chat/Chatlist/index.jsx";
 import Chatroom from "../components/Chat/Chatroom/index.jsx";
-import Mypage from "../components/Mypage";
-import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
 import Board from "../components/board/index.jsx";
 import Write from "../components/board/write/index";
 import Detail from "../components/board/detail/index";
 import Edit from "../components/board/edit/index"
-import { useProfile } from "../hooks/useProfile";
 import { useUser } from "../hooks/useUser";
-// import Edit from "../components/board/edit/index";
 
 function Router() {
-  const { profile } = useProfile();
   const { user } = useUser();
 
   if (user !== "isLogin")
@@ -49,7 +43,7 @@ function Router() {
       <Switch>
         {/* home1 */}
         <Route exact path="/">
-          <Home />
+          <Timetable />
         </Route>
         {/* <Route exact path="/splash">
           <Splash />
@@ -91,16 +85,8 @@ function Router() {
         <Route exact path="/chatroom">
           <Chatroom />
         </Route>
-        {/* board */}
-        <Route exact path="/user/mypage">
-          <Mypage />
-        </Route>
-        <Route exact path="/user/mypage">
-          <Mypage />
-        </Route>
         <Route>
           <Timetable />
-          {/* <PageNotFound /> */}
         </Route>
       </Switch>
 

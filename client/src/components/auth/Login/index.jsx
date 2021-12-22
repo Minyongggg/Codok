@@ -4,17 +4,18 @@ import axios from "axios";
 import * as S from "../style.js";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { userState } from "../../../atoms/atoms.js";
+import config from "../../../config/config"
 
 function Login() {
   const history = useHistory();
-  const setUser = useSetRecoilState(userState);
-  const URL =  process.env.NODE_ENV === 'production'
-  ? 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/login'
-  : 'http://localhost:8000/api/auth/login';
+  const [ user, setUser ] = useRecoilState(userState);
+  const [ error, setError ] = useState();
+
   const login = async (loginInfo) => {
+    console.log(config.BASE_URL)
     axios({
       method: "post",
-      url: URL,
+      url: config.BASE_URL + "/api/auth/login",
       data: loginInfo,
       withCredentials: true,
     })
@@ -23,9 +24,13 @@ function Login() {
         setUser("isLogin");
         history.push("/home");
       })
-      .catch((error) => {
-        console.dir(error);
-      })
+      .catch((err) => {
+        console.dir(err);
+        if(err.response.status==401 && err.response.data=="Unauthorized"){
+          alert("아이디 혹은 패스워드가 잘못되었습니다.");
+          setError("아이디 혹은 패스워드가 잘못되었습니다.");
+        }
+      });
   };
 
   const onSubmit = (e) => {
@@ -37,6 +42,14 @@ function Login() {
   const goBack = () => {
     history.goBack();
   };
+
+  useEffect(() => {
+    if(user != "none"){
+      history.push({
+        pathname: "/home"
+      })
+    }
+  }, [user])
 
   return (
     <>
@@ -66,6 +79,7 @@ function Login() {
               required
             />
           </S.InputWrapper>
+          <div style={{color: 'red', textAlign: 'center'}}>{error}</div>
           <S.YB />
           <S.ButtonWrapper>
             <S.Button type="submit">로그인</S.Button>

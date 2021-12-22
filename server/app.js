@@ -12,10 +12,11 @@ const socketio = require('socket.io');
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"]
   }
 });
+// DB 동기화
 // sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,13 +36,9 @@ app.use(passport.session());
 app.use("/api", router);
 
 io.on('connection', (socket) => {
-  console.log("------------------------------------")
-  console.log(socket.id);
-  console.log("------------------------------------")
   console.log('User connected');
 
   socket.on('joinroom', (chatroomPk) => {
-    console.log(socket.id + "가 방 열어달래~~~~")
     socket.join(`chatroom${chatroomPk}`);
   })
 

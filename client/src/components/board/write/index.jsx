@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRecoilState , useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
 import * as S from "../style";
+import config from "../../../config/config";
 
 function Write() {
     const history = useHistory();
@@ -32,8 +33,7 @@ function Write() {
     const write = async (writeInfo) => {
         axios({
           method: "post",
-          url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/posts`,
-        //   ${profilePk},
+          url: config.BASE_URL + "/api/posts",
           data: writeInfo,
           withCredentials: true,
         })
@@ -64,27 +64,22 @@ function Write() {
 
     return(
         <>
-        <S.Container>
-            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                <S.Circle onClick={goBack}>
-                    <i className="fas fa-arrow-left"></i>
-                </S.Circle>
-                <S.SubTitle>글 작성</S.SubTitle>
-                <div style={{width: '44px', height: '44px'}}></div>
-            </div>
-            <form onSubmit={onSubmit}>
-                <S.InputWrapper><S.InputID type="text" required id="title" name="title" placeholder="제목을 적어주세요"/></S.InputWrapper>
-                <textarea required placeholder="수업을 듣는 친구들과 익명으로 소통하세요" required style={introduce} type="text" id="content" name="content"></textarea>
-                
-                <S.YB/>
-                <S.ButtonWrapper><S.Button type="submit">업로드</S.Button></S.ButtonWrapper>
-
-            </form>
-
-
-        </S.Container>
+            <S.Container>
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <S.Circle onClick={goBack}>
+                        <i className="fas fa-arrow-left"></i>
+                    </S.Circle>
+                    <S.SubTitle>글 작성</S.SubTitle>
+                    <div style={{width: '44px', height: '44px'}}></div>
+                </div>
+                <form onSubmit={onSubmit}>
+                    <S.InputWrapper><S.InputID type="text" required id="title" name="title" placeholder="제목을 적어주세요"/></S.InputWrapper>
+                    <textarea required placeholder="수업을 듣는 친구들과 익명으로 소통하세요" required style={introduce} type="text" id="content" name="content"></textarea>
+                    <S.YB/>
+                    <S.ButtonWrapper><S.Button type="submit">업로드</S.Button></S.ButtonWrapper>
+                </form>
+            </S.Container>
         </>
     )
-
 }
 export default Write;

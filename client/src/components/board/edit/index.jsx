@@ -4,11 +4,10 @@ import axios from "axios";
 import { useRecoilState , useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
 import * as S from "../style";
+import config from "../../../config/config";
 
 function Edit() {
     const history = useHistory();
-    const location = useLocation();
-    const profile = useRecoilValue(profileState);
     const {courseId, postPk} = useParams();
     const [post, setPost] = useState();
     const [title, setTitle] = useState();
@@ -20,7 +19,7 @@ function Edit() {
     const edit = async (writeInfo) => {
         axios({
           method: "put",
-          url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/posts/${postPk}`,
+          url: config.BASE_URL + "/api/posts" + postPk,
           data: writeInfo,
           withCredentials: true,
         })
@@ -65,7 +64,7 @@ function Edit() {
     useEffect(async () => {
         axios({
             method: "get",
-            url: `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/posts/${postPk}`,
+            url: config.BASE_URL + "/api/posts/" + postPk,
             withCredentials: true
         })
         .then((res) => {

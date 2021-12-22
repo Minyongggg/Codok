@@ -2,6 +2,7 @@ import { React, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useLocation } from "react-router";
 import io from "socket.io-client"
+import config from "../../../config/config";
 
 const socket = io.connect('http://localhost:8000');
 
@@ -19,10 +20,11 @@ function Chatroom() {
   const getChats = async (chatroomPk) => {
     await axios({
       method: "get",
-      url: `http://localhost:8000/api/chats/${chatroomPk}`,
+      url: config.BASE_URL + "/api/chats/chatroom/" + chatroomPk,
       withCredentials: true
     })
     .then((res) => {
+      console.log(res.data)
       return setChats(() => res.data.chats);
     })
   }
@@ -30,11 +32,12 @@ function Chatroom() {
   const getChatroom = async (profilePk, friendPk) => {
     await axios({
       method: "post",
-      url: 'http://localhost:8000/api/chatrooms',
+      url: config.BASE_URL + "/api/chatrooms/",
       data: { profilePk: profilePk, friendPk },
       withCredentials: true,
     })
     .then((res) => {
+      console.log(res.data);
       return setChatroomPk(()=>res.data.chatroom.pk);
     })
   }
@@ -61,7 +64,7 @@ function Chatroom() {
 
     await axios({
       method: "post",
-      url: "http://localhost:8000/api/chats/",
+      url: config.BASE_URL + "/api/chats/",
       data: newChat,
       withCredentials: true,
     })

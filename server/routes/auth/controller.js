@@ -5,8 +5,8 @@ exports.signup = async (req, res, next) => {
   if (newUser) {
     next();
   } else {
-    res.json({
-      message: "가입 안됐엉",
+    res.status(409).json({
+      message: "id duplicate"
     });
   }
 };

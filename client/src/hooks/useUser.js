@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { profileState, userState } from "../atoms/atoms";
-import axios from "axios";
 
 export const useUser = () => {
   const profilePk = localStorage.getItem("CodokId");

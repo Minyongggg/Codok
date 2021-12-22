@@ -1,49 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled, { css } from "styled-components";
-// import '../../css/auth/signup.scss'
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { profileState, userState } from "../../../atoms/atoms.js";
 import * as S from "../style.js";
+import config from "../../../config/config"
 
 function Signup() {
   const history = useHistory();
   const [profile, setProfile] = useRecoilState(profileState);
   const setUser = useSetRecoilState(userState);
-  const URL =  process.env.NODE_ENV === 'production'
-  ? 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/signup'
-  : 'http://localhost:8000/api/auth/signup';
+  const [error, setError] = useState();
+
   const signup = async (signupInfo) => {
     axios({
       method: "post",
-      url: URL,
+      url: config.BASE_URL + "/api/auth/signup",
       data: signupInfo,
       withCredentials: true,
     }).then((res) => {
-      console.log(res);
-      setProfile(() => res.data.profile);
-      setUser(() => "isLogin");
-      localStorage.setItem("CodokId", res.data.profile.pk);
-
-      history.push({
-        pathname: "/auth/profile",
-      });
-    });
-    //   .catch((err) => {
-    //     console.log(err);
-    //     alert("이미 존재하는 아이디입니다.")
-    //     history.push({
-    //     pathname: "/auth/signup",
-    //   })
-    // });
-    //에러캐치 못하지만 일단 넘김
-  };
+        console.log(res);
+        setProfile(() => res.data.profile);
+        setUser(() => "isLogin");
+        localStorage.setItem("CodokId", res.data.profile.pk);
+        history.push({
+          pathname: "/auth/profile",
+        })
+      })
+      .catch((err) => {
+          console.dir(err)
+          if(err.response.status==409 && err.response.data.message=="id duplicate"){
+            alert("이미 사용 중인 아이디입니다.");
+            setError("이미 사용 중인 아이디입니다.")
+          }
+        });
+    };
 
   const onSubmit = (e) => {
     e.preventDefault();
     const signupInfo = { id: e.target.id.value, pwd: e.target.pwd.value };
-    // window.location.replace("/auth/profile")
     return signup(signupInfo);
   };
   const goBack = () => {
@@ -78,6 +74,7 @@ function Signup() {
               placeholder="비밀번호"
             />
           </S.InputWrapper>
+          <div style={{color: 'red', textAlign: 'center'}}>{error}</div>
           <S.YB />
           <S.ButtonWrapper>
             <S.Button type="submit">회원가입</S.Button>
