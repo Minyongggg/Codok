@@ -5,18 +5,11 @@ import * as S from "../style.js";
 
 function Login() {
   const history = useHistory();
-<<<<<<< Updated upstream
 
-=======
-  const setUser = useSetRecoilState(userState);
-  const URL =  process.env.NODE_ENV === 'production'
-  ? 'http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/auth/login'
-  : 'http://localhost:8000/api/auth/login';
->>>>>>> Stashed changes
   const login = async (loginInfo) => {
     axios({
       method: "post",
-      url: URL,
+      url: "http://localhost:8000/api/auth/login",
       data: loginInfo,
       withCredentials: true,
     })

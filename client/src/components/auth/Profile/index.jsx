@@ -10,7 +10,6 @@ function Profile(){
     const profile = useRecoilValue(profileState);
     console.log(profile)
 
-<<<<<<< Updated upstream
     const updateProfile = async (profilePk, profileInfo) => {
         axios({
           method: "put",
@@ -31,55 +30,6 @@ function Profile(){
         }
         console.log(result);
         
-=======
-  const [major, setMajor] = useState(profile.major);
-  const [studentId, setStudentId] = useState(profile.studentId);
-  const [nickname, setNickname] = useState(profile.nickname);
-  const [gender, setGender] = useState(profile.gender);
-  const [introduce, setIntroduce] = useState(profile.introduce);
-  const [mateWant, setMateWant] = useState(profile.mateWant);
-
-  useEffect(() => {
-    if (profile.studentId != "default") return setIsDefault(false);
-  }, [profile]);
-  const URL =  process.env.NODE_ENV === 'production'
-  ? `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/profiles/${profilePk}`
-  : `http://localhost:8000/api/profiles/${profilePk}`;
-  const updateProfile = async (profilePk, profileInfo) => {
-    axios({
-      method: "put",
-      url: URL,
-      data: profileInfo,
-      withCredentials: true,
-    }).then((res) => {
-      setProfile(() => res.data.data);
-      history.push({ pathname: "/home" });
-    });
-  };
-
-  const onChange = (e) => {
-    switch (e.target.id) {
-      case "major":
-        setMajor(e.target.value);
-        break;
-      case "studentId":
-        setStudentId(e.target.value);
-        break;
-      case "nickname":
-        setNickname(e.target.value);
-        break;
-      case "gender":
-        setGender(e.target.value);
-        break;
-      case "introduce":
-        setIntroduce(e.target.value);
-        break;
-      case "mateWant":
-        setMateWant(e.target.checked);
-        break;
-      default:
-        break;
->>>>>>> Stashed changes
     }
 
     const onSubmit = (e) => {
