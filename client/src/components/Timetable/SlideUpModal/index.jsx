@@ -40,8 +40,7 @@ function SlideUpModal({ isOpen, setIsOpen, clickedLecture }) {
             강의 코독친구 탐색
           </S.Button>
           <S.Button onClick={() => history.push({
-            pathname: "/board",
-            state: {clickedLecture: clickedLecture}
+            pathname: `/board/${clickedLecture.courseId}`,
           })}>
             수업 익명 커뮤니티
           </S.Button>

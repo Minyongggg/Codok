@@ -15,6 +15,7 @@ import Footer from "../components/common/Footer";
 import Board from "../components/board/index.jsx";
 import Write from "../components/board/write/index";
 import Detail from "../components/board/detail/index";
+import Edit from "../components/board/edit/index"
 // import Edit from "../components/board/edit/index";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../atoms/atoms";
@@ -87,18 +88,18 @@ function Router() {
           <Signup />
         </Route>
 
-        <Route exact path="/board">
+        <Route exact path="/board/:courseId">
           <Board />
         </Route>
-        <Route exact path="/board/write">
+        <Route exact path="/board/:courseId/write">
           <Write />
         </Route>
-        <Route exact path="/board/detail">
+        <Route exact path="/board/:courseId/:postPk">
           <Detail />
         </Route>
-        {/* <Route exact path="/board/edit">
+        <Route exact path="/board/:courseId/:postPk/edit">
           <Edit/>
-        </Route>  */}
+        </Route> 
         <Route exact path="/auth/login">
           <Login />
         </Route>

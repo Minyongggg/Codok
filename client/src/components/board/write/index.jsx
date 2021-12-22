@@ -1,19 +1,34 @@
-import React from "react";
-import { useHistory ,useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory ,useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { useRecoilState , useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
 import * as S from "../style";
 
 function Write() {
-  const history = useHistory();
-  const location = useLocation();
-  const profile = useRecoilValue(profileState);
-  const clickedLecture = location.state.clickedLecture;
-  console.log(clickedLecture)
+    const history = useHistory();
+    const location = useLocation();
+    const profile = useRecoilValue(profileState);
+    const { courseId } = useParams();
+    const [lecture, setLecture] = useState();
+    const lecturePk = location.state.lecturePk;
+    console.log(lecturePk);
+
+    useEffect(async ()=> {
+        axios({
+            method: "get",
+            url: `http://localhost:8000/api/lectures/${courseId}`,
+            withCredentials: true
+        })
+        .then((res) => {
+            setLecture(res.data.lecture)
+        })
+    }, [])
+
     const goBack = () => {
         history.goBack();
     };
+
     const write = async (writeInfo) => {
         axios({
           method: "post",
@@ -22,15 +37,15 @@ function Write() {
           data: writeInfo,
           withCredentials: true,
         })
-        .then((res) => history.push({pathname:'/board',state: {clickedLecture: clickedLecture}}));
+        .then((res) => history.push({pathname:`/board/${courseId}`}));
     };
     const onSubmit = (e) => {
         e.preventDefault();
         const writeInfo = { 
             title: e.target.title.value, 
             content: e.target.content.value,
-            courseId: clickedLecture.courseId, 
-            lecturePk: clickedLecture.pk,
+            courseId: courseId, 
+            lecturePk: lecturePk,
             authorPk: profile.pk,
          };
         return write(writeInfo);
@@ -46,6 +61,7 @@ function Write() {
         height: '300px',
         fontFamily: "Spoqa Hans Sans Neo",
     }
+
     return(
         <>
         <S.Container>
