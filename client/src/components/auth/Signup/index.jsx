@@ -3,14 +3,14 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled, { css } from "styled-components";
 // import '../../css/auth/signup.scss'
-import { useRecoilState } from "recoil";
-import { profileState } from "../../../atoms/atoms.js";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { profileState, userState } from "../../../atoms/atoms.js";
 import * as S from "../style.js";
 
 function Signup() {
   const history = useHistory();
   const [profile, setProfile] = useRecoilState(profileState);
-
+  const setUser = useSetRecoilState(userState);
 
   const signup = async (signupInfo) => {
     axios({
@@ -18,14 +18,16 @@ function Signup() {
       url: "http://localhost:8000/api/auth/signup",
       data: signupInfo,
       withCredentials: true,
-    })
-      .then((res) => {
-        console.log(res);
-        setProfile(() => res.data.profile);
-        history.push({
-          pathname: "/auth/profile",
-        });
-      })
+    }).then((res) => {
+      console.log(res);
+      setProfile(() => res.data.profile);
+      setUser(() => "isLogin");
+      localStorage.setItem("CodokId", res.data.profile.pk);
+
+      history.push({
+        pathname: "/auth/profile",
+      });
+    });
     //   .catch((err) => {
     //     console.log(err);
     //     alert("이미 존재하는 아이디입니다.")
@@ -48,15 +50,37 @@ function Signup() {
   return (
     <>
       <S.Container>
-      <S.Circle onClick={goBack}><i className="fas fa-arrow-left"></i></S.Circle>
+        <S.Circle onClick={goBack}>
+          <i className="fas fa-arrow-left"></i>
+        </S.Circle>
 
-      <S.Title>회원가입 시작</S.Title>
-      <form onSubmit={onSubmit}>
-        <S.InputWrapper><S.InputIcon className="far fa-user"/><S.InputID required type="text" id="id" name="id" placeholder="아이디"/></S.InputWrapper>  
-        <S.InputWrapper><S.InputIcon className="fas fa-lock"/><S.InputPW required type="password" id="pwd" name="pwd" placeholder="비밀번호"/></S.InputWrapper>
-        <S.YB/>
-        <S.ButtonWrapper><S.Button type="submit">회원가입</S.Button></S.ButtonWrapper>
-      </form>
+        <S.Title>회원가입 시작</S.Title>
+        <form onSubmit={onSubmit}>
+          <S.InputWrapper>
+            <S.InputIcon className="far fa-user" />
+            <S.InputID
+              required
+              type="text"
+              id="id"
+              name="id"
+              placeholder="아이디"
+            />
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <S.InputIcon className="fas fa-lock" />
+            <S.InputPW
+              required
+              type="password"
+              id="pwd"
+              name="pwd"
+              placeholder="비밀번호"
+            />
+          </S.InputWrapper>
+          <S.YB />
+          <S.ButtonWrapper>
+            <S.Button type="submit">회원가입</S.Button>
+          </S.ButtonWrapper>
+        </form>
       </S.Container>
     </>
   );
