@@ -66,7 +66,7 @@ function Board() {
                 <div style={{width:"88%" ,margin: "0 auto",display:"flex",justifyContent:"center",flexDirection: "column"}}>
                 <S.PostWrapper onClick={() => history.push({
                     pathname: "/board/detail",
-                    state: {data: data}
+                    state: {data: data},
                 })}>
                     <S.PostTitle>{data.title}</S.PostTitle>
                     <S.PostContent>{data.content}</S.PostContent>

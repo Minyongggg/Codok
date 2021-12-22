@@ -154,6 +154,7 @@ export const PostWrapper= styled.div`
   margin-bottom:10px;
   width: 100%;
   padding-left: 10px;
+  cursor:pointer;
   padding-right: 10px;
   border-bottom: 1px solid #D9D9D9
 `
