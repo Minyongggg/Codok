@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import * as S from "./style";
 
 function Table({ timeLecture, handleModalData }) {
-  const [days, setDays] = useState(["월", "화", "수", "목", "금"]);
-  const [times, setTimes] = useState(["1", "2", "3", "4", "5", "6", "7"]);
+  const days = ["월", "화", "수", "목", "금"];
+  const [times, setTimes] = useState(["1", "2", "3", "4", "5", "6", "7", "8"]);
   const [tableLectureList, setTableLectureList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -12,12 +12,15 @@ function Table({ timeLecture, handleModalData }) {
 
   useEffect(() => {
     console.log(timeLecture);
-    dayTimeFormatter(timeLecture);
-  }, []);
+    if (timeLecture) dayTimeFormatter(timeLecture);
+  }, [timeLecture]);
 
   const dayTimeFormatter = (timeLecture) => {
     timeLecture.map((id) => {
-      const dayOfWeekList = id.dayTime.split("//");
+      const dayOfWeekList = id.dayTime.includes("//")
+        ? id.dayTime.split("//")
+        : [id.dayTime];
+
       const dayTimeObject = {
         월: "",
         화: "",
@@ -25,22 +28,28 @@ function Table({ timeLecture, handleModalData }) {
         목: "",
         금: "",
       };
-      dayOfWeekList.map((i) => {
-        const timeList = i.split(":")[1].split(".");
-        if (Number(timeList[1]) - Number(timeList[0]) >= 1) {
-          const List = [];
-          let j = 0;
-          for (j = 0; j < Number(timeList[1]) - Number(timeList[0]) + 1; j++) {
-            List.push(String(Number(timeList[0]) + j));
-          }
-          dayTimeObject[i.split(":")[0]] = List;
-        } else dayTimeObject[i.split(":")[0]] = timeList;
-      });
 
-      id["dayTime"] = dayTimeObject;
-      setTableLectureList((prev) => [...prev, id]);
-      setPkList((prev) => [...prev, id.pk]);
-      console.log(id["dayTime"].금);
+      if (dayOfWeekList) {
+        dayOfWeekList.map((i) => {
+          const timeList = i.split(":")[1].split(".");
+          if (Number(timeList[1]) - Number(timeList[0]) >= 1) {
+            const List = [];
+            let j = 0;
+            for (
+              j = 0;
+              j < Number(timeList[1]) - Number(timeList[0]) + 1;
+              j++
+            ) {
+              List.push(String(Number(timeList[0]) + j));
+            }
+            dayTimeObject[i.split(":")[0]] = List;
+          } else dayTimeObject[i.split(":")[0]] = timeList;
+        });
+
+        id["dayTime"] = dayTimeObject;
+        setTableLectureList((prev) => [...prev, id]);
+        setPkList((prev) => [...prev, id.pk]);
+      }
     });
   };
 
@@ -50,9 +59,9 @@ function Table({ timeLecture, handleModalData }) {
     }
   }, [tableLectureList]);
 
-  // if (isLoading) {
-  //   return <div>로딩중</div>;
-  // }
+  if (isLoading) {
+    return <div>로딩중</div>;
+  }
 
   return (
     <>
@@ -71,28 +80,43 @@ function Table({ timeLecture, handleModalData }) {
             <>
               <S.Row>
                 <S.DayOfWeek>{day}</S.DayOfWeek>
-                {tableLectureList.map((id) => {
-                  if (id.dayTime[day] !== "") {
-                    return (
-                      <S.Col>
-                        {times.map((time) => {
-                          if (id.dayTime[day].find((e) => e == time)) {
-                            return (
-                              <S.FilledCol
-                                id={pkList.indexOf(id.pk)}
-                                onClick={() => handleModalData(id)}
-                              >
-                                <p>{id.name}</p>
-                                <p>{id.professor}</p>
-                              </S.FilledCol>
-                            );
+                {times.map((time) => {
+                  return (
+                    <S.Col id={day}>
+                      {tableLectureList.find((v) => v.dayTime[day] == time) ? (
+                        <S.FilledCol
+                          id={pkList.indexOf(
+                            tableLectureList.find((v) => v.dayTime[day] == time)
+                              .pk
+                          )}
+                          onClick={() =>
+                            handleModalData(
+                              tableLectureList.find(
+                                (v) => v.dayTime[day] == time
+                              )
+                            )
                           }
-
-                          return <div></div>;
-                        })}
-                      </S.Col>
-                    );
-                  }
+                        >
+                          <p>
+                            {
+                              tableLectureList.find(
+                                (v) => v.dayTime[day] == time
+                              ).name
+                            }
+                          </p>
+                          <p>
+                            {
+                              tableLectureList.find(
+                                (v) => v.dayTime[day] == time
+                              ).professor
+                            }
+                          </p>
+                        </S.FilledCol>
+                      ) : (
+                        <div></div>
+                      )}
+                    </S.Col>
+                  );
                 })}
               </S.Row>
             </>

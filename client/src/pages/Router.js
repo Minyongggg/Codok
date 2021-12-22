@@ -6,9 +6,9 @@ import Login from "../components/auth/Login";
 import Signup from "../components/auth/Signup/index.jsx";
 import Profile from "../components/auth/Profile/index.jsx";
 import Splash from "../components/auth/Splash";
-import Friend from "../components/Friend/index"
-import Chatlist from "../components/Chat/Chatlist/index.jsx";
-import Chatroom from "../components/Chat/Chatroom/index.jsx";
+import Friend from "../components/Friend/index";
+import Chatlist from "../components/chat/Chatlist/index.jsx";
+import Chatroom from "../components/chat/Chatroom/index.jsx";
 import Mypage from "../components/Mypage";
 import PageNotFound from "../components/PageNotFound";
 import Footer from "../components/common/Footer";
@@ -86,15 +86,15 @@ function Router() {
         <Route exact path="/auth/signup">
           <Signup />
         </Route>
-        
+
         <Route exact path="/board">
           <Board />
         </Route>
         <Route exact path="/board/write">
-          <Write/>
+          <Write />
         </Route>
-         <Route exact path="/board/detail">
-          <Detail/>
+        <Route exact path="/board/detail">
+          <Detail />
         </Route>
         {/* <Route exact path="/board/edit">
           <Edit/>
