@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import styled, { css } from "styled-components";
-// import '../../css/auth/signup.scss'
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { profileState, userState } from "../../../atoms/atoms.js";
 import * as S from "../style.js";
@@ -37,19 +36,10 @@ function Signup() {
           }
         });
     };
-    //   .catch((err) => {
-    //     console.log(err);
-    //     alert("이미 존재하는 아이디입니다.")
-    //     history.push({
-    //     pathname: "/auth/signup",
-    //   })
-    // });
-    //에러캐치 못하지만 일단 넘김
 
   const onSubmit = (e) => {
     e.preventDefault();
     const signupInfo = { id: e.target.id.value, pwd: e.target.pwd.value };
-    // window.location.replace("/auth/profile")
     return signup(signupInfo);
   };
   const goBack = () => {
