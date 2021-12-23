@@ -64,8 +64,17 @@ function Write() {
       withCredentials: true,
     })
       .then((res) => getComment())
-      .catch((err) => console.dir(err));
   };
+
+  const delComment = async (e) => {
+    await axios({
+      method: "delete",
+      url: config.BASE_URL + "/api/comments/" + e.target.id,
+      withCredentials: true
+    })
+    .then((res) => getComment())
+  }
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -82,7 +91,6 @@ function Write() {
       url: config.BASE_URL + "/api/posts/" + postPk,
       withCredentials: true,
     }).then((res) => {
-      console.log(res.data.data);
       setPost(() => res.data.data);
     });
   }, []);
@@ -157,7 +165,17 @@ function Write() {
                 flexDirection: "column",
               }}
             >
-              <div>{data.content}</div>
+              <div style={{
+                  padding: '5px 20px',
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}>
+                <div>{data.content}</div>
+                {(data.authorPk == profile.pk)?
+                  <div onClick={delComment} id={data.pk } style={{ color:'red'}}>삭제</div>
+                : <></>}
+              </div>
+              
               <div
                 style={{
                   width: "88%",
