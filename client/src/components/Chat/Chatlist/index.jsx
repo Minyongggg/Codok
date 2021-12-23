@@ -2,10 +2,11 @@ import { React, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Chatbar from "./Chatbar/index";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { profileState } from "../../../atoms/atoms";
 import config from "../../../config/config";
 import * as S from "./style";
+import { useUser } from "../../../hooks/useUser";
 import { ReactComponent as HandSVG } from "../../../assets/icon/hand.svg";
 
 function Chatlist() {
@@ -14,7 +15,23 @@ function Chatlist() {
   const [isLoading, setIsLoading] = useState(true);
   const [chatroomList, setChatroomList] = useState(null);
   const profile = useRecoilValue(profileState);
+  const [profileLog, setProfileLog] = useRecoilState(profileState);
+  const { user, setUser } = useUser();
 
+  const logout = async () => {
+    await axios({
+      method: "get",
+      url: config.BASE_URL + "/api/auth/logout/",
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem("CodokId");
+        setProfileLog(() => "none");
+        setUser(() => "none");
+        history.push({pathname: "/"});
+      })
+  };
   useEffect(async () => {
     await axios({
       method: "get",
@@ -34,7 +51,12 @@ function Chatlist() {
 
   return (
     <S.Container>
-      <S.Title>코Talk</S.Title>
+      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <S.Title>코Talk</S.Title>
+        <S.LogOutBtn onClick={logout} type="button">
+              Log Out
+        </S.LogOutBtn>
+      </div>
       {/* <div>알림표시</div> */}
       <S.Profile onClick={() => history.push({ pathname: "/auth/profile" })}>
         <S.ProfileImg
@@ -46,25 +68,25 @@ function Chatlist() {
             <h3>{profile.nickname}</h3>
             {profile.mateWant && <HandSVG />}
           </S.ProfileTitle>
-          <div>
+          <S.ProfileMainInfo>
             {profile.major === "default" ? (
-              <span>전공 미지정</span>
+              <div>전공 미지정</div>
             ) : (
-              <span>{profile.major}</span>
+              <div>{profile.major}</div>
             )}
 
             {profile.studentId === "default" ? (
-              <span>학번 미지정</span>
+              <div>학번 미지정</div>
             ) : (
-              <span>{profile.studentId}</span>
+              <div>{profile.studentId}</div>
             )}
 
             {profile.gender === "default" ? (
-              <span>성별 미지정</span>
+              <div>성별 미지정</div>
             ) : (
-              <span>{profile.gender === "Male" ? "남" : "여"}</span>
+              <div>{profile.gender === "Male" ? "남" : "여"}</div>
             )}
-          </div>
+          </S.ProfileMainInfo>
           {profile.introduce !== "default" && (
             <S.Introduce>{profile.introduce}</S.Introduce>
           )}

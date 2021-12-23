@@ -53,13 +53,19 @@ export const FilledCol = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
+  border-radius: 4px;
   background-color: ${(props) => colorList[props.id]};
     margin: 0;
     font-size: 8px;
   }
 `;
-
+export const FilledP = styled.p`
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: white;
+  margin:2px;
+`
 export const DayOfWeek = styled.div`
   border-bottom: 1px solid #a7b0c0;
   height: 14vw;

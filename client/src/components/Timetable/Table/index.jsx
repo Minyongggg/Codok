@@ -97,20 +97,20 @@ function Table({ timeLecture, handleModalData }) {
                             )
                           }
                         >
-                          <p>
+                          <S.FilledP>
                             {
                               tableLectureList.find(
                                 (v) => v.dayTime[day] == time
                               ).name
                             }
-                          </p>
-                          <p>
+                          </S.FilledP>
+                          {/* <p>
                             {
                               tableLectureList.find(
                                 (v) => v.dayTime[day] == time
                               ).professor
                             }
-                          </p>
+                          </p> */}
                         </S.FilledCol>
                       ) : (
                         <div></div>
