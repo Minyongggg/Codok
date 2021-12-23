@@ -24,7 +24,7 @@ function Chatbar({ chatroomPk, friendPk, nickname, lastChat }) {
         />
         <S.ProfileContent>
           <S.Nickname>{nickname}</S.Nickname>
-          <div>{lastChat}</div>
+          <S.LastChat>{lastChat}</S.LastChat>
         </S.ProfileContent>
       </S.Container>
     </>
