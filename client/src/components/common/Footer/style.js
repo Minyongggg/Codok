@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 375px;
+  max-width: 420px;
   height: 72px;
   position: fixed;
   bottom: 0;

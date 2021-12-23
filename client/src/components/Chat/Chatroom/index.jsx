@@ -162,7 +162,7 @@ function Chatroom() {
               placeholder="친구에게 코talk을 보내세요"
             />
             <button type="submit">
-              <SendSVG style={{cursor:"pointer"}} />
+              <SendSVG />
             </button>
           </form>
         </S.InputBox>

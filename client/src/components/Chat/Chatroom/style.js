@@ -6,7 +6,7 @@ export const InputWrapper = styled.div`
   left: 0;
   right: 0;
   margin: auto;
-  max-width: 375px;
+  max-width: 420px;
   display: flex;
   align-items: center;
   justify-content: center;

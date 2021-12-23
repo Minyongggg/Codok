@@ -15,7 +15,7 @@ export const Profile = styled.div`
   border-radius: 5px;
   width: 100%;
   padding: 20px;
-  cursor:pointer;
+
   display: flex;
 `;
 

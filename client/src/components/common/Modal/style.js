@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: fixed;
   text-align: center;
   margin: auto;
-  max-width: 375px;
+  max-width: 420px;
   left: 0;
   bottom: 0;
   top: 0;
@@ -23,7 +23,7 @@ export const Container = styled.div`
     user-select: none;
     z-index: 1012;
     position: relative;
-    max-width: 375px;
+    max-width: 420px;
   }
 `;
 
