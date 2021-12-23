@@ -43,20 +43,20 @@ function Timetable() {
       })
   };
 
-  const logout = async () => {
-    await axios({
-      method: "get",
-      url: config.BASE_URL + "/api/auth/logout/",
-      withCredentials: true,
-    })
-      .then((res) => {
-        console.log(res);
-        localStorage.removeItem("CodokId");
-        setProfile(() => "none");
-        setUser(() => "none");
-        history.push({pathname: "/"});
-      })
-  };
+  // const logout = async () => {
+  //   await axios({
+  //     method: "get",
+  //     url: config.BASE_URL + "/api/auth/logout/",
+  //     withCredentials: true,
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //       localStorage.removeItem("CodokId");
+  //       setProfile(() => "none");
+  //       setUser(() => "none");
+  //       history.push({pathname: "/"});
+  //     })
+  // };
 
   useEffect(() => {
     if (profilePk && !isModalOn) getLectureDataByProfilePk(profilePk);
@@ -99,9 +99,9 @@ function Timetable() {
       <S.Container>
         <S.Header>
           <S.Title>코독한 시간표</S.Title>
-          <button onClick={logout} type="button">
+          {/* <button onClick={logout} type="button">
             Log out
-          </button>
+          </button> */}
           <S.PlusButton onClick={() => setIsModalOn(true)}>
             <i className="fas fa-plus"></i>
           </S.PlusButton>

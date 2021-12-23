@@ -44,7 +44,22 @@ export const ProfileTitle = styled.div`
     margin-right: 6px;
   }
 `;
-
+export const LogOutBtn = styled.button`
+  background: #18A0FB;
+  border: 1px solid #18A0FB;
+  color:white;
+  width: 80px;
+  cursor: pointer;
+  height: 40px;
+  font-weight: 700;
+  font-family: "Spoqa Hans Sans Neo";
+  border-radius: 200px;
+  &:hover{
+    background: white;
+    color: #18A0FB;
+    border: 1px solid #18A0FB;
+  }
+`
 export const Introduce = styled.div`
   font-family: 'Spoqa Hans Sans Neo';
   font-size: 0.75rem;
