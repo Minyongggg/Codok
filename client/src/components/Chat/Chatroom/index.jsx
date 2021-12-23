@@ -4,7 +4,7 @@ import { useLocation } from "react-router";
 import io from "socket.io-client"
 import config from "../../../config/config";
 
-const socket = io.connect('http://localhost:8000');
+const socket = io.connect(config.BASE_URL);
 
 function Chatroom() {
   const location = useLocation();
