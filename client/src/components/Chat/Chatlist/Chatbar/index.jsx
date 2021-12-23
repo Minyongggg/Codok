@@ -1,22 +1,32 @@
 import { React, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import * as S from "./style";
 
-function Chatbar({chatroomPk, friendPk, nickname, lastChat}) {
+function Chatbar({ chatroomPk, friendPk, nickname, lastChat }) {
   const history = useHistory();
-  
+
   return (
     <>
-    <div onClick={() => history.push({
-        pathname: '/chatroom',
-        state: {
-          friendPk: friendPk,
-          friendName: nickname
+      <S.Container
+        onClick={() =>
+          history.push({
+            pathname: "/chatroom",
+            state: {
+              friendPk: friendPk,
+              friendName: nickname,
+            },
+          })
         }
-      })}>
-      <div>닉네임: {nickname}</div>
-      <div>마지막 채팅: {lastChat}</div>
-    </div>
-    <br></br>
+      >
+        <S.ProfileImg
+          src="http://hijeju.org/common/img/default_profile.png"
+          alt=""
+        />
+        <S.ProfileContent>
+          <S.Nickname>{nickname}</S.Nickname>
+          <div>{lastChat}</div>
+        </S.ProfileContent>
+      </S.Container>
     </>
   );
 }

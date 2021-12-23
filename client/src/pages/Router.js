@@ -12,10 +12,12 @@ import Footer from "../components/common/Footer";
 import Board from "../components/board/index.jsx";
 import Write from "../components/board/write/index";
 import Detail from "../components/board/detail/index";
-import Edit from "../components/board/edit/index"
+import Edit from "../components/board/edit/index";
 import { useUser } from "../hooks/useUser";
+import { useProfile } from "../hooks/useProfile";
 
 function Router() {
+  const { profile } = useProfile();
   const { user } = useUser();
 
   if (user !== "isLogin")
@@ -66,8 +68,8 @@ function Router() {
           <Detail />
         </Route>
         <Route exact path="/board/:courseId/:postPk/edit">
-          <Edit/>
-        </Route> 
+          <Edit />
+        </Route>
         <Route exact path="/auth/login">
           <Login />
         </Route>
