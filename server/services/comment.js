@@ -34,6 +34,7 @@ exports.newComment = async ({ postPk, authorPk, content }) => {
     postPk,
     authorPk,
     content,
+    createdAt: Date.now()
   });
   return result;
 };
