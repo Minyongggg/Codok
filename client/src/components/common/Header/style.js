@@ -16,19 +16,26 @@ export const HeaderBoard = styled.div`
   z-index: 20;
   font-size: 16px;
   font-weight: bold;
+  height: ${(props) => props.type === "chat" && "80px"};
 `;
 
 export const HeaderWhiteSpace = styled.div`
   width: 100%;
   height: 52px;
+  height: ${(props) => props.type === "chat" && "80px"};
 `;
 
 export const IconsWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 100%;
-  font-size: 16px;
+
+  > p {
+    margin: 0;
+    margin-top: 4px;
+    font-size: 18px;
+  }
 `;
 
 export const IconBox = styled.div`
@@ -39,6 +46,14 @@ export const IconBox = styled.div`
   user-select: none;
   width: 28px;
   height: 28px;
+  margin-right: 20px;
 
   cursor: pointer;
+`;
+
+export const ProfileImg = styled.img`
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  margin-right: 10px;
 `;

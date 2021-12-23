@@ -9,7 +9,7 @@ function Header({ type = "main", content = "" }) {
     case "main":
       return (
         <>
-          <S.HeaderBoard>
+          <S.HeaderBoard type={type}>
             <S.IconsWrapper>
               <S.IconBox onClick={() => history.goBack()}>
                 <BackSVG />
@@ -18,7 +18,27 @@ function Header({ type = "main", content = "" }) {
               <S.IconBox />
             </S.IconsWrapper>
           </S.HeaderBoard>
-          <S.HeaderWhiteSpace />
+          <S.HeaderWhiteSpace type={type} />
+        </>
+      );
+    case "chat":
+      return (
+        <>
+          <S.HeaderBoard type={type}>
+            <S.IconsWrapper>
+              <S.IconBox onClick={() => history.goBack()}>
+                <BackSVG />
+              </S.IconBox>
+              <S.ProfileImg
+                src="http://hijeju.org/common/img/default_profile.png"
+                alt=""
+              />
+              <p>{content}</p>
+
+              <S.IconBox />
+            </S.IconsWrapper>
+          </S.HeaderBoard>
+          <S.HeaderWhiteSpace type={type} />
         </>
       );
     default:
