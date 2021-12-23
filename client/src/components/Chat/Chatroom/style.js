@@ -17,6 +17,8 @@ export const InputBox = styled.div`
   box-shadow: 0px 2px 28px rgba(75, 88, 208, 0.1);
   border-radius: 36px;
   padding: 10px;
+  z-index: 1000;
+  background-color: white;
   form {
     display: flex;
     align-items: center;
@@ -39,27 +41,50 @@ export const InputBox = styled.div`
 
 export const Container = styled.div`
   padding: 24px;
-  padding-bottom: 170px;
+  padding-bottom: 400px;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 
+export const WhiteSpace = styled.div`
+  height: 170px;
+`;
+
 export const Receive = styled.div`
-  margin-right: auto;
   width: fit-content;
   padding: 10px;
   background-color: #f8fafd;
   border-radius: 24px 24px 24px 0px;
+  max-width: 90%;
 `;
 
 export const Send = styled.div`
-  margin-left: auto;
   width: fit-content;
   padding: 10px 12px;
   background-color: #18a0fb;
-
+  max-width: 90%;
   border-radius: 24px 0px 24px 24px;
 `;
 
-export const CreatedAt = styled.span``;
+export const SendWrapper = styled.div`
+  margin-left: auto;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+`;
+
+export const ReceiverWrapper = styled.div`
+  margin-right: auto;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+`;
+
+export const CreatedAt = styled.span`
+  color: #a7b0c0;
+  font-size: 12px;
+`;

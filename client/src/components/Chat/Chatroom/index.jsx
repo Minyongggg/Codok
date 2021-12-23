@@ -6,7 +6,7 @@ import Header from "../../../components/common/Header";
 import config from "../../../config/config";
 import * as S from "./style";
 import { ReactComponent as SendSVG } from "../../../assets/icon/send-button.svg";
-
+import dayjs from "dayjs";
 const socket = io.connect(config.BASE_URL);
 
 function Chatroom() {
@@ -113,24 +113,30 @@ function Chatroom() {
         {chats.map((item, i) => {
           if (item.senderPk == profilePk) {
             return (
-              <div>
-                <S.CreatedAt></S.CreatedAt>
+              <S.SendWrapper>
+                <S.CreatedAt>
+                  {" "}
+                  {dayjs(item.createdAt).format("HH:mm A")}
+                </S.CreatedAt>
                 <S.Send className="send" key={i}>
                   {item.content}
                 </S.Send>
-              </div>
+              </S.SendWrapper>
             );
           } else {
             return (
-              <div>
+              <S.ReceiverWrapper>
                 <S.Receive className="receive" key={i}>
                   {item.content}
                 </S.Receive>
-                <S.CreatedAt>{item.createdAt}</S.CreatedAt>
-              </div>
+                <S.CreatedAt>
+                  {dayjs(item.createdAt).format("HH:mm A")}
+                </S.CreatedAt>
+              </S.ReceiverWrapper>
             );
           }
         })}
+        <S.WhiteSpace />
       </S.Container>
 
       <S.InputWrapper>
