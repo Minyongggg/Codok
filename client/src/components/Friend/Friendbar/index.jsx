@@ -30,7 +30,7 @@ function Friendbar({ friendPk, nickname, gender, mateWant, introduce }) {
           </div>
           {/* <div> */}
           {/* {gender !== "default" && <span>{gender === "Male" ? 남 : 여}</span>} */}
-          {introduce !== "default" && <div>{introduce}</div>}
+          {introduce !== "default" && <S.Introduce>{introduce}</S.Introduce>}
           {/* </div> */}
         </S.ProfileContent>
       </S.Container>

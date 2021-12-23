@@ -22,27 +22,38 @@ export const ProfileContent = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 6px;
+  width:100%;
   svg {
     width: 18px;
     height: 18px;
     margin-left: 4px;
   }
-  > div {
-    display: flex;
-  }
-  > div:last-child {
-    color: #a7b0c0;
-    font-size: 14px;
-  }
+  // > div {
+  //   display: flex;
+  // }
+  // > div:last-child {
+  //   color: #a7b0c0;
+  //   font-size: 14px;
+  // }
 `;
 
 export const Nickname = styled.div`
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 4px;
+  max-width: 100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-family:'Spoqa Han Sans Neo', 'sans-serif';
 `;
 
-export const Introduce = styled.div`
+export const LastChat = styled.div`
   color: #a7b0c0;
-  font-size: 14px;
+  font-size: 0.875rem;
+  font-family:'Spoqa Han Sans Neo', 'sans-serif';
+  max-width: calc(100% - 60px);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 `;

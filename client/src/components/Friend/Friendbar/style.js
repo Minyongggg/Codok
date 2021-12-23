@@ -29,12 +29,18 @@ export const ProfileContent = styled.div`
 `;
 
 export const Nickname = styled.div`
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 600;
   margin-bottom: 4px;
+  max-width: 100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-family:'Spoqa Han Sans Neo', 'sans-serif';
 `;
 
 export const Introduce = styled.div`
   color: #a7b0c0;
-  font-size: 14px;
+  font-size: 0.875rem;
+  font-family:'Spoqa Han Sans Neo', 'sans-serif';
 `;

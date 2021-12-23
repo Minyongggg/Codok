@@ -17,11 +17,9 @@ export const PlusButton = styled.div`
   cursor: pointer;
   justify-content: center;
   font-size: 24px;
-  margin-right: 2px;
+  margin-right: 40px;
   pointer-events: all;
   box-shadow: 2px 2px 3px #999;
-
-
   &:hover {
     color:white;
     background: #18A0FB;
@@ -161,11 +159,19 @@ export const PostWrapper= styled.div`
 export const PostTitle= styled.div`
  font-family: Spoqa Hans Sans Neo;
  font-size: 1rem;
+ max-width: 90%;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ white-space:nowrap;
  font-weight: 700;
 `
 export const PostContent= styled.div`
  font-family: Spoqa Hans Sans Neo;
  font-size: 0.75rem;
+ max-width: 90%;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ white-space:nowrap;
  font-weight: 400;
  margin-top:6px;
 
