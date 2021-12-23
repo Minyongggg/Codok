@@ -12,7 +12,7 @@ const socketio = require('socket.io');
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    origin: "http://codok.site",
+    origin: "process.env.CLIENT_URL",
     methods: ["GET", "POST"]
   }
 });
