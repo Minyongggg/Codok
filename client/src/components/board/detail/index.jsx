@@ -50,6 +50,7 @@ function Write() {
             method: "get",
             url: config.BASE_URL + "/api/posts/" + postPk,
             withCredentials: true
+         })
         .then((res) => {
             console.log(res.data.data);
             setPost(res.data.data);
