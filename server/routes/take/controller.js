@@ -22,9 +22,13 @@ exports.createByCourseId = async (req, res, next) => {
         message: "강의 등록 성공",
       })
     }
-
-  } catch (error) {
-    next(error);
+    else{
+      res.status(404).json({
+        message: "notFound"
+      })
+    }
+  } catch (error){
+    next(error)
   }
 }
 

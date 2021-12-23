@@ -40,6 +40,9 @@ function BBLoginModal({ isOpen, setIsOpen }) {
       })
       .catch((err) => {
         setIsLoading(false);
+        if(err.response.status==404 && err.response.data.message=="notFound"){
+          alert("학수번호를 다시 확인해주세요!")
+        }
       });
   };
 
