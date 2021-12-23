@@ -25,6 +25,9 @@ exports.createTakes = async (profilePk, {id, password}) => {
 
 exports.createByCourseId = async (profilePk, courseId) => {
   const lecture = await Lecture.findOne({where : {courseId}});
+  if(!lecture){
+    return false;
+  }
   
   await Take.create({
     profilePk,

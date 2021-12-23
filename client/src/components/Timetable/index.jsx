@@ -39,10 +39,8 @@ function Timetable() {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res.data.data);
         setLectureDataList(() => res.data.data);
       })
-      .catch((err) => console.log(err));
   };
 
   const logout = async () => {
@@ -58,7 +56,6 @@ function Timetable() {
         setUser(() => "none");
         history.push({pathname: "/"});
       })
-      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
