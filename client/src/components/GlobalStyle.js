@@ -18,16 +18,16 @@ const GlobalStyleWrapper = createGlobalStyle`
 
 const Container = styled.div`
   position: relative;
-  @media (min-width: 420px) {
+  @media (min-width: 375px) {
     background-color: #e6e9ec;
   }
 `;
 
 const Body = styled.div`
-  max-width: 420px;
+  max-width: 375px;
   margin: 0 auto;
   background-color: white;
-  @media (min-width: 420px) {
+  @media (min-width: 375px) {
     min-height: 100vh;
   }
 `;

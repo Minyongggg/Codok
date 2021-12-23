@@ -3,7 +3,11 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  cursor:pointer;
+
 `;
 
 export const ProfileImg = styled.img`

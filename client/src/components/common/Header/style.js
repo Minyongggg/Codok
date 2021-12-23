@@ -8,7 +8,7 @@ export const HeaderBoard = styled.div`
   z-index: 999;
 
   width: 100%;
-  max-width: 420px;
+  max-width: 375px;
   height: 52px;
   padding: 12px 16px;
   background-color: white;

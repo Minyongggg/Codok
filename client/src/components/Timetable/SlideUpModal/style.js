@@ -18,7 +18,7 @@ export const Container = styled.div`
   position: fixed;
   text-align: center;
   margin: auto;
-  max-width: 420px;
+  max-width: 375px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -38,7 +38,7 @@ export const Container = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    max-width: 420px;
+    max-width: 375px;
     padding: 24px;
     animation-duration: 0.3s;
     animation-name: ${({ isOpen }) => isOpen && slideUp};

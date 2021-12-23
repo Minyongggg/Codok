@@ -92,7 +92,7 @@ function Profile() {
     return (
       <>
         <S.Container>
-          <S.Title>프로필 만들기</S.Title>
+          <S.Title>내 프로필</S.Title>
           <form onSubmit={onSubmit} onChange={onChange}>
             <div
               style={{
