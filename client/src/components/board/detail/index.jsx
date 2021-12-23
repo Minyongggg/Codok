@@ -1,7 +1,7 @@
-import React, {useEffect, useState}from "react";
-import { useHistory ,useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
-import { useRecoilState , useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { profileState } from "../../../atoms/atoms";
 import * as S from "../style";
 import MenuModal from "./modal/index";
@@ -9,169 +9,184 @@ import { ReactComponent as SendSVG } from "../../../assets/icon/send-button.svg"
 import config from "../../../config/config";
 
 function Write() {
-    const history = useHistory();
-    const {courseId, postPk} = useParams();
-    const [post, setPost] = useState();
-    const [comment, setComment] = useState([]);
-    const [isMenuModalOn, setIsMenuModalOn] = useState(false);
-    const profile = useRecoilValue(profileState);
+  const history = useHistory();
+  const { courseId, postPk } = useParams();
+  const [post, setPost] = useState();
+  const [comment, setComment] = useState([]);
+  const [isMenuModalOn, setIsMenuModalOn] = useState(false);
 
-    const handleModalData = () => {
-        setIsMenuModalOn(true);
-      };
+  const profile = useRecoilValue(profileState);
 
-    const goBack = () => {
-        history.goBack();
-    };
+  const handleModalData = () => {
+    setIsMenuModalOn(true);
+  };
 
-    function timeForToday(value) {
-        const today = new Date();
-        const timeValue = new Date(value);
+  const goBack = () => {
+    history.goBack();
+  };
 
-        const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-        if (betweenTime < 1) return '방금전';
-        if (betweenTime < 60) {
-            return `${betweenTime}분전`;
-        }
+  function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
 
-        const betweenTimeHour = Math.floor(betweenTime / 60);
-        if (betweenTimeHour < 24) {
-            return `${betweenTimeHour}시간전`;
-        }
-
-        const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
-        if (betweenTimeDay < 365) {
-            return `${betweenTimeDay}일전`;
-        }
-
-        return `${Math.floor(betweenTimeDay / 365)}년전`;
+    const betweenTime = Math.floor(
+      (today.getTime() - timeValue.getTime()) / 1000 / 60
+    );
+    if (betweenTime < 1) return "방금전";
+    if (betweenTime < 60) {
+      return `${betweenTime}분전`;
     }
-    const getComment = async () =>  { await axios.get(config.BASE_URL + "/api/comments/posts/" + postPk)
-    .then((res)=> {
-         setComment(res.data.data);
-      })
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+      return `${betweenTimeDay}일전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
   }
-    const writeComment = async (commentInfo) => {
-        axios({
-          method: "post",
-          url: config.BASE_URL + "/api/comments",
-          data: commentInfo,
-          withCredentials: true,
-        })
-        .then((res) => history.push({pathname:`/board/${courseId}`}));
-    };
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const commentInfo = { 
-            postPk: postPk,
-            authorPk: profile.pk,
-            content: e.target.commentContent.value,
-         };
-        return writeComment(commentInfo);
-    }
-    useEffect(async () => {
-        await axios({
-            method: "get",
-            url: config.BASE_URL + "/api/posts/" + postPk,
-            withCredentials: true
-         })
-        .then((res) => {
-            console.log(res.data.data);
-            setPost(res.data.data);
-        })
-    }, [])
-    useEffect(async () => {
-        getComment()
+  const getComment = async () => {
+    await axios
+      .get(config.BASE_URL + "/api/comments/posts/" + postPk)
+      .then((res) => {
+        setComment(() => res.data.data);
+      });
+  };
+  const writeComment = async (commentInfo) => {
+    axios({
+      method: "post",
+      url: config.BASE_URL + "/api/comments",
+      data: commentInfo,
+      withCredentials: true,
     })
-    if(!post) {
-        return <div>로딩중...</div>
-    }
+      .then((res) => getComment())
+      .catch((err) => console.dir(err));
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-    if (post.authorPk == profile.pk){
-        return(
-            <div>
-                <MenuModal
-                    isOpen={isMenuModalOn}
-                    setIsOpen={setIsMenuModalOn}
-                    postPk={post.pk}
-                    courseId={courseId}
-                />
+    const commentInfo = {
+      postPk: postPk,
+      authorPk: profile.pk,
+      content: e.target.commentContent.value,
+    };
+    return writeComment(commentInfo);
+  };
+  useEffect(async () => {
+    await axios({
+      method: "get",
+      url: config.BASE_URL + "/api/posts/" + postPk,
+      withCredentials: true,
+    }).then((res) => {
+      console.log(res.data.data);
+      setPost(() => res.data.data);
+    });
+  }, []);
 
-                <div style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <S.Circle onClick={goBack} style={{marginTop:"0"}}>
-                        <i className="fas fa-arrow-left"></i>
-                    </S.Circle>
-                    <div onClick={() => handleModalData()} style={{ marginRight: '21px', cursor:'pointer',  display: 'flex', alignItems: 'center', justifyContent: 'center'}}><i className="fas fa-ellipsis-v"></i></div>
-                </div>
-                <div style={{width:"88%" ,margin: "0 auto",display:"flex",justifyContent:"center",flexDirection: "column", borderBottom: "1px solid #d9d9d9"}}>
-                    <S.PostTitle>{post.title}</S.PostTitle>
-                    <S.PostContent>{post.content}</S.PostContent>
-                    <div style={{width:"100%",height:"36px"}}></div>
-                    <S.PostTime>{timeForToday(post.createdAt)}</S.PostTime>
-                </div>
-                {comment && comment.map(data => {
-                    return (
-                    <div style={{width:"88%" ,margin: "0 auto",display:"flex",justifyContent:"center",flexDirection: "column"}}>
-                        <div>{data.content}</div>
-                        <div style={{width:"88%" ,margin: "0 auto",display:"flex",justifyContent:"space-between",}}>
-                            <S.PostTime>{timeForToday(data.createdAt)}</S.PostTime>
-                        </div>
-                    </div>
-                    );
-                })}
-                <S.CommentInputWrapper>
-                    <S.CommentInput>
-                    <form onSubmit={onSubmit}>
-                        <input
-                        type="text"
-                        id="commentContent"
-                        required
-                        placeholder="댓글쓰기"
-                        />
-                        <button type="submit">
-                            <SendSVG style={{cursor:"pointer"}} />
-                        </button>
-                    </form>
-                    </S.CommentInput>
-                </S.CommentInputWrapper>
+  useEffect(() => {
+    getComment();
+  }, []);
+
+  if (!post) {
+    return <div>로딩중...</div>;
+  }
+
+  return (
+    <div>
+      <MenuModal
+        isOpen={isMenuModalOn}
+        setIsOpen={setIsMenuModalOn}
+        postPk={post.pk}
+        courseId={courseId}
+      />
+
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <S.Circle onClick={goBack} style={{ marginTop: "0" }}>
+          <i className="fas fa-arrow-left"></i>
+        </S.Circle>
+        {post.authorPk == profile.pk && (
+          <div
+            onClick={() => handleModalData()}
+            style={{
+              marginRight: "21px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <i className="fas fa-ellipsis-v"></i>
+          </div>
+        )}
+      </div>
+      <div
+        style={{
+          width: "88%",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          borderBottom: "1px solid #d9d9d9",
+        }}
+      >
+        <S.PostTitle>{post.title}</S.PostTitle>
+        <S.PostContent>{post.content}</S.PostContent>
+        <div style={{ width: "100%", height: "36px" }}></div>
+        <S.PostTime>{timeForToday(post.createdAt)}</S.PostTime>
+      </div>
+      {comment &&
+        comment.map((data) => {
+          return (
+            <div
+              style={{
+                width: "88%",
+                margin: "0 auto",
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <div>{data.content}</div>
+              <div
+                style={{
+                  width: "88%",
+                  margin: "0 auto",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <S.PostTime>{timeForToday(data.createdAt)}</S.PostTime>
+              </div>
             </div>
-        )
-    } else {
-        return (
-            <>
-                <S.FixedAlign>
-                    <S.CommentInputWrapper>
-                    </S.CommentInputWrapper>
-                </S.FixedAlign>
-                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <S.Circle onClick={goBack} style={{marginTop:"0"}}>
-                        <i className="fas fa-arrow-left"></i>
-                    </S.Circle>
-                    <div style={{visibility:'hidden', width: '44px',cursor:'pointer', height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}><i className="fas fa-ellipsis-v"></i></div>
-                </div>
-                <div style={{width:"88%" ,margin: "0 auto",display:"flex",justifyContent:"center",flexDirection: "column", borderBottom: "1px solid #d9d9d9"}}>
-                    <S.PostTitle>{post.title}</S.PostTitle>
-                    <S.PostContent>{post.content}</S.PostContent>
-                    <div style={{width:"100%",height:"36px"}}></div>
-                    <S.PostTime>{timeForToday(post.createdAt)}</S.PostTime>
-                </div>
-                <S.CommentInputWrapper>
-                    <S.CommentInput>
-                    <form onSubmit={onSubmit}>
-                        <input
-                        type="text"
-                        id="msgInput"
-                        required
-                        placeholder="댓글 쓰기"
-                        />
-                        <button type="submit">
-                        <SendSVG style={{cursor:"pointer"}} />
-                        </button>
-                    </form>
-                    </S.CommentInput>
-                </S.CommentInputWrapper>
-            </>
-        )
-    }
+          );
+        })}
+      <S.CommentInputWrapper>
+        <S.CommentInput>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              id="commentContent"
+              required
+              placeholder="댓글쓰기"
+            />
+            <button type="submit">
+              <SendSVG style={{ cursor: "pointer" }} />
+            </button>
+          </form>
+        </S.CommentInput>
+      </S.CommentInputWrapper>
+    </div>
+  );
 }
 export default Write;
