@@ -178,3 +178,63 @@ export const PostTime= styled.div`
  color:#ACB3BF;
  margin-bottom:12px;
 `
+// export const CommentInputWrapper = styled.div`
+//   width:100%;
+//   display: flex;
+//   text-align:center;
+//   justify-content: center;
+//   align-items: center;
+//   margin: 0 auto;
+//   position: fixed;
+//   max-width: 375px;
+//   bottom: 100px;
+// `
+// export const CommentInput = styled.input`
+//   width: 88%;
+
+//   height: 60px;
+//   border: 1px solid #18A0FB;
+//   box-sizing: border-box;
+//   box-shadow: 0px 2px 28px rgba(75, 88, 208, 0.15);
+//   border-radius: 36px;
+// `
+
+export const CommentInputWrapper = styled.div`
+  position: fixed;
+  bottom: 95px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 375px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CommentInput = styled.div`
+  width: 80%;
+  box-shadow: 0px 2px 28px rgba(75, 88, 208, 0.1);
+  border-radius: 36px;
+  padding: 10px;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #18A0FB;
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      width: 80%;
+      font-size: 16px;
+      border: none;
+      padding: 10px;
+      margin-right: 10px;
+    }
+    button {
+      border: none;
+      background-color: white;
+      width: fit-content;
+      height: fit-content;
+    }
+  }
+`;
