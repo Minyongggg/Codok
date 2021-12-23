@@ -46,25 +46,25 @@ function Chatlist() {
             <h3>{profile.nickname}</h3>
             {profile.mateWant && <HandSVG />}
           </S.ProfileTitle>
-          <div>
+          <S.ProfileMainInfo>
             {profile.major === "default" ? (
-              <span>전공 미지정</span>
+              <div>전공 미지정</div>
             ) : (
-              <span>{profile.major}</span>
+              <div>{profile.major}</div>
             )}
 
             {profile.studentId === "default" ? (
-              <span>학번 미지정</span>
+              <div>학번 미지정</div>
             ) : (
-              <span>{profile.studentId}</span>
+              <div>{profile.studentId}</div>
             )}
 
             {profile.gender === "default" ? (
-              <span>성별 미지정</span>
+              <div>성별 미지정</div>
             ) : (
-              <span>{profile.gender === "Male" ? "남" : "여"}</span>
+              <div>{profile.gender === "Male" ? "남" : "여"}</div>
             )}
-          </div>
+          </S.ProfileMainInfo>
           {profile.introduce !== "default" && (
             <S.Introduce>{profile.introduce}</S.Introduce>
           )}

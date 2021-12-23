@@ -41,16 +41,27 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  background-color: black;
+  background-color:#18a0fb;
   padding: 14px;
+  cursor:pointer;
   border-radius: 50px;
   color: white;
-  width: 50%;
+  width: 80%;
   margin-top: 20px;
-
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1)) drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.1));
+  border: 1px solid #eee;
+  &:hover{
+    background-color:white;
+    color:#18a0fb;
+  }
   &#cancel {
     background-color: white;
     color: #a7b0c0;
     margin-top: 5px;
+  }
+  &#cancel:hover {
+    background-color:#18a0fb;
+    color:white;
   }
 `;
