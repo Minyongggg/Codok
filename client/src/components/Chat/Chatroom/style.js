@@ -41,11 +41,18 @@ export const InputBox = styled.div`
 
 export const Container = styled.div`
   padding: 24px;
-  padding-bottom: 400px;
+  padding-bottom: 180px;
   overflow: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: calc(100vh - 80px);
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
 
 export const WhiteSpace = styled.div`
@@ -66,6 +73,7 @@ export const Send = styled.div`
   background-color: #18a0fb;
   max-width: 90%;
   border-radius: 24px 0px 24px 24px;
+  color: white;
 `;
 
 export const SendWrapper = styled.div`

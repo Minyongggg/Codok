@@ -19,6 +19,7 @@ function Chatroom() {
   const [newChat, setNewChat] = useState(null);
   const [msgInput, setMsgInput] = useState("");
   const ref = useRef();
+  const messagesEndRef = useRef(null);
 
   const getChats = async (chatroomPk) => {
     await axios({
@@ -136,7 +137,6 @@ function Chatroom() {
             );
           }
         })}
-        <S.WhiteSpace />
       </S.Container>
 
       <S.InputWrapper>
