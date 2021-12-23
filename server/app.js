@@ -53,4 +53,4 @@ io.on('connection', (socket) => {
 server.listen(8000, () => {
   console.log(`Listening on 8000`);
 });
-app.use(cors())
+app.use(cors());

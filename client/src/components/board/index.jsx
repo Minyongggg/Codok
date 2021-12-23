@@ -12,7 +12,7 @@ function Board() {
     const { courseId } = useParams();
     const [isLoading, setIsLoading] = useState(true);
 
-    const getPosts = async () =>  { await axios.get(config.BASE_URL + "/api/posts/lectures/" + {courseId})
+    const getPosts = async () =>  { await axios.get(config.BASE_URL + "/api/posts/lectures/" + courseId)
       .then((res)=> {
            console.log(res);
            console.log(res.data);
