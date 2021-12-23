@@ -19,7 +19,13 @@ function Chatroom() {
   const [newChat, setNewChat] = useState(null);
   const [msgInput, setMsgInput] = useState("");
   const ref = useRef();
-  const messagesEndRef = useRef(null);
+  const messageBoxRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (messageBoxRef.current) {
+      messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
+    }
+  };
 
   const getChats = async (chatroomPk) => {
     await axios({
@@ -107,10 +113,14 @@ function Chatroom() {
     }
   }, [chatroomPk]);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [chats]);
+
   return (
     <>
       <Header type="chat" content={friendName} />
-      <S.Container>
+      <S.Container ref={messageBoxRef}>
         {chats.map((item, i) => {
           if (item.senderPk == profilePk) {
             return (
