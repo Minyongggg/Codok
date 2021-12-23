@@ -10,7 +10,6 @@ function SlideUpModal({ isOpen, setIsOpen, clickedLecture }) {
   const stopPropagation = useCallback((e) => {
     e.stopPropagation();
   }, []);
-  console.log(clickedLecture)
   const closeModal = useModalHandler(isOpen, setIsOpen)[1];
   useBodyScrollLock(isOpen);
 

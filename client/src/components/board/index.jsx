@@ -14,8 +14,6 @@ function Board() {
 
     const getPosts = async () =>  { await axios.get(config.BASE_URL + "/api/posts/lectures/" + courseId)
       .then((res)=> {
-           console.log(res);
-           console.log(res.data);
            setPosts(res.data.data);
         })
     }
@@ -27,7 +25,6 @@ function Board() {
             withCredentials: true
         })
         .then((res) => {
-            console.log(res.data);
             setLecture(res.data.data);
         })
     }

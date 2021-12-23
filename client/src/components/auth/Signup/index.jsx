@@ -20,7 +20,6 @@ function Signup() {
       data: signupInfo,
       withCredentials: true,
     }).then((res) => {
-        console.log(res);
         setProfile(() => res.data.profile);
         setUser(() => "isLogin");
         localStorage.setItem("CodokId", res.data.profile.pk);
@@ -29,7 +28,6 @@ function Signup() {
         })
       })
       .catch((err) => {
-          console.dir(err)
           if(err.response.status==409 && err.response.data.message=="id duplicate"){
             alert("이미 사용 중인 아이디입니다.");
             setError("이미 사용 중인 아이디입니다.")

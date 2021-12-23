@@ -13,7 +13,6 @@ function Write() {
     const [post, setPost] = useState();
     const [isMenuModalOn, setIsMenuModalOn] = useState(false);
     const profile = useRecoilValue(profileState);
-    console.log(postPk);
 
     const handleModalData = () => {
         setIsMenuModalOn(true);
@@ -51,7 +50,6 @@ function Write() {
             method: "get",
             url: config.BASE_URL + "/api/posts/" + postPk,
             withCredentials: true
-        })
         .then((res) => {
             console.log(res.data.data);
             setPost(res.data.data);

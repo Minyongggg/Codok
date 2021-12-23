@@ -24,7 +24,6 @@ function Chatroom() {
       withCredentials: true
     })
     .then((res) => {
-      console.log(res.data)
       return setChats(() => res.data.chats);
     })
   }
@@ -37,7 +36,6 @@ function Chatroom() {
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res.data);
       return setChatroomPk(()=>res.data.chatroom.pk);
     })
   }
@@ -79,7 +77,6 @@ function Chatroom() {
     socket.off('newMsg');
     socket.on('newMsg', (newChat) => {
       setNewChat(newChat);
-      console.log(newChat);
     })
   }, []);
 
@@ -91,7 +88,6 @@ function Chatroom() {
 
   useEffect(() => {
     if(!chatroomPk){
-      console.log(`${profilePk}와 ${friendPk}의 채팅방`);
       getChatroom(profilePk, friendPk);
     }
     if(chatroomPk){

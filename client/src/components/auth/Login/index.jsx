@@ -12,7 +12,6 @@ function Login() {
   const [ error, setError ] = useState();
 
   const login = async (loginInfo) => {
-    console.log(config.BASE_URL)
     axios({
       method: "post",
       url: config.BASE_URL + "/api/auth/login",
@@ -22,10 +21,8 @@ function Login() {
       .then((res) => {
         localStorage.setItem("CodokId", res.data.profile.pk);
         setUser("isLogin");
-        history.push("/home");
       })
       .catch((err) => {
-        console.dir(err);
         if(err.response.status==401 && err.response.data=="Unauthorized"){
           alert("아이디 혹은 패스워드가 잘못되었습니다.");
           setError("아이디 혹은 패스워드가 잘못되었습니다.");

@@ -23,9 +23,6 @@ function Profile() {
   }, [profile]);
 
   const updateProfile = async (profilePk, profileInfo) => {
-    const URL =  process.env.NODE_ENV === 'production'
-    ? `http://ec2-3-38-152-56.ap-northeast-2.compute.amazonaws.com:8000/api/profiles/${profilePk}`
-    : `http://localhost:8000/api/profiles/${profilePk}`;
     axios({
       method: "put",
       url: config.BASE_URL + "/api/profiles/" + profilePk,

@@ -13,7 +13,6 @@ function Write() {
     const { courseId } = useParams();
     const [lecture, setLecture] = useState();
     const lecturePk = location.state.lecturePk;
-    console.log(lecturePk);
 
     useEffect(async ()=> {
         axios({

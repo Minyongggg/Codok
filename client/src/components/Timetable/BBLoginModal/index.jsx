@@ -13,7 +13,6 @@ function BBLoginModal({ isOpen, setIsOpen }) {
   const [isLoading, setIsLoading] = useState(false);
 
   // const crawlBB = async (profilePk, bbInfo) => {
-  //   console.log("블랙보드 연동 request");
   //   await axios({
   //     method: "post",
   //     url: `http://localhost:8000/api/takes/${profilePk}`,
@@ -21,12 +20,10 @@ function BBLoginModal({ isOpen, setIsOpen }) {
   //     withCredentials: true,
   //   })
   //     .then((res) => {
-  //       console.log(res.data);
   //       setIsLoading(false);
   //       setIsOpen(false);
   //     })
   //     .catch((err) => {
-  //       console.log(err);
   //       setIsLoading(false);
   //     });
   // };
@@ -40,10 +37,8 @@ function BBLoginModal({ isOpen, setIsOpen }) {
       .then((res) => {
         setIsLoading(false);
         setIsOpen(false);
-        console.log(res);
       })
       .catch((err) => {
-        console.log(err);
         setIsLoading(false);
       });
   };

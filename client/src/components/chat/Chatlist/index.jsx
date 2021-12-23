@@ -20,7 +20,6 @@ function Chatlist() {
       withCredentials: true,
     })
     .then((res) => {
-        console.log(res.data.chatrooms);
         setChatroomList(res.data.chatrooms);
         setIsLoading(false);
     })
