@@ -1,5 +1,7 @@
 <p align="center"><img width="600" alt="logoImage4" src=""></p>
 
+![codok](https://github.com/Minyongggg/Codok/assets/54466093/2e654f9e-37a7-4058-9a22-4e1b18e79a40)
+
 
 ## 📄 About Project
 
@@ -32,29 +34,38 @@ Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX
 
 ## 🛠 Tech Stack
 ### Frontend
-<img src="https://img.shields.io/badge/React-51C9EF?style=for-the-badge&logo=react&logoColor=white">
-<img src="https://img.shields.io/badge/Recoil-007396?style=for-the-badge&logo=recoil&logoColor=white">
+<p>
+  <img src="https://img.shields.io/badge/React-51C9EF?style=for-the-badge&logo=react&logoColor=white">
+  <img src="https://img.shields.io/badge/Recoil-007396?style=for-the-badge&logo=recoil&logoColor=white">
   <img src="https://img.shields.io/badge/Styled Components-C5599D?style=for-the-badge&logo=styledcomponents&logoColor=white">
+</p>
 
 ### Backend
-<img src="https://img.shields.io/badge/nodejs-5EA741?style=for-the-badge&logo=node.js&logoColor=white">
-<img src="https://img.shields.io/badge/Express-333333?style=for-the-badge&logo=express&logoColor=white">
-<img src="https://img.shields.io/badge/socket.io-000000?style=for-the-badge&logo=socket.io&logoColor=white">
-<img src="https://img.shields.io/badge/Sequelize-2E60B5?style=for-the-badge&logo=sequelize&logoColor=white">
+<p>
+  <img src="https://img.shields.io/badge/nodejs-5EA741?style=for-the-badge&logo=node.js&logoColor=white">
+  <img src="https://img.shields.io/badge/Express-333333?style=for-the-badge&logo=express&logoColor=white">
+  <img src="https://img.shields.io/badge/socket.io-000000?style=for-the-badge&logo=socket.io&logoColor=white">
+  <img src="https://img.shields.io/badge/Sequelize-2E60B5?style=for-the-badge&logo=sequelize&logoColor=white">
+</p>
 
 ### DB
-<img src="https://img.shields.io/badge/Mysql-007396?style=for-the-badge&logo=mysql&logoColor=white">
+<p>
+  <img src="https://img.shields.io/badge/Mysql-007396?style=for-the-badge&logo=mysql&logoColor=white">
+</p>
 
 ### Infra
-<img src="https://img.shields.io/badge/Linux-202020?style=for-the-badge&logo=Linux&logoColor=white">
-<img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
-<img src="https://img.shields.io/badge/Git-E03826?style=for-the-badge&logo=git&logoColor=white">
+<p>
+  <img src="https://img.shields.io/badge/Linux-202020?style=for-the-badge&logo=Linux&logoColor=white">
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
+  <img src="https://img.shields.io/badge/Git-E03826?style=for-the-badge&logo=git&logoColor=white">
+</p>
 
 <br>
 
 ## 📊 ERD Diagram 
 
 <img width="800" src="">
+![Codok Diagram](https://github.com/Minyongggg/Codok/assets/54466093/9ed530fc-1e01-4c75-9b88-1e33c656e02d)
 
 
 <br>
@@ -64,6 +75,11 @@ Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX
 | :----------: |  :--------:  |  :---------: |  :---------: |
 |  BE [이민용](https://github.com/Minyongggg)  | FE [양효령](https://github.com/onCloud33)  | FE [김지성](https://github.com/Kim-Jiseong)  | UI/UX [양희원](https://github.com/heawon99)  |
 
+
+![js](https://github.com/Minyongggg/Codok/assets/54466093/1997a372-a9b6-4cb8-af43-c1d4c50d2a00)
+![hr](https://github.com/Minyongggg/Codok/assets/54466093/eb617895-3e78-4017-bdda-ebbf87a5de22)
+![my](https://github.com/Minyongggg/Codok/assets/54466093/f3a2a346-5810-4684-b6d2-2b2bfef65a48)
+![hw](https://github.com/Minyongggg/Codok/assets/54466093/bc49ef26-1c75-418f-a548-674c7cbf57ba)
 
 
 
