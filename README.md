@@ -1,8 +1,5 @@
 <p align="center"><img width="600" alt="logoImage4" src="https://github.com/Minyongggg/Codok/assets/54466093/2e654f9e-37a7-4058-9a22-4e1b18e79a40"></p>
 
-![codok](https://github.com/Minyongggg/Codok/assets/54466093/2e654f9e-37a7-4058-9a22-4e1b18e79a40)
-
-
 ## 📄 About Project
 
 ### 개요
@@ -21,20 +18,14 @@
 #### 1) 블랙보드 연동을 통한 시간표 생성
 Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX를 생성합니다. 유저 간 소통은 시간표를 기반으로 이루어지기 때문에 Codok에서 만난 유저가 실제로 같은 수업을 수강하는 학생이라는 점을 신뢰할 수 있습니다. 
 
-<img width="800" src="">
-
 <img width="369" alt="bb" src="https://github.com/Minyongggg/Codok/assets/54466093/2695aacc-d64e-4f20-8fab-0b0c3e921194">
-
 
 <br>
 
 #### 2) 친구 매칭 및 1:1 채팅 
 생성된 시간표를 기반으로 같은 수업을 수강 중인 유저들은 서로의 프로필을 살펴볼 수 있습니다. 이후 상대방에게 간단한 손 흔들기를 통해 관심을 표현하거나 실시간 채팅을 통해 대화를 나눌 수 있습니다.
 
-<img width="800" src="">
-
-![chat](https://github.com/Minyongggg/Codok/assets/54466093/abe8a995-cb23-4170-80ad-9d77c2740779)
-
+<img width="550" src="https://github.com/Minyongggg/Codok/assets/54466093/abe8a995-cb23-4170-80ad-9d77c2740779">
 
 <br>
 
@@ -77,15 +68,8 @@ Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX
 <br>
 
 ## 👩‍👩‍👧‍👦Members
-| <img src="https://github.com/Minyongggg/Codok/assets/54466093/f3a2a346-5810-4684-b6d2-2b2bfef65a48" width=400px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/eb617895-3e78-4017-bdda-ebbf87a5de22" width=400px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/1997a372-a9b6-4cb8-af43-c1d4c50d2a00" width=400px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/bc49ef26-1c75-418f-a548-674c7cbf57ba" width=400px alt="_"> |
+| <img src="https://github.com/Minyongggg/Codok/assets/54466093/f3a2a346-5810-4684-b6d2-2b2bfef65a48" width=250px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/eb617895-3e78-4017-bdda-ebbf87a5de22" width=250px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/1997a372-a9b6-4cb8-af43-c1d4c50d2a00" width=250px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/bc49ef26-1c75-418f-a548-674c7cbf57ba" width=250px alt="_"> |
 | :----------: |  :--------:  |  :---------: |  :---------: |
 |  BE [이민용](https://github.com/Minyongggg)  | FE [양효령](https://github.com/onCloud33)  | FE [김지성](https://github.com/Kim-Jiseong)  | UI/UX [양희원](https://github.com/heawon99)  |
-
-
-![js](https://github.com/Minyongggg/Codok/assets/54466093/1997a372-a9b6-4cb8-af43-c1d4c50d2a00)
-![hr](https://github.com/Minyongggg/Codok/assets/54466093/eb617895-3e78-4017-bdda-ebbf87a5de22)
-![my](https://github.com/Minyongggg/Codok/assets/54466093/f3a2a346-5810-4684-b6d2-2b2bfef65a48)
-![hw](https://github.com/Minyongggg/Codok/assets/54466093/bc49ef26-1c75-418f-a548-674c7cbf57ba)
-
 
 
