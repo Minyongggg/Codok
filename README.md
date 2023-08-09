@@ -5,7 +5,7 @@
 ### 개요
 <strong>Codok은 대학생 독강 친구 매칭을 위한 서비스</strong>입니다. 코로나19 로 인한 비대면 교내활동 증가, 이중전공/부전공/교환학생 제도로 인한 타전공 이수 증가 등으로 함께하는 친구 없이 혼자 강의를 수강하는 학생들이 많아졌습니다. 실제로 독강 친구를 찾고자하는 학생들은 많았으나, 대부분의 경우 정보가 분산되고 신뢰성이 보장되지 않는 온라인 커뮤니티에 의존하고 있었습니다. Codok은 기존의 불편함을 벗어나 <strong>빠르고 안전하게 독강 친구를 찾을 수 있는 환경</strong>을 교내 학우들에게 제공하기 위해 기획 및 개발되었습니다.    
 
-[Codok 사업계획서](https://github.com/Minyongggg/Codok/docs/presentation.pdf)
+[Codok 사업계획서](https://github.com/Minyongggg/Codok/blob/master/docs/presentation.pdf)
 
 ### 기간
 2021.05 ~ 2021.08
