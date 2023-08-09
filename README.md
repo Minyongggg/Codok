@@ -65,9 +65,10 @@ Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX
 <img width="600" src="https://github.com/Minyongggg/Codok/assets/54466093/9ed530fc-1e01-4c75-9b88-1e33c656e02d">
 
 <br>
+<br>
 
 ## 👩‍👩‍👧‍👦Members
-| <img src="https://github.com/Minyongggg/Codok/assets/54466093/f3a2a346-5810-4684-b6d2-2b2bfef65a48" width=150px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/eb617895-3e78-4017-bdda-ebbf87a5de22" width=150px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/1997a372-a9b6-4cb8-af43-c1d4c50d2a00" width=150px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/bc49ef26-1c75-418f-a548-674c7cbf57ba" width=150px alt="_"> |
+| <img src="https://github.com/Minyongggg/Codok/assets/54466093/f3a2a346-5810-4684-b6d2-2b2bfef65a48" width=130px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/eb617895-3e78-4017-bdda-ebbf87a5de22" width=130px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/1997a372-a9b6-4cb8-af43-c1d4c50d2a00" width=130px alt="_"/> | <img src="https://github.com/Minyongggg/Codok/assets/54466093/bc49ef26-1c75-418f-a548-674c7cbf57ba" width=130px alt="_"> |
 | :----------: |  :--------:  |  :---------: |  :---------: |
 |  BE [이민용](https://github.com/Minyongggg)  | FE [양효령](https://github.com/onCloud33)  | FE [김지성](https://github.com/Kim-Jiseong)  | UI/UX [양희원](https://github.com/heawon99)  |
 
