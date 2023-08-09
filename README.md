@@ -28,6 +28,7 @@ Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX
 <img width="550" src="https://github.com/Minyongggg/Codok/assets/54466093/abe8a995-cb23-4170-80ad-9d77c2740779">
 
 <br>
+<br>
 
 ## 🛠 Tech Stack
 ### Frontend
@@ -61,9 +62,7 @@ Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX
 
 ## 📊 ERD Diagram 
 
-<img width="800" src="">
-![Codok Diagram](https://github.com/Minyongggg/Codok/assets/54466093/9ed530fc-1e01-4c75-9b88-1e33c656e02d)
-
+<img width="600" src="https://github.com/Minyongggg/Codok/assets/54466093/9ed530fc-1e01-4c75-9b88-1e33c656e02d">
 
 <br>
 
