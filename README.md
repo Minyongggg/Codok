@@ -60,7 +60,7 @@ Codok은 학교 블랙보드의 데이터를 기반으로 유저의 시간표 UX
 
 <br>
 
-## 📊 ERD Diagram 
+## 📊 ER Diagram 
 
 <img width="600" src="https://github.com/Minyongggg/Codok/assets/54466093/9ed530fc-1e01-4c75-9b88-1e33c656e02d">
 
